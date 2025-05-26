@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    restart: always
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+      - ./appdata:/data
+      - /path/to/media/share:/media
+      - /path/to/nzbget/downloads:/downloads

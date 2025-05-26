@@ -1,0 +1,37 @@
+- name: News
+  center-vertically: true
+  width: slim
+  columns:
+    - size: full
+      widgets:
+        - type: group
+          widgets:
+            - type: hacker-news
+            - type: lobsters
+
+        # theo, prime, kevin fang (bangers)
+        - type: videos
+          channels:
+            - UCm8EsftbfNzSiRHzc7I59KQ
+            - UCbRP3c757lWg9M-U7TyEkXA
+            - UCUyeluBRhGPCW4rPe_UvBZQ
+
+        - type: group
+          widgets:
+            - type: reddit
+              subreddit: selfhosted
+              show-thumbnails: true
+            - type: reddit
+              subreddit: technology
+              show-thumbnails: true
+
+    - size: small
+      widgets:
+        - type: releases
+          show-source-icon: true
+          repositories:
+            - glanceapp/glance
+        - type: weather
+          units: imperial
+          hour-format: 12h
+          location: Buffalo, New York, United States

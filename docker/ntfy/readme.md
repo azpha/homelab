@@ -1,0 +1,13 @@
+# ntfy
+
+ntfy is a self-hosted solution for sending push notification to any device from any platform.
+
+![ntfy Interface](./image.png)
+
+## Installation
+
+```
+docker-compose up -d
+```
+
+See [docker-compose.yml](./docker-compose.yml).

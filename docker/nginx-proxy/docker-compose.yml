@@ -1,0 +1,40 @@
+version: '3.8'
+
+volumes:
+  app_data:
+  letsencrypt:
+  database:
+
+services:
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+      MARIADB_AUTO_UPGRADE: '1'
+    volumes:
+      - database:/var/lib/mysql
+
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - app_data:/data
+      - letsencrypt:/etc/letsencrypt
+      - ./98-themepark:/etc/cont-init.d/98-themepark
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+      MARIADB_AUTO_UPGRADE: '1'
+      TP_THEME: 'dracula'

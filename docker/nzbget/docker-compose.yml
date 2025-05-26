@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=America/New_York
+      - NZBGET_USER=nzbget
+      - NZBGET_PASS=supersecretpassword
+    volumes:
+      - ./config:/config
+      - /path/to/media/download/folder:/downloads
+    ports:
+      - 6789:6789/tcp
+    restart: unless-stopped

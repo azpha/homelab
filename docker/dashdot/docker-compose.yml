@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  dashdot:
+    image: 'mauricenino/dashdot'
+    ports:
+      - 3001:3001
+    volumes:
+      - /:/mnt/host:ro
+    restart: always

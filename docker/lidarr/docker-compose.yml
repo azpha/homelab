@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  lidarr:
+    container_name: lidarr
+    image: ghcr.io/hotio/lidarr
+    restart: always
+    ports:
+      - "8686:8686"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+      - ./data:/data
+      - /path/to/music/media/folder:/media
+      - /path/to/nzbget/downloads/folder:/downloads

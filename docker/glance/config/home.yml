@@ -1,0 +1,82 @@
+- name: Home
+  width: slim
+  center-vertically: true
+  columns:
+    - size: small
+      widgets:
+        - type: dns-stats
+          service: pihole-v6
+          url: https://pihole.domain.tld/
+          password: supersecretapppassword
+
+        - type: rss
+          limit: 10
+          collapse-after: 3
+          cache: 12h
+          feeds:
+            - url: https://selfh.st/rss/
+              title: selfh.st
+            - url: https://ciechanow.ski/atom.xml
+            - url: https://www.joshwcomeau.com/rss.xml
+              title: Josh Comeau
+            - url: https://samwho.dev/rss.xml
+            - url: https://ishadeed.com/feed.xml
+              title: Ahmad Shadeed
+        - type: server-stats
+          servers:
+            - type: local
+              name: Jade
+
+    - size: full
+      widgets:
+        - type: search
+          search-engine: google
+
+        - type: monitor
+          title: Services
+          cache: 1m
+          sites:
+            - title: Plex
+              url: https://plex.domain.tld/web/index.html#/
+              icon: si:plex
+            - title: Tautulli
+              url: https://tt.domain.tld/
+              icon: di:tautulli
+            - title: Immich
+              url: https://img.domain.tld
+              icon: di:immich
+            - title: NZBGet
+              url: https://nzb.domain.tld
+              icon: di:nzbget
+            - title: Proxy
+              url: https://proxy.domain.tld
+              icon: di:nginx-proxy-manager
+            - title: Nextcloud
+              url: https://cloud.domain.tld
+              icon: di:nextcloud
+            - title: PiHole
+              url: https://pihole.domain.tld/admin
+              icon: di:pi-hole
+            - title: Vaultwarden
+              url: https://vw.domain.tld
+              icon: di:vaultwarden
+            - title: Overseerr
+              url: https://overseerr.domain.tld
+              icon: di:overseerr
+            - title: Dozzle
+              url: https://dz.domain.tld
+              icon: di:dozzle
+
+        - type: monitor
+          title: Servarr
+          cache: 1m
+          sites:
+            - title: Radarr
+              url: https://radarr.domain.tld
+              icon: di:radarr
+            - title: Sonarr
+              url: https://sonarr.domain.tld
+              icon: di:sonarr
+            - title: Lidarr
+              url: https://lidarr.domain.tld
+              icon: di:lidarr

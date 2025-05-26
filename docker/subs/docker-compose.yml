@@ -1,0 +1,40 @@
+networks:
+  subs-network:
+    name: subs-network
+volumes:
+  subs-db:
+
+services:
+  db:
+    image: mariadb
+    restart: unless-stopped
+    networks:
+      - subs-network
+    volumes:
+      - subs-db:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: supersecretpass
+      MARIADB_USER: subscription
+      MARIADB_PASSWORD: supersecretpass
+      MARIADB_DATABASE: subscription
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  subscription-tracker:
+    image: ghcr.io/azpha/subscription-tracker:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - subs-network
+    ports:
+      - 3000:3000
+      - 3001:3001
+    environment:
+      - DATABASE_URL=mysql://subscription:supersecretpass@db:3306/subscription
+      - DISCORD_WEBHOOK=https://discord.com/api/webhooks/xxxxx/xxxxx
