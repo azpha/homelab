@@ -1,0 +1,13 @@
+# NZBGet
+
+NZBGet is an advanced NZB downloader, utilized for retrieving articles from Usenet groups. (You'll need a Usenet provider to use this)
+
+![NZBGet Interface](./image.png)
+
+## Installation
+
+```
+docker-compose up -d
+```
+
+See [docker-compose.yml](./docker-compose.yml).
