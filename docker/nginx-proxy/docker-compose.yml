@@ -30,11 +30,13 @@ services:
     volumes:
       - app_data:/data
       - letsencrypt:/etc/letsencrypt
-      - ./98-themepark:/etc/cont-init.d/98-themepark
+      # custom theme-park theme - see readme
+      # - ./98-themepark:/etc/cont-init.d/98-themepark
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
       MYSQL_DATABASE: 'npm'
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
       MARIADB_AUTO_UPGRADE: '1'
-      TP_THEME: 'dracula'
+      # choose which variant you want from the theme-park theme
+      # TP_THEME: 'dracula'
