@@ -1,6 +1,6 @@
 # Vaultwarden
 
-Vaultwarden is an open-source, alternative server implementation for the Bitwarden Client API.
+[Vaultwarden](https://github.com/dani-garcia/vaultwarden) is an open-source, alternative server implementation for the Bitwarden Client API.
 
 ## Installation
 

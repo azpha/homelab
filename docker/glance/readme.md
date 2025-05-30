@@ -1,6 +1,6 @@
 # Glance
 
-Glance is a very versitile modern server dashboard that allows you to have one place for all your services, display content from RSS feeds and more.
+[Glance](https://github.com/glanceapp/glance) is a very versitile modern server dashboard that allows you to have one place for all your services, display content from RSS feeds and more.
 
 ![Glance Interface](./image.png)
 

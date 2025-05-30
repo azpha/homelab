@@ -1,6 +1,6 @@
 # Watchtower
 
-Watchtower is a small process for automating updates to Docker images.
+[Watchtower](https://github.com/containrrr/watchtower) is a small process for automating updates to Docker images.
 
 ## Installation
 

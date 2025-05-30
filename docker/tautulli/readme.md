@@ -1,6 +1,6 @@
 # Tautulli
 
-Tautulli is a metrics application that tracks usage & statistics from your Plex Media Server.
+[Tautulli](https://tautulli.com/) is a metrics application that tracks usage & statistics from your Plex Media Server.
 
 ![Tautulli Interface](./image.png)
 

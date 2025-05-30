@@ -1,6 +1,6 @@
 # Overseerr
 
-Overseerr is a frontend for managing content requests & discovering media, built into the Plex ecosystem.
+[Overseerr](https://overseerr.dev/) is a frontend for managing content requests & discovering media, built into the Plex ecosystem.
 
 ![Overseerr Interface](./image.png)
 

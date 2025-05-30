@@ -1,6 +1,6 @@
 # Gitea
 
-Gitea is a lightweight DevOps platform for version control.
+[Gitea](https://about.gitea.com/) is a lightweight DevOps platform for version control.
 
 ![Gitea Interface](./image.png)
 

@@ -1,6 +1,6 @@
 # Jellyfin
 
-Jellyfin is an open-source alternative to a media server like Plex. It supports the same features like library organization, live TV and more.
+[Jellyfin](https://jellyfin.org/) is an open-source alternative to a media server like Plex. It supports the same features like library organization, live TV and more.
 
 ![Jellyfin Interface](./image.png)
 

@@ -1,6 +1,6 @@
 # NZBGet
 
-NZBGet is an advanced NZB downloader, utilized for retrieving articles from Usenet groups. (You'll need a Usenet provider to use this)
+[NZBGet](https://nzbget.com/) is an advanced NZB downloader, utilized for retrieving articles from Usenet groups. (You'll need a Usenet provider to use this)
 
 ![NZBGet Interface](./image.png)
 

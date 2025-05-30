@@ -1,6 +1,6 @@
 # Immich
 
-Immich is a self-hosted alternative to cloud solutions like Google Photos for backing up your photo library.
+[Immich](https://immich.app/) is a self-hosted alternative to cloud solutions like Google Photos for backing up your photo library.
 
 ![Immich Interface](./image.png)
 

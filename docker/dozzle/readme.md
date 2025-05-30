@@ -1,6 +1,6 @@
 # Dozzle
 
-Dozzle is a lightweight web UI for monitoring logs from Docker containers.
+[Dozzle](https://dozzle.dev/) is a lightweight web UI for monitoring logs from Docker containers.
 
 ![Dozzle Interface](./image.png)
 

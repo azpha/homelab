@@ -1,6 +1,6 @@
 # NGINX Proxy Manager
 
-NPM is a easily configurable reverse-proxy to setup subdomains for all your services in a single web ui. It also has really nice integrations with Let's Encrypt SSL certificates.
+[NPM](https://nginxproxymanager.com/) is a easily configurable reverse-proxy to setup subdomains for all your services in a single web ui. It also has really nice integrations with Let's Encrypt SSL certificates.
 
 ![NPM Interface](./image.png)
 
