@@ -1,0 +1,6 @@
+services:
+  excalidraw:
+    image: excalidraw/excalidraw
+    restart: unless-stopped
+    ports:
+      - 80:80
