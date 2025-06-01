@@ -1,0 +1,16 @@
+---
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "container:gluetun" # connected to gluetun
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - WEBUI_PORT=8090
+      - TORRENTING_PORT=6881
+    volumes:
+      - ./config:/config
+      - /path/to/media/downloads:/downloads #optional
+    restart: unless-stopped
