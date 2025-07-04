@@ -9,3 +9,10 @@ I run a `Dell PowerEdge R720XD` in my stack (named Jade!), alongside a 2-bay `UG
 ## Docker
 
 Evidently, I use Docker for a _lot_. I manage most of these file-based as I am relatively proficient in docker/docker-compose syntax, but if you are just starting out - I used [Portainer](https://portainer.io) for a while until I built up my Docker understanding. It provides a nice interface for managing Docker containers & stacks.
+
+### `docker-compose` vs `docker compose`
+
+At least on Ubuntu, the `docker-compose` apt package is _very_ outdated and finnicky. I have switched to using the Compose plugin from Docker. To install it, you'll have to
+
+- Add Docker's official apt repository to your system [(docs)](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
+- Install the `docker-compose-plugin` package

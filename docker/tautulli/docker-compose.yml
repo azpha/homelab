@@ -1,4 +1,7 @@
-version: '3'
+networks:
+  homelab:
+    name: homelab
+    external: true
 
 services:
   tautulli:
@@ -11,5 +14,5 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=America/New_York
-    ports:
-      - 8181:8181
+    networks:
+      - homelab

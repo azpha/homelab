@@ -1,4 +1,8 @@
----
+networks:
+  homelab:
+    name: homelab
+    external: true
+
 services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -12,9 +16,6 @@ services:
       - /path/to/tv/share:/data/tvshows
       - /path/to/movie/share:/data/movies
       - /path/to/music/share:/data/music
-    ports:
-      - 8096:8096
-      - 8920:8920
-      - 7359:7359/udp
-      - 1900:1900/udp
     restart: unless-stopped
+    networks:
+      - homelab

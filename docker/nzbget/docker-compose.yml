@@ -1,4 +1,7 @@
-version: '3.3'
+networks:
+  homelab:
+    name: homelab
+    external: true
 
 services:
   nzbget:
@@ -13,6 +16,6 @@ services:
     volumes:
       - ./config:/config
       - /path/to/media/download/folder:/downloads
-    ports:
-      - 6789:6789/tcp
     restart: unless-stopped
+    networks:
+      - homelab

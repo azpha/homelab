@@ -1,4 +1,8 @@
-version: '2'
+networks:
+  homelab:
+    name: homelab
+    external: true
+  nextcloud:
 
 services:
   db:
@@ -12,12 +16,13 @@ services:
       - MYSQL_PASSWORD=supersecretpass
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+    networks:
+      - nextcloud
 
   app:
+    container_name: nextcloud
     image: nextcloud
     restart: always
-    ports:
-      - 80:80 # i run this on port 9997 usually (9997:80)
     links:
       - db
     volumes:
@@ -27,3 +32,6 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
+    networks:
+      - homelab
+      - nextcloud

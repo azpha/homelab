@@ -1,5 +1,7 @@
----
-version: '3'
+networks:
+  homelab:
+    name: homelab
+    external: true
 
 services:
   overseerr:
@@ -8,8 +10,8 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=America/New_York
-    ports:
-      - 5055:5055
     volumes:
       - ./config:/app/config
     restart: unless-stopped
+    networks:
+      - homelab

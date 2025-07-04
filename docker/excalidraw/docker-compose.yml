@@ -1,6 +1,12 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
 services:
   excalidraw:
+    container_name: excalidraw
     image: excalidraw/excalidraw
     restart: unless-stopped
-    ports:
-      - 80:80
+    networks:
+      - homelab

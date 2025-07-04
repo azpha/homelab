@@ -1,5 +1,7 @@
-version: '3.8'
-
+networks:
+  homelab:
+    name: homelab
+    external: true
 volumes:
   app_data:
   letsencrypt:
@@ -16,10 +18,10 @@ services:
       MYSQL_PASSWORD: 'npm'
       MARIADB_AUTO_UPGRADE: '1'
     volumes:
-      - database:/var/lib/mysql
+      - ./db:/var/lib/mysql
 
   app:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: 'jc21/nginx-proxy-manager:2.12.3'
     restart: unless-stopped
     depends_on:
       - db
@@ -28,15 +30,26 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - app_data:/data
+      - ./data:/data
       - letsencrypt:/etc/letsencrypt
-      # custom theme-park theme - see readme
-      # - ./98-themepark:/etc/cont-init.d/98-themepark
+      - ./98-themepark:/etc/cont-init.d/98-themepark
+    networks:
+      - homelab
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
       MYSQL_DATABASE: 'npm'
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
       MARIADB_AUTO_UPGRADE: '1'
-      # choose which variant you want from the theme-park theme
-      # TP_THEME: 'dracula'
+      TP_THEME: 'dracula'
+
+  tinyauth:
+    image: ghcr.io/steveiliop56/tinyauth:v3
+    container_name: tinyauth
+    restart: unless-stopped
+    networks:
+      - homelab
+    environment:
+      - SECRET=aaaaaBBBBBccccccDDDDD
+      - APP_URL=https://auth.example.com
+      - USERS=blablablabla

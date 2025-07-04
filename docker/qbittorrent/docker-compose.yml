@@ -1,4 +1,3 @@
----
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest

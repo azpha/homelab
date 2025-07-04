@@ -1,6 +1,9 @@
 networks:
-  subs-network:
-    name: subs-network
+  subs:
+    name: subs
+  homelab:
+    name: homelab
+    external: true
 volumes:
   subs-db:
 
@@ -9,7 +12,7 @@ services:
     image: mariadb
     restart: unless-stopped
     networks:
-      - subs-network
+      - subs
     volumes:
       - subs-db:/var/lib/mysql
     environment:
@@ -31,10 +34,8 @@ services:
       db:
         condition: service_healthy
     networks:
-      - subs-network
-    ports:
-      - 3000:3000
-      - 3001:3001
+      - subs
+      - homelab
     environment:
       - DATABASE_URL=mysql://subscription:supersecretpass@db:3306/subscription
       - DISCORD_WEBHOOK=https://discord.com/api/webhooks/xxxxx/xxxxx

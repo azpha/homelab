@@ -1,0 +1,50 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ./sonarr_config:/config
+      - /path/to/media:/data
+      - /path/to/download/folder:/downloads
+    restart: always
+    networks:
+      - homelab
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=America/New_York
+    volumes:
+      - ./radarr_config:/config
+      - /path/to/media:/media
+      - /path/to/download/folder:/downloads
+    networks:
+      - homelab
+  lidarr:
+    container_name: lidarr
+    image: ghcr.io/hotio/lidarr
+    restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=America/New_York
+    volumes:
+      - ./lidarr_config:/config
+      - /path/to/media:/media
+      - /path/to/download/folder:/downloads
+    networks:
+      - homelab

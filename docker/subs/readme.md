@@ -7,7 +7,7 @@ This one is my own project. I use it to track all of my upcoming subscriptions -
 ## Installation
 
 ```
-docker-compose up -d
+sudo docker compose up -d
 ```
 
 See [docker-compose.yml](./docker-compose.yml).

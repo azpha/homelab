@@ -1,10 +1,14 @@
-version: '3.3'
+networks:
+  homelab:
+    name: homelab
+    external: true
 
 services:
   dashdot:
+    container_name: dashdot
     image: 'mauricenino/dashdot'
-    ports:
-      - 3001:3001
     volumes:
       - /:/mnt/host:ro
     restart: always
+    networks:
+      - homelab

@@ -1,3 +1,12 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+  immich:
+    name: immich
+volumes:
+  model-cache:
+
 services:
   immich-server:
     container_name: immich-server
@@ -7,14 +16,15 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
-    ports:
-      - '2283:2283'
     depends_on:
       - redis
       - database
     restart: always
     healthcheck:
       disable: false
+    networks:
+      - homelab
+      - immich
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -26,6 +36,8 @@ services:
     restart: always
     healthcheck:
       disable: false
+    networks:
+      - immich
 
   redis:
     container_name: immich_redis
@@ -33,6 +45,8 @@ services:
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
+    networks:
+      - immich
 
   database:
     container_name: immich_postgres
@@ -45,6 +59,5 @@ services:
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     restart: always
-
-volumes:
-  model-cache:
+    networks:
+      - immich
