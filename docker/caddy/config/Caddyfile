@@ -11,7 +11,7 @@ fntz.net, *.fntz.net {
 
   @auth host auth.fntz.net
   handle @auth {
-    reverse_proxy {{ upstreams 3000 }}
+    reverse_proxy tinyauth:3000
   }
 
   @home host fntz.net 
