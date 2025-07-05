@@ -49,7 +49,7 @@
               icon: di:hdhomerun
             - title: Immich
               url: https://img.fntz.net
-              check_url: http://immich_server:2283
+              check-url: http://immich_server:2283
               icon: di:immich
             - title: NZBGet
               url: https://nzb.fntz.net
@@ -71,14 +71,14 @@
               icon: di:overseerr
             - title: Dozzle
               url: https://dz.fntz.net
-              check_url: http://dozzle:3000
+              check-url: http://dozzle:3000
               icon: di:dozzle
             - title: Gitea
               url: https://git.fntz.net
               icon: di:gitea
             - title: Code Server
               url: https://code.fntz.net
-              check_url: http://code-server:8443
+              check-url: http://code-server:8443
               icon: di:visual-studio-code
             - title: HomeBridge
               url: https://bridge.fntz.net
