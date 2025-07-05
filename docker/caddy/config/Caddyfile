@@ -106,7 +106,7 @@ fntz.net, *.fntz.net {
   }
   @wings host wings.fntz.net
   handle @wings {
-    reverse_proxy wings:80 {
+    reverse_proxy wings:443 {
 	    header_up * {header.*}
     }
   }
