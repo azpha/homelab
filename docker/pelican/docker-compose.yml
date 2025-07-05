@@ -1,0 +1,49 @@
+networks:
+  wings0:
+    name: wings0
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.90.0.0/24"
+    driver_opts:
+      com.docker.network.bridge.name: wings0
+  homelab:
+    name: homelab
+    external: true
+volumes:
+  pelican-data:
+  pelican-logs:
+
+services:
+  panel:
+    container_name: pelican
+    image: ghcr.io/pelican-dev/panel:latest
+    restart: always
+    networks:
+      - default
+      - homelab
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - pelican-data:/pelican-data
+      - pelican-logs:/var/www/html/storage/logs
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    env_file: .env
+
+  wings:
+    image: ghcr.io/pelican-dev/wings:latest
+    restart: always
+    networks:
+      - wings0
+      - homelab
+    tty: true
+    env_file: .env
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/containers/:/var/lib/docker/containers/"
+      - "./config:/etc/pelican/"
+      - "${DATA_DIR}/data:/var/lib/pterodactyl/"
+      - "${DATA_DIR}/pelican-data:${DATA_DIR}/pelican-data"
+      - "./logs:/var/log/pterodactyl/"
+      - "/tmp/pterodactyl/:/tmp/pterodactyl/"
+      - "/etc/ssl/certs:/etc/ssl/certs:ro"
