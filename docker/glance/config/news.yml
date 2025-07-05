@@ -9,7 +9,6 @@
             - type: hacker-news
             - type: lobsters
 
-        # theo, prime, kevin fang (bangers)
         - type: videos
           channels:
             - UCm8EsftbfNzSiRHzc7I59KQ
@@ -34,4 +33,4 @@
         - type: weather
           units: imperial
           hour-format: 12h
-          location: Buffalo, New York, United States
+          location: Batavia, New York, United States

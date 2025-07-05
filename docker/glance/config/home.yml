@@ -7,8 +7,7 @@
         - type: dns-stats
           service: pihole-v6
           url: https://pihole.fntz.net/
-          password: supersecretapppassword
-
+          password: ${PIHOLE_TOKEN}
         - type: rss
           limit: 10
           collapse-after: 3
@@ -39,18 +38,24 @@
             - title: Plex
               url: https://plex.fntz.net/web/index.html#/
               icon: si:plex
+            - title: Jellyfin
+              url: https://jf.fntz.net
+              icon: si:jellyfin
             - title: Tautulli
               url: https://tt.fntz.net/
               icon: di:tautulli
+            - title: HDHomeRun
+              url: http://172.16.0.42
+              icon: di:hdhomerun
             - title: Immich
               url: https://img.fntz.net
               icon: di:immich
             - title: NZBGet
               url: https://nzb.fntz.net
               icon: di:nzbget
-            - title: Proxy
-              url: https://proxy.fntz.net
-              icon: di:nginx-proxy-manager
+            - title: Frigate
+              url: https://nvr.fntz.net
+              icon: di:frigate
             - title: Nextcloud
               url: https://cloud.fntz.net
               icon: di:nextcloud
@@ -66,6 +71,30 @@
             - title: Dozzle
               url: https://dz.fntz.net
               icon: di:dozzle
+            - title: Gitea
+              url: https://git.fntz.net
+              icon: di:gitea
+            - title: Code Server
+              url: https://code.fntz.net
+              icon: di:visual-studio-code
+            - title: HomeBridge
+              url: https://bridge.fntz.net
+              icon: di:homebridge
+            - title: Excalidraw
+              url: https://draw.fntz.net
+              icon: di:excalidraw
+            - title: CUPS
+              url: https://print.fntz.net
+              icon: di:cups
+            - title: Dashdot
+              url: https://stats.fntz.net
+              icon: di:dashdot.png
+            - title: Grafana
+              url: https://graf.fntz.net
+              icon: si:grafana
+            - title: Panel
+              url: https://panel.fntz.net
+              icon: di:pelican-panel
 
         - type: monitor
           title: Servarr
