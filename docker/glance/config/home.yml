@@ -105,10 +105,13 @@
           sites:
             - title: Radarr
               url: https://radarr.fntz.net
+              check-url: http://radarr:7878
               icon: di:radarr
             - title: Sonarr
               url: https://sonarr.fntz.net
+              check-url: http://sonarr:8989
               icon: di:sonarr
             - title: Lidarr
               url: https://lidarr.fntz.net
+              check-url: http://lidarr:8686
               icon: di:lidarr
