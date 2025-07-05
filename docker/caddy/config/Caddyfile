@@ -23,7 +23,7 @@ fntz.net, *.fntz.net {
   @code host code.fntz.net 
   handle @code {
     reverse_proxy code-server:8443
-    import tinyauth_forwarder *
+    import tinyauth_forwarder
   }
 
   @draw host draw.fntz.net
