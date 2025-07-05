@@ -1,3 +1,9 @@
+(tinyauth_forwarder) {
+  forward_auth tinyauth:3000 {
+    uri /api/auth/caddy
+  }
+}
+
 fntz.net, *.fntz.net {
   tls {
     dns cloudflare {env.CLOUDFLARE_TOKEN}

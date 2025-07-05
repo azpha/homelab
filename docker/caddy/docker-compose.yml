@@ -23,6 +23,8 @@ services:
     container_name: tinyauth
     image: ghcr.io/steveiliop56/tinyauth:v3
     restart: unless-stopped
+    networks:
+      - homelab
     environment:
       - APP_URL=http://auth.fntz.net
       - SECRET=${TINYAUTH_SECRET}
