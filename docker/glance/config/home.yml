@@ -56,6 +56,7 @@
               icon: di:nzbget
             - title: Frigate
               url: https://nvr.fntz.net
+              check-url: http://${VIDEO_MACHINE}:5000
               icon: di:frigate
             - title: Nextcloud
               url: https://cloud.fntz.net
