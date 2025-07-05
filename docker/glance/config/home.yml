@@ -71,7 +71,7 @@
               icon: di:overseerr
             - title: Dozzle
               url: https://dz.fntz.net
-              check-url: http://dozzle:3000
+              check-url: http://dozzle:8080
               icon: di:dozzle
             - title: Gitea
               url: https://git.fntz.net
