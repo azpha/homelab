@@ -3,6 +3,17 @@ fntz.net, *.fntz.net {
     dns cloudflare {env.CLOUDFLARE_TOKEN}
   }
 
+  // tinyauth configuration
+  (tinyauth_forwarder) {
+    forward_auth tinyauth:3000 {
+      uri /api/auth/caddy
+    }
+  }
+  @auth host auth.fntz.net
+  handle @auth {
+    reverse_proxy {{ upstreams 3000 }}
+  }
+
   @home host fntz.net 
   handle @home {
     reverse_proxy glance:8080
@@ -10,6 +21,7 @@ fntz.net, *.fntz.net {
 
   @code host code.fntz.net 
   handle @code {
+    import tinyauth_forwarder *
     reverse_proxy code-server:8443
   }
 
