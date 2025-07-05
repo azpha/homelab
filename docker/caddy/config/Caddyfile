@@ -33,6 +33,7 @@ fntz.net, *.fntz.net {
   @dz host dz.fntz.net
   handle @dz {
     reverse_proxy dozzle:8080
+    import tinyauth_forwarder *
   }
 
   @dd host stats.fntz.net
@@ -48,6 +49,7 @@ fntz.net, *.fntz.net {
   @immich host img.fntz.net
   handle @immich {
     reverse_proxy immich_server:2283
+    import tinyauth_forwarder *
   }
 
   @jf host jf.fntz.net
@@ -111,6 +113,7 @@ fntz.net, *.fntz.net {
   @nvr host nvr.fntz.net
   handle @nvr {
     reverse_proxy {env.VIDEO_MACHINE}:5000
+    import tinyauth_forwarder *
   }
   @grafana host graf.fntz.net
   handle @grafana {
@@ -126,14 +129,17 @@ fntz.net, *.fntz.net {
   @radarr host radarr.fntz.net
   handle @radarr {
     reverse_proxy radarr:7878
+    import tinyauth_forwarder *
   }
   @sonarr host sonarr.fntz.net
   handle @sonarr {
     reverse_proxy sonarr:8989
+    import tinyauth_forwarder *
   }
   @lidarr host lidarr.fntz.net
   handle @lidarr {
     reverse_proxy lidarr:8686
+    import tinyauth_forwarder *
   }
 
   handle {
