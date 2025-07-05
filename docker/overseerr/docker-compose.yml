@@ -7,9 +7,7 @@ services:
   overseerr:
     image: sctx/overseerr:latest
     container_name: overseerr
-    environment:
-      - LOG_LEVEL=debug
-      - TZ=America/New_York
+    env_file: .env
     volumes:
       - ./config:/app/config
     restart: unless-stopped

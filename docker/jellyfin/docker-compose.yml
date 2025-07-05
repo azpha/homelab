@@ -7,15 +7,12 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
+    env_file: .env
     volumes:
       - ./config:/config
-      - /path/to/tv/share:/data/tvshows
-      - /path/to/movie/share:/data/movies
-      - /path/to/music/share:/data/music
+      - ${TV_PATH}:/data/tvshows
+      - ${MOVIE_PATH}:/data/movies
+      - ${MUSIC_PATH}:/data/music
     restart: unless-stopped
     networks:
       - homelab

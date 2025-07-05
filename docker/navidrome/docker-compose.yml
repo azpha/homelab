@@ -11,6 +11,6 @@ services:
     restart: unless-stopped
     volumes:
       - "./data:/data"
-      - "/path/to/music/share:/music:ro"
+      - "${MUSIC_PATH}:/music:ro"
     networks:
       - homelab

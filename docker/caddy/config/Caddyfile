@@ -1,0 +1,130 @@
+fntz.net, *.fntz.net {
+  tls {
+    dns cloudflare {env.CLOUDFLARE_TOKEN}
+  }
+
+  @home host fntz.net 
+  handle @home {
+    reverse_proxy glance:8080
+  }
+
+  @code host code.fntz.net 
+  handle @code {
+    reverse_proxy code-server:8443
+  }
+
+  @draw host draw.fntz.net
+  handle @draw {
+    reverse_proxy excalidraw:80
+  }
+
+  @dz host dz.fntz.net
+  handle @dz {
+    reverse_proxy dozzle:8080
+  }
+
+  @dd host stats.fntz.net
+  handle @dd {
+    reverse_proxy dashdot:3001
+  }
+
+  @bridge host bridge.fntz.net
+  handle @bridge {
+    reverse_proxy {env.HOST_IP}:8581
+  }
+
+  @immich host img.fntz.net
+  handle @immich {
+    reverse_proxy immich_server:2283
+  }
+
+  @jf host jf.fntz.net
+  handle @jf {
+    reverse_proxy jellyfin:8096
+  }
+
+  @music host music.fntz.net
+  handle @music {
+    reverse_proxy navidrome:4533
+  }
+
+  @cloud host cloud.fntz.net
+  handle @cloud {
+    reverse_proxy nextcloud:80
+  }
+
+  @push host push.fntz.net
+  handle @push {
+    reverse_proxy ntfy:80
+  }
+
+  @nzbget host nzb.fntz.net
+  handle @nzbget {
+    reverse_proxy nzbget:6789
+  }
+
+  @overseerr host overseerr.fntz.net
+  handle @overseerr {
+    reverse_proxy overseerr:5055
+  }
+
+  @panel host panel.fntz.net
+  handle @panel {
+    reverse_proxy pelican:80
+  }
+
+  @pihole host pihole.fntz.net
+  handle @pihole {
+    reverse_proxy pihole:80
+  }
+
+  @tt host tt.fntz.net
+  handle @tt {
+    reverse_proxy tautulli:8181
+  }
+
+  @vw host vw.fntz.net
+  handle @vw {
+    reverse_proxy vaultwarden:80
+  }
+
+  @plex host tv.fntz.net
+  handle @plex {
+    reverse_proxy {env.VIDEO_MACHINE}:32400
+  }
+  @plex-alternate host plex.fntz.net
+  handle @plex-alternate {
+    reverse_proxy {env.VIDEO_MACHINE}:32400
+  }
+  @nvr host nvr.fntz.net
+  handle @nvr {
+    reverse_proxy {env.VIDEO_MACHINE}:5000
+  }
+  @grafana host graf.fntz.net
+  handle @grafana {
+    reverse_proxy grafana:3000
+  }
+  @wings host wings.fntz.net
+  handle @wings {
+    reverse_proxy wings:80 {
+	    header_up * {header.*}
+    }
+  }
+ 
+  @radarr host radarr.fntz.net
+  handle @radarr {
+    reverse_proxy radarr:7878
+  }
+  @sonarr host sonarr.fntz.net
+  handle @sonarr {
+    reverse_proxy sonarr:8989
+  }
+  @lidarr host lidarr.fntz.net
+  handle @lidarr {
+    reverse_proxy lidarr:8686
+  }
+
+  handle {
+    respond 404
+  }
+}

@@ -1,0 +1,20 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  caddy:
+    container_name: caddy
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2019:2019"
+    volumes:
+      - ./data:/data
+      - ./config:/etc/caddy
+      - /etc/letsencrypt:/etc/letsencrypt
+    networks:
+      - homelab
+    env_file: .env

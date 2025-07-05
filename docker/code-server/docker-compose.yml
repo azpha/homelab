@@ -6,16 +6,11 @@ networks:
 services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
-    container_name: code-server
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
-      - PROXY_DOMAIN=code.example.com
-      - DEFAULT_WORKSPACE=/config/workspace/docker #optional
+    container_name: codeserver
+    env_file: .env
     volumes:
       - ./config:/config
-      - ../../Docker:/config/workspace/docker # location of my docker configs
+      - ../../Docker:/config/workspace/docker # my docker configurations
     restart: unless-stopped
     networks:
       - homelab

@@ -14,8 +14,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     restart: unless-stopped
-    environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
+    env_file: .env
     networks:
       - homelab
 

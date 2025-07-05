@@ -8,9 +8,8 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: unless-stopped
-    environment:
-      DOMAIN: "https://vw.domain.tld"
+    env_file: .env
     volumes:
-      - ./vw-data:/data
+      - ./vw-data/:/data/
     networks:
       - homelab

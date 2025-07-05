@@ -1,3 +1,5 @@
+volumes:
+  data:
 networks:
   homelab:
     name: homelab
@@ -9,10 +11,7 @@ services:
     container_name: tautulli
     restart: unless-stopped
     volumes:
-      - ./config:/config
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/New_York
+      - data:/config
+    env_file: .env
     networks:
       - homelab

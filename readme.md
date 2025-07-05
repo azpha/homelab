@@ -16,7 +16,7 @@ I manage most of these file-based through a [code-server](./docker/code-server/)
 
 ### Networking
 
-On my server (as you'll see in some of these configs), I use a custom `homelab` Docker network that the majority of my containers use. This allows me to both utilize hostnames in stuff like [NGINX Proxy Manager](./docker/nginx-proxy/) & keep access to certain frontend services behind Tinyauth.
+On my server (as you'll see in some of these configs), I use a custom `homelab` Docker network that the majority of my containers use. This allows me to both utilize hostnames in stuff like [Caddy](./docker/caddy/) & keep access to certain frontend services behind Tinyauth.
 
 For containers that have multiple services (ie. an app that uses Postgres + Redis), I add an additional stack-specific network to segregate these, as usually they are container-specific & might conflict with other containers.
 

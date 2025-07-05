@@ -1,15 +1,15 @@
+volumes:
+  model-cache:
 networks:
   homelab:
     name: homelab
     external: true
   immich:
     name: immich
-volumes:
-  model-cache:
 
 services:
   immich-server:
-    container_name: immich-server
+    container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload

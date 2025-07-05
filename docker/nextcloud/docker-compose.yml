@@ -1,8 +1,17 @@
+volumes:
+  data:
+    external: true
+    name: nextcloud_data
+  db:
+    external: true
+    name: nextcloud_db
+
 networks:
   homelab:
     name: homelab
     external: true
   nextcloud:
+    name: nextcloud
 
 services:
   db:
@@ -10,12 +19,8 @@ services:
     restart: always
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
-      - ./db:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=supersecretpass
-      - MYSQL_PASSWORD=supersecretpass
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - db:/var/lib/mysql
+    env_file: .env
     networks:
       - nextcloud
 
@@ -26,12 +31,8 @@ services:
     links:
       - db
     volumes:
-      - ./data:/var/www/html
-    environment:
-      - MYSQL_PASSWORD=supersecretpass
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db
+      - data:/var/www/html
+    env_file: .env
     networks:
       - homelab
       - nextcloud

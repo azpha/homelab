@@ -1,3 +1,5 @@
+volumes:
+  config:
 networks:
   homelab:
     name: homelab
@@ -7,15 +9,10 @@ services:
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
     container_name: nzbget
-    environment:
-      - PGID=1000
-      - PUID=1000
-      - TZ=America/New_York
-      - NZBGET_USER=nzbget
-      - NZBGET_PASS=supersecretpassword
+    env_file: .env
     volumes:
-      - ./config:/config
-      - /path/to/media/download/folder:/downloads
-    restart: unless-stopped
+      - config:/config
+      - ${DOWNLOADS_PATH}:/downloads
+    restart: always
     networks:
       - homelab
