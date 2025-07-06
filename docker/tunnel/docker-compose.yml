@@ -1,4 +1,4 @@
-network:
+networks:
   homelab:
     name: homelab
     external: true
