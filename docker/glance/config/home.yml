@@ -100,7 +100,7 @@
               url: https://panel.fntz.net
               icon: di:pelican-panel
             - title: TrueNAS
-              url: https://172.16.0.29
+              url: https://nas.fntz.net
               icon: si:truenas
 
         - type: monitor
