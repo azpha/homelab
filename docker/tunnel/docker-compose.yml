@@ -9,7 +9,6 @@ services:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     env_file: .env
-    command:
-      "--token=${TUNNEL_TOKEN}"
+    command: tunnel run
     networks:
       - homelab
