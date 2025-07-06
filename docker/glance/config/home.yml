@@ -99,6 +99,9 @@
             - title: Panel
               url: https://panel.fntz.net
               icon: di:pelican-panel
+            - title: TrueNAS
+              url: https://172.16.0.29
+              icon: si:truenas
 
         - type: monitor
           title: Servarr
