@@ -1,0 +1,14 @@
+network:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  tunnel:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command:
+      "--token=${TUNNEL_TOKEN}"
+    networks:
+      - homelab
