@@ -8,6 +8,7 @@ services:
     container_name: cloudflared
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
+    env_file: .env
     command:
       "--token=${TUNNEL_TOKEN}"
     networks:
