@@ -111,6 +111,11 @@ fntz.net, *.fntz.net {
     reverse_proxy 172.16.0.29:443
   }
 
+  @droposs host drop.fntz.net
+  handle @droposs {
+    reverse_proxy droposs:3000
+  }
+
   @plex host tv.fntz.net
   handle @plex {
     reverse_proxy {env.VIDEO_MACHINE}:32400
