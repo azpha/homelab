@@ -23,6 +23,7 @@ services:
       - POSTGRES_DB=drop
 
   drop:
+    container_name: droposs
     image: decduck/drop-oss:v0.2.0-beta
     depends_on:
       postgres:
