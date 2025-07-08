@@ -1,10 +1,6 @@
 volumes:
-  data:
-    external: true
-    name: nextcloud_data
-  db:
-    external: true
-    name: nextcloud_db
+  nc_data:
+  nc_db:
 
 networks:
   homelab:
@@ -15,12 +11,13 @@ networks:
 
 services:
   db:
-    image: mariadb:10.6
+    image: postgres:16-alpine
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
-      - db:/var/lib/mysql
+      - nc_db:/var/lib/postgresql/data
     env_file: .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
     networks:
       - nextcloud
 
@@ -31,7 +28,7 @@ services:
     links:
       - db
     volumes:
-      - data:/var/www/html
+      - nc_data:/var/www/html
     env_file: .env
     networks:
       - homelab
