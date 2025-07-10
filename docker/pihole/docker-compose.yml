@@ -8,8 +8,8 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
+      - "172.16.0.25:53:53/tcp"
+      - "172.16.0.25:53:53/udp"
     env_file: .env
     volumes:
       - './etc-pihole:/etc/pihole'
