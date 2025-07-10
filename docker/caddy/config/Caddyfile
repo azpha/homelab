@@ -108,7 +108,7 @@ fntz.net, *.fntz.net {
 
   @nas host nas.fntz.net
   handle @nas {
-    reverse_proxy 172.16.0.29:443
+    reverse_proxy 172.16.0.29:80
   }
 
   @droposs host drop.fntz.net
