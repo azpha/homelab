@@ -33,8 +33,9 @@ services:
       - droposs
       - homelab
     volumes:
-      - DATABASE_URL=postgres://drop:drop@drop_postgresql:5432/drop
       - ${LIBRARY_PATH}:/library
       - ./certs:/certs
       - ./objects:/objects
     env_file: .env
+    environment:
+      - DATABASE_URL=postgres://drop:drop@drop_postgresql:5432/drop
