@@ -13,10 +13,6 @@ fntz.net, *.fntz.net {
   handle @auth {
     reverse_proxy tinyauth:3000
   }
-  @email host webmail.fntz.net
-  handle @email {
-    reverse_proxy {env.HOST_IP}:3040
-  }
 
   @home host fntz.net 
   handle @home {
@@ -114,6 +110,11 @@ fntz.net, *.fntz.net {
   @droposs host drop.fntz.net
   handle @droposs {
     reverse_proxy droposs:3000
+  }
+
+  @romm host emu.fntz.net
+  handle @romm {
+    reverse_proxy romm:8080
   }
 
   @plex host tv.fntz.net
