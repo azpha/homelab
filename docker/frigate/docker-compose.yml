@@ -11,7 +11,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config:/config
-      - /mnt/cameras:/media/frigate
+      - ${RECORDINGS_PATH}:/media/frigate
       - type: tmpfs
         target: /tmp/cache
         tmpfs:
