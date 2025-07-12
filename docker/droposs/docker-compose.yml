@@ -39,3 +39,6 @@ services:
     env_file: .env
     environment:
       - DATABASE_URL=postgres://drop:drop@drop_postgresql:5432/drop
+      - FS_BACKEND_PATH=/objects
+      - CLIENT_CERTIFICATES=/certs
+      - LIBRARY=/library
