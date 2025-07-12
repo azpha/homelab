@@ -15,8 +15,6 @@ services:
       - 8888:8888/tcp
       - 8388:8388/tcp
       - 8388:8388/udp
-      - 9117:9117 # jackett
-      - 8090:8090 # qbittorrent
     volumes:
       - ./gluetun:/gluetun
     env_file: .env

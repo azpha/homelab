@@ -142,7 +142,15 @@ fntz.net, *.fntz.net {
   }
   @qbit host qbit.fntz.net
   handle @qbit {
-    reverse_proxy {env.HOST_IP}:8090
+    reverse_proxy gluetun:8090
+  }
+  @jackett host jackett.fntz.net
+  handle @jackett {
+    reverse_proxy jackett:9117
+  }
+  @prowlarr host prowlarr.fntz.net
+  handle @prowlarr {
+    reverse_proxy prowlarr:9696
   }
  
   @radarr host radarr.fntz.net
