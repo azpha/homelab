@@ -103,11 +103,6 @@ fntz.net, *.fntz.net {
     reverse_proxy vaultwarden:80
   }
 
-  @nas host nas.fntz.net
-  handle @nas {
-    reverse_proxy 172.16.0.29:80
-  }
-
   @droposs host drop.fntz.net
   handle @droposs {
     reverse_proxy droposs:3000
