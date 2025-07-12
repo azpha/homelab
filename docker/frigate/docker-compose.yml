@@ -16,6 +16,7 @@ services:
         target: /tmp/cache
         tmpfs:
           size: 1000000000
+    env_file: .env
     ports:
       - "8971:8971"
       - "8554:8554"
