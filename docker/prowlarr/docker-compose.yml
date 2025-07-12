@@ -1,0 +1,18 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+    restart: unless-stopped
+    networks:
+      - homelab

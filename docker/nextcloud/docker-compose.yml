@@ -1,7 +1,3 @@
-volumes:
-  nc_data:
-  nc_db:
-
 networks:
   homelab:
     name: homelab
@@ -15,7 +11,7 @@ services:
     image: postgres:16-alpine
     restart: always
     volumes:
-      - nc_db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
     env_file: .env
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
@@ -29,7 +25,7 @@ services:
     links:
       - db
     volumes:
-      - nc_data:/var/www/html
+      - ./data:/var/www/html
     env_file: .env
     networks:
       - homelab

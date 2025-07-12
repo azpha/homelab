@@ -13,10 +13,6 @@ fntz.net, *.fntz.net {
   handle @auth {
     reverse_proxy tinyauth:3000
   }
-  @email host webmail.fntz.net
-  handle @email {
-    reverse_proxy {env.HOST_IP}:3040
-  }
 
   @home host fntz.net 
   handle @home {
@@ -116,6 +112,11 @@ fntz.net, *.fntz.net {
     reverse_proxy droposs:3000
   }
 
+  @romm host emu.fntz.net
+  handle @romm {
+    reverse_proxy romm:8080
+  }
+
   @plex host tv.fntz.net
   handle @plex {
     reverse_proxy {env.VIDEO_MACHINE}:32400
@@ -138,6 +139,18 @@ fntz.net, *.fntz.net {
     reverse_proxy wings:443 {
 	    header_up * {header.*}
     }
+  }
+  @qbit host qbit.fntz.net
+  handle @qbit {
+    reverse_proxy gluetun:8090
+  }
+  @jackett host jackett.fntz.net
+  handle @jackett {
+    reverse_proxy jackett:9117
+  }
+  @prowlarr host prowlarr.fntz.net
+  handle @prowlarr {
+    reverse_proxy prowlarr:9696
   }
  
   @radarr host radarr.fntz.net
