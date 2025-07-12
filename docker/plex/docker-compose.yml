@@ -1,0 +1,16 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    env_file: .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - VERSION=docker
+    volumes:
+      - ./config:/config
+      - ${TV_LIBRARY_PATH}:/tv
+      - ${MOVIES_LIBRARY_PATH}:/movies
+    restart: unless-stopped
