@@ -1,3 +1,8 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
 services:
   gluetun:
     image: qmcgaw/gluetun
@@ -15,3 +20,5 @@ services:
     volumes:
       - ./gluetun:/gluetun
     env_file: .env
+    networks:
+      - homelab
