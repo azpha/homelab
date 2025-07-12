@@ -140,6 +140,10 @@ fntz.net, *.fntz.net {
 	    header_up * {header.*}
     }
   }
+  @qbit host qbit.fntz.net
+  handle @qbit {
+    reverse_proxy {env.HOST_IP}:8090
+  }
  
   @radarr host radarr.fntz.net
   handle @radarr {
