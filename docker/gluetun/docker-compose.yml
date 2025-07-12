@@ -10,20 +10,8 @@ services:
       - 8888:8888/tcp
       - 8388:8388/tcp
       - 8388:8388/udp
-      # - 9117:9117 # jackett
-      # - 8090:8090 # qbittorrent
+      - 9117:9117 # jackett
+      - 8090:8090 # qbittorrent
     volumes:
       - ./gluetun:/gluetun
-    environment:
-      # this example is for Mullvad, but you can find other providers
-      # in the setup wiki
-      # https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers
-
-      # - VPN_SERVICE_PROVIDER=mullvad
-      # - VPN_TYPE=wireguard
-      # - WIREGUARD_PRIVATE_KEY=yourPrivateKeyHere
-      # - WIREGUARD_ADDRESSES=10.10.10.10/32
-      # - TZ=America/New_York
-      # - SERVER_COUNTRIES=USA
-      # - SERVER_CITIES=Dallas TX
-      # - SERVER_HOSTNAMES=us-dal-wg-001
+    env_file: .env
