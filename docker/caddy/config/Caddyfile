@@ -75,6 +75,7 @@ fntz.net, *.fntz.net {
   @nzbget host nzb.fntz.net
   handle @nzbget {
     reverse_proxy nzbget:6789
+    import tinyauth_forwarder *
   }
 
   @overseerr host overseerr.fntz.net
