@@ -121,4 +121,5 @@
               icon: di:lidarr
             - title: NZBGet
               url: https://nzb.fntz.net
+              check-url: http://nzbget:6789
               icon: di:nzbget
