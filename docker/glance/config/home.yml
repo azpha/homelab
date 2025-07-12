@@ -51,9 +51,6 @@
               url: https://img.fntz.net
               check-url: http://immich_server:2283
               icon: di:immich
-            - title: NZBGet
-              url: https://nzb.fntz.net
-              icon: di:nzbget
             - title: Frigate
               url: https://nvr.fntz.net
               check-url: http://${VIDEO_MACHINE}:5000
@@ -87,9 +84,6 @@
             - title: Excalidraw
               url: https://draw.fntz.net
               icon: di:excalidraw
-            - title: CUPS
-              url: https://print.fntz.net
-              icon: di:cups
             - title: Dashdot
               url: https://stats.fntz.net
               icon: di:dashdot.png
@@ -99,6 +93,12 @@
             - title: Panel
               url: https://panel.fntz.net
               icon: di:pelican-panel
+            - title: DropOSS
+              url: https://drop.fntz.net
+              icon: di:droposs
+            - title: RomM
+              url: https://emu.fntz.net
+              icon: di:romm
             - title: TrueNAS
               url: https://nas.fntz.net
               icon: si:truenas
@@ -119,3 +119,6 @@
               url: https://lidarr.fntz.net
               check-url: http://lidarr:8686
               icon: di:lidarr
+            - title: NZBGet
+              url: https://nzb.fntz.net
+              icon: di:nzbget
