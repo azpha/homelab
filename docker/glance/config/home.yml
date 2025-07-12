@@ -87,9 +87,6 @@
             - title: Excalidraw
               url: https://draw.fntz.net
               icon: di:excalidraw
-            - title: CUPS
-              url: https://print.fntz.net
-              icon: di:cups
             - title: Dashdot
               url: https://stats.fntz.net
               icon: di:dashdot.png
