@@ -1,5 +1,3 @@
-volumes:
-  config:
 networks:
   homelab:
     name: homelab
@@ -11,7 +9,7 @@ services:
     container_name: nzbget
     env_file: .env
     volumes:
-      - config:/config
+      - ./config:/config
       - ${DOWNLOADS_PATH}:/downloads
     restart: always
     networks:
