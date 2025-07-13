@@ -99,9 +99,6 @@
             - title: RomM
               url: https://emu.fntz.net
               icon: di:romm
-            - title: TrueNAS
-              url: https://nas.fntz.net
-              icon: si:truenas
 
         - type: monitor
           title: Servarr
