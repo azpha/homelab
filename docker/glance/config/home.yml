@@ -96,6 +96,9 @@
             - title: RomM
               url: https://emu.fntz.net
               icon: di:romm
+            - title: ntfy
+              url: https://push.fntz.net
+              icon: di:ntfy
 
         - type: monitor
           title: Servarr
