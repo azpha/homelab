@@ -9,7 +9,6 @@ services:
     container_name: jellyfin
     env_file: .env
     volumes:
-      - ./plugins:/var/lib/jellyfin/plugins
       - ./config:/config
       - ${TV_PATH}:/data/tvshows
       - ${MOVIE_PATH}:/data/movies
