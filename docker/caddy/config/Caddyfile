@@ -30,7 +30,7 @@ fntz.net, *.fntz.net {
     reverse_proxy excalidraw:80
   }
 
-  @dz host dz.fntz.net
+  @dz host logs.fntz.net
   handle @dz {
     reverse_proxy dozzle:8080
     import tinyauth_forwarder *

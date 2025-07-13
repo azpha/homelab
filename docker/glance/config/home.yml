@@ -68,7 +68,7 @@
               url: https://overseerr.fntz.net
               icon: di:overseerr
             - title: Dozzle
-              url: https://dz.fntz.net
+              url: https://logs.fntz.net
               check-url: http://dozzle:8080
               icon: di:dozzle
             - title: Code Server
