@@ -25,6 +25,7 @@ services:
 
   drop:
     container_name: droposs
+    restart: unless-stopped
     image: decduck/drop-oss:v0.2.0-beta
     depends_on:
       postgres:
