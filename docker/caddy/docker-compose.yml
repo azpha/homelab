@@ -6,6 +6,7 @@ networks:
 services:
   caddy:
     container_name: caddy
+    restart: unless-stopped
     build: .
     ports:
       - "80:80"
