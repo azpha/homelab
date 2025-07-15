@@ -9,12 +9,12 @@ tun.fntz.net {
     dns cloudflare {env.CLOUDFLARE_TOKEN}
   }
 
-  handle / {
-    reverse_proxy glance:8080
-  }
-
   handle_path /auth/* {
     reverse_proxy tinyauth:3000
+  }
+
+  handle {
+    reverse_proxy glance:8080
   }
 }
 
