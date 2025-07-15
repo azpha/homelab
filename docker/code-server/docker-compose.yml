@@ -10,7 +10,7 @@ services:
     env_file: .env
     volumes:
       - ./config:/config
-      - ../../Docker:/config/workspace/docker # my docker configurations
+      - ../../docker:/config/workspace/docker # my docker configurations
     restart: unless-stopped
     networks:
       - homelab

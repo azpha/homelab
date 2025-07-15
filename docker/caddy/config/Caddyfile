@@ -4,20 +4,6 @@
   }
 }
 
-tun.fntz.net {
-  tls {
-    dns cloudflare {env.CLOUDFLARE_TOKEN}
-  }
-
-  handle_path /auth/* {
-    reverse_proxy tinyauth:3000
-  }
-
-  handle {
-    reverse_proxy glance:8080
-  }
-}
-
 fntz.net, *.fntz.net {
   tls {
     dns cloudflare {env.CLOUDFLARE_TOKEN}
