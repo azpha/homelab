@@ -11,7 +11,3 @@ services:
     networks:
       - homelab
     env_file: .env
-    environment:
-      - APP_URL=http://auth.fntz.net
-      - SECRET=${TINYAUTH_SECRET}
-      - USERS=${TINYAUTH_USER}
