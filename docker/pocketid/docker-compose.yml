@@ -11,6 +11,8 @@ services:
     env_file: .env
     volumes:
       - "./data:/app/data"
+    networks:
+      - homelab
     healthcheck:
       test: [ "CMD", "/app/pocket-id", "healthcheck" ]
       interval: 1m30s
