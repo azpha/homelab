@@ -14,7 +14,7 @@ services:
       - "2019:2019"
     volumes:
       - ./data:/data
-      - ./config:/etc/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - homelab
@@ -26,7 +26,8 @@ services:
     restart: unless-stopped
     networks:
       - homelab
-    environment:
-      - APP_URL=http://auth.fntz.net
-      - SECRET=${TINYAUTH_SECRET}
-      - USERS=${TINYAUTH_USER}
+    env_file: .env
+    # environment:
+    #   - APP_URL=http://auth.fntz.net
+    #   - SECRET=${TINYAUTH_SECRET}
+    #   - USERS=${TINYAUTH_USER}

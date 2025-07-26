@@ -1,0 +1,38 @@
+# handles forwarding protected hosts
+(tinyauth_forwarder) {
+  forward_auth tinyauth:3000 {
+    uri /api/auth/caddy
+  }
+}
+
+example.com, *.example.com {
+  tls {
+    dns cloudflare {env.CLOUDFLARE_TOKEN}
+  }
+
+  @auth host auth.example.com
+  handle @auth {
+    reverse_proxy tinyauth:3000
+  }
+
+  # example hosts
+  @home host example.com 
+  handle @home {
+    reverse_proxy glance:8080
+  }
+  @code host code.example.com 
+  handle @code {
+    reverse_proxy code_server:8080
+  }
+
+  # protected host
+  @radarr host radarr.example.com
+  handle @radarr {
+    reverse_proxy radarr:7878
+    import tinyauth_forwarder *
+  }
+
+  handle {
+    respond 404
+  }
+}
