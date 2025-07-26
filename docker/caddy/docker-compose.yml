@@ -19,11 +19,3 @@ services:
     networks:
       - homelab
     env_file: .env
-
-  tinyauth:
-    container_name: tinyauth
-    image: ghcr.io/steveiliop56/tinyauth:v3
-    restart: unless-stopped
-    networks:
-      - homelab
-    env_file: .env

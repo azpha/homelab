@@ -1,0 +1,19 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v1
+    container_name: pocketid
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - "./data:/app/data"
+    healthcheck:
+      test: [ "CMD", "/app/pocket-id", "healthcheck" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s

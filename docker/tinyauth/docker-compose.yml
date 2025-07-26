@@ -1,0 +1,17 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  tinyauth:
+    container_name: tinyauth
+    image: ghcr.io/steveiliop56/tinyauth:v3
+    restart: unless-stopped
+    networks:
+      - homelab
+    env_file: .env
+    environment:
+      - APP_URL=http://auth.fntz.net
+      - SECRET=${TINYAUTH_SECRET}
+      - USERS=${TINYAUTH_USER}
