@@ -9,6 +9,8 @@ services:
     container_name: cup
     command: serve
     restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
      - homelab
   
