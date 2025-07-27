@@ -1,0 +1,13 @@
+networks:
+  homelab:
+    name: homelab
+    external: true
+
+services:
+  cup:
+    image: ghcr.io/sergi0g/cup
+    container_name: cup
+    restart: unless-stopped
+    networks:
+     - homelab
+  
