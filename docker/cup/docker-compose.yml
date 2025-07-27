@@ -7,6 +7,7 @@ services:
   cup:
     image: ghcr.io/sergi0g/cup
     container_name: cup
+    command: cup serve
     restart: unless-stopped
     networks:
      - homelab
