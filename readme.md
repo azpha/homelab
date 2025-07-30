@@ -6,6 +6,12 @@ I run a `Dell PowerEdge R720XD` in my stack (named Jade!), alongside a 2-bay `UG
 
 ![Homelab](./jade.png)
 
+# NEW - Homelab IaC
+
+I've built some new infra for my homelab - this time using Ansible w/ an Infrastructure as Code approach 😀
+
+You can find my setup [here](https://git.alexav.gg/alex/homelab) for that.
+
 ## Docker
 
 Evidently, I use Docker for a _lot_.
