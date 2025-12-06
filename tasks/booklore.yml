@@ -1,0 +1,54 @@
+---
+- name: Deploy Booklore DB
+  include_role:
+    name: docker
+  vars:
+    name: booklore_db
+    network_name: booklore
+    networks:
+      - name: booklore
+    image:
+      name: lscr.io/linuxserver/mariadb
+      tag: "11.4.5"
+    env:
+      PUID: "{{ PUID }}"
+      PGID: "{{ PGID }}"
+      TZ: "{{ TZ }}"
+      MYSQL_ROOT_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
+      MYSQL_DATABASE: "booklore"
+      MYSQL_USER: "booklore"
+      MYSQL_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
+
+- name: Deploy Booklore
+  include_role:
+    name: docker
+  vars:
+    name: booklore
+    networks:
+      - name: homelab
+      - name: booklore
+    directories:
+      - "{{ data_dir }}/booklore"
+      - "{{ data_dir }}/booklore/data"
+      - "{{ data_dir }}/booklore/books"
+    image:
+      name: booklore/booklore
+      tag: latest
+    env:
+      APP_USER_ID: "{{ PUID }}"
+      APP_GROUP_ID: "{{ PGID }}"
+      TZ: "{{ TZ }}"
+      BOOKLORE_PORT: "6060"
+      DATABASE_URL: jdbc:mariadb://booklore_db:3306/booklore
+      DB_USER: booklore
+      DB_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
+    volumes:
+      - "{{ data_dir }}/booklore/data:/app/data"
+      - "{{ data_dir }}/booklore/books:/books"
+      - "{{ media_path }}/Books/Bookdrop:/bookdrop"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.booklore.rule: Host(`books.fntz.net`)
+      traefik.http.routers.booklore.entrypoints: webSecure
+      traefik.http.routers.booklore.tls.certresolver: letsencrypt
+      traefik.http.services.booklore.loadbalancer.server.port: "6060"
