@@ -15,6 +15,7 @@
       - "{{ data_dir }}/duplicati/backups:/backups"
       - "{{ share_path }}:/source:ro"
       - "{{ DUPLICATI_SSH_KEY_PATH }}:/root/.ssh/id_ed25519:ro"
+      - "{{ DUPLICATI_SSH_PUB_KEY_PATH }}:/root/.ssh/id_ed25519.pub:ro"
     env:
       SETTINGS_ENCRYPTION_KEY: "{{ DUPLICATI_ENCRYPTION_KEY }}"
     networks:
