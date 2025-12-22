@@ -40,6 +40,26 @@
     volumes:
       - "/:/host:ro,rslave"
 
+- name: Deploy CAdvisor
+  include_role:
+    name: docker
+  vars:
+    name: cadvisor
+    image:
+      name: ghcr.io/google/cadvisor
+      tag: v0.55.1
+    networks:
+      - name: "monitoring"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker:/var/lib/docker:ro"
+      - "/dev/disk:/dev/disk:ro"
+    privileged: true
+    devices:
+      - /dev/kmsg
+
 - name: Deploy Grafana
   include_role:
     name: docker
