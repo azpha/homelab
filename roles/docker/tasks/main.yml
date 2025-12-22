@@ -12,6 +12,11 @@
     dest: "{{ build.git.dest }}"
   when: build is defined
 
+- name: Create Docker volume
+  docker_volume:
+    name: "{{ volume_name }}"
+  when: volume_name is defined
+
 - name: Build Docker Image
   docker_image:
     name: "{{ image.name }}"

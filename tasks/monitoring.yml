@@ -65,6 +65,7 @@
     name: docker
   vars:
     name: grafana
+    volume_name: "grafana-storage"
     networks:
       - name: "monitoring"
       - name: "homelab"
@@ -73,7 +74,7 @@
       tag: latest
     user: "{{ PUID }}"
     volumes:
-      - "{{ data_dir }}/monitoring/grafana:/var/lib/grafana"
+      - "grafana-storage:/var/lib/grafana"
     env:
       GF_AUTH_ANONYMOUS_ENABLED: "{{ GRAFANA_AUTH_ANONYMOUS_ENABLED }}"
     labels:
