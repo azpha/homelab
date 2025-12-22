@@ -33,13 +33,13 @@
       name: gabehf/koito
       tag: latest
     env:
-      KOTIO_DATABASE_URL: "postgres://postgres:{{ KOTIO_DB_PASS }}@kotio_db:5432/kotio_db"
-      KOTIO_ALLOWED_HOSTS: kotio.fntz.net
+      KOITO_DATABASE_URL: "postgres://postgres:{{ KOTIO_DB_PASS }}@kotio_db:5432/kotio_db"
+      KOITO_ALLOWED_HOSTS: koito.fntz.net
     volumes:
       - "{{ data_dir }}/koito/app:/etc/koito"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.kotio.rule: Host(`kotio.fntz.net`)
+      traefik.http.routers.kotio.rule: Host(`koito.fntz.net`)
       traefik.http.routers.kotio.entrypoints: webSecure
       traefik.http.routers.kotio.tls.certresolver: letsencrypt
       traefik.http.services.kotio.loadbalancer.server.port: "4110"
