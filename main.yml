@@ -106,9 +106,6 @@
     - name: Deploy Plausible
       import_tasks: tasks/plausible.yml
       tags: plausible_deploy
-    - name: Deploy Owncloud
-      import_tasks: tasks/owncloud.yml
-      tags: owncloud_deploy
     - name: Deploy Pelican
       import_tasks: tasks/pelican.yml
       tags: pelican_deploy
