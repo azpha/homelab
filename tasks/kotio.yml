@@ -9,7 +9,7 @@
       name: kotio
     image:
       name: postgres
-      label: 16
+      tag: 16
     env:
       POSTGRES_DB: kotio_db
       POSTGRES_USER: postgres
