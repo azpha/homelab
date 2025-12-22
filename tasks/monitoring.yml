@@ -4,6 +4,9 @@
     name: docker
   vars:
     name: prometheus
+    network_name: "monitoring"
+    networks:
+      - name: "monitoring"
     directories:
       - "{{ data_dir }}/monitoring"
       - "{{ data_dir }}/monitoring/grafana"
@@ -40,6 +43,9 @@
     name: docker
   vars:
     name: grafana
+    networks:
+      - name: "monitoring"
+      - name: "homelab"
     image:
       name: grafana/grafana
       tag: latest
