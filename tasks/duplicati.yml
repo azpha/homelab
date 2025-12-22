@@ -14,6 +14,7 @@
       - "{{ data_dir }}/duplicati/app:/config"
       - "{{ data_dir }}/duplicati/backups:/backups"
       - "{{ share_path }}:/source:ro"
+      - "{{ DUPLICATI_SSH_KEY_PATH }}:/root/.ssh/id_ed25519:ro"
     networks:
       - name: "homelab"
     labels:
