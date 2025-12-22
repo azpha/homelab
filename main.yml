@@ -70,6 +70,9 @@
     - name: Deploy Termix
       import_tasks: tasks/termix.yml
       tags: termix_deploy
+    - name: Deploy Booklore
+      import_tasks: tasks/booklore.yml
+      tags: booklore_deploy
 
 - hosts: jackson
 
