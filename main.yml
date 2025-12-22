@@ -79,6 +79,9 @@
     - name: Deploy Kotio
       import_tasks: tasks/kotio.yml
       tags: kotio_deploy
+    - name: Deploy Duplicati
+      import_tasks: tasks/duplicati.yml
+      tags: duplicati_deploy
 
 - hosts: jackson
 
