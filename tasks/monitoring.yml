@@ -71,6 +71,7 @@
     image:
       name: grafana/grafana
       tag: latest
+    user: "{{ PUID }}"
     volumes:
       - "{{ data_dir }}/monitoring/grafana:/var/lib/grafana"
     env:
