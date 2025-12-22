@@ -47,7 +47,7 @@
     name: cadvisor
     image:
       name: ghcr.io/google/cadvisor
-      tag: v0.55.1
+      tag: 0.55.1
     networks:
       - name: "monitoring"
     volumes:
