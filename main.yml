@@ -73,6 +73,9 @@
     - name: Deploy Booklore
       import_tasks: tasks/booklore.yml
       tags: booklore_deploy
+    - name: Deploy Monitoring
+      import_tasks: tasks/monitoring.yml
+      tags: monitoring_deploy
 
 - hosts: jackson
 

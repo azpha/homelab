@@ -48,4 +48,5 @@
     healthcheck: "{{ healthcheck | default(omit) }}"
     devices: "{{ devices | default(omit) }}"
     mounts: "{{ mounts | default(omit) }}"
+    pid_mode: "{{ pid_mode | default(omit) }}"
     privileged: "{{ privileged | default(omit) }}"
