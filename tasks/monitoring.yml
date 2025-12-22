@@ -72,7 +72,7 @@
       name: grafana/grafana
       tag: latest
     volumes:
-      - "{{ data_dir }}/monitoring/grafana"
+      - "{{ data_dir }}/monitoring/grafana:/var/lib/grafana"
     env:
       GF_AUTH_ANONYMOUS_ENABLED: "{{ GRAFANA_AUTH_ANONYMOUS_ENABLED }}"
     labels:
