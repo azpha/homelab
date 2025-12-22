@@ -6,7 +6,7 @@
     name: kotio_db
     network_name: kotio
     networks:
-      name: kotio
+      - name: kotio
     image:
       name: postgres
       tag: 16
