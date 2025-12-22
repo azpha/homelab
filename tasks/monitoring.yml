@@ -7,6 +7,7 @@
     network_name: "monitoring"
     networks:
       - name: "monitoring"
+      - name: "homelab"
     directories:
       - "{{ data_dir }}/monitoring"
       - "{{ data_dir }}/monitoring/grafana"
