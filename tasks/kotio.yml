@@ -24,7 +24,7 @@
       - name: kotio
       - name: homelab
     image:
-      name: gabehf/kotio
+      name: gabehf/koito
       tag: latest
     env:
       KOTIO_DATABASE_URL: "postgres://postgres:{{ KOTIO_DB_PASS }}@kotio_db:5432/kotio_db"
