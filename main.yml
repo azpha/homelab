@@ -40,9 +40,6 @@
     - name: Deploy Code Server
       import_tasks: tasks/codeserver.yml
       tags: codeserver_deploy
-    - name: Deploy Dashdot
-      import_tasks: tasks/dashdot.yml
-      tags: dashdot_deploy
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
@@ -67,9 +64,6 @@
     - name: Deploy Uptime Kuma
       import_tasks: tasks/uptime-kuma.yml
       tags: uptime-kuma_deploy
-    - name: Deploy CouchDB for obsidian
-      import_tasks: tasks/obsidian.yml
-      tags: obsidian_deploy
     - name: Deploy Pterodactyl
       import_tasks: tasks/pterodactyl.yml
       tags: pterodactyl_deploy
@@ -125,9 +119,6 @@
     - name: Deploy Frigate
       import_tasks: tasks/frigate.yml
       tags: frigate_deploy
-    - name: Deploy Ersatz
-      import_tasks: tasks/ersatztv.yml
-      tags: ersatztv_deploy
     - name: Deploy Wings
       import_tasks: tasks/wings.yml
       tags: wings_deploy
