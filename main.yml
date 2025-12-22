@@ -76,6 +76,9 @@
     - name: Deploy Monitoring
       import_tasks: tasks/monitoring.yml
       tags: monitoring_deploy
+    - name: Deploy Kotio
+      import_tasks: tasks/kotio.yml
+      tags: kotio_deploy
 
 - hosts: jackson
 

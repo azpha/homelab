@@ -1,0 +1,37 @@
+---
+- name: Deploy Kotio Database
+  include_role:
+    name: docker
+  vars:
+    name: kotio_db
+    network_name: kotio
+    networks:
+      name: kotio
+    image:
+      name: postgres
+      label: 16
+    env:
+      POSTGRES_DB: kotio_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "{{ KOTIO_DB_PASS }}"
+
+- name: Deploy Kotio
+  include_role:
+    name: docker
+  vars:
+    name: kotio
+    networks:
+      - name: kotio
+      - name: homelab
+    image:
+      name: gabehf/kotio
+      tag: latest
+    env:
+      KOTIO_DATABASE_URL: "postgres://postgres:{{ KOTIO_DB_PASS }}@kotio_db:5432/kotio_db"
+      KOTIO_ALLOWED_HOSTS: kotio.fntz.net
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.kotio.rule: Host(`kotio.fntz.net`)
+      traefik.http.routers.kotio.entrypoints: webSecure
+      traefik.http.routers.kotio.tls.certresolver: letsencrypt
+      traefik.http.services.kotio.loadbalancer.server.port: "4110"
