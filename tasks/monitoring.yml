@@ -16,6 +16,7 @@
       tag: latest
     volumes:
       - "{{ data_dir }}/monitoring/prometheus:/etc/prometheus"
+      - "{{ data_dir }}/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
     labels:
       traefik.enable: "true"
       traefik.http.routers.prom.rule: Host(`prom.fntz.net`)
