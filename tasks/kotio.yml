@@ -4,6 +4,10 @@
     name: docker
   vars:
     name: kotio_db
+    directories:
+      - "{{ data_dir }}/koito"
+      - "{{ data_dir }}/koito/db"
+      - "{{ data_dir }}/koito/app"
     network_name: kotio
     networks:
       - name: kotio
@@ -14,6 +18,8 @@
       POSTGRES_DB: kotio_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "{{ KOTIO_DB_PASS }}"
+    volumes:
+      - "{{ data_dir }}/koito/db:/var/lib/postgresql/data"
 
 - name: Deploy Kotio
   include_role:
@@ -29,6 +35,8 @@
     env:
       KOTIO_DATABASE_URL: "postgres://postgres:{{ KOTIO_DB_PASS }}@kotio_db:5432/kotio_db"
       KOTIO_ALLOWED_HOSTS: kotio.fntz.net
+    volumes:
+      - "{{ data_dir }}/koito/app:/etc/koito"
     labels:
       traefik.enable: "true"
       traefik.http.routers.kotio.rule: Host(`kotio.fntz.net`)
