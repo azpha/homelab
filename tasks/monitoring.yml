@@ -61,3 +61,4 @@
       traefik.http.routers.grafana.entrypoints: webSecure
       traefik.http.routers.grafana.tls.certresolver: letsencrypt
       traefik.http.services.grafana.loadbalancer.server.port: "3000"
+      traefik.http.routers.grafana.middlewares: tinyauth
