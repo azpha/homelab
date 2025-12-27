@@ -46,6 +46,9 @@
     - name: Deploy Owncloud
       import_tasks: tasks/owncloud.yml
       tags: owncloud_deploy
+    - name: Deploy Excalidraw
+      import_tasks: tasks/excalidraw.yml
+      tags: excalidraw_deploy
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
