@@ -43,6 +43,7 @@
     image: traefik
     restart_policy: unless-stopped
     recreate: true
+    pull: true
     command:
       - --providers.file.directory=/config
     published_ports:
