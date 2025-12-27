@@ -93,7 +93,7 @@ def main():
  
     containers = subprocess.Popen(f'docker ps --filter "name={task_name}" -q', shell=True, stdout=subprocess.PIPE)
     for line in containers.stdout:
-      container_id = line.strip()
+      container_id = line.strip().decode("utf8")
       print(f"[MAIN] Found Docker container {container_id} related to {task_name}, removing..")
       subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
       subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
