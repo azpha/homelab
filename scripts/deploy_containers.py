@@ -93,9 +93,10 @@ def main():
  
     containers = subprocess.Popen(f'docker ps --filter "name={task_name}" -q', shell=True, stdout=subprocess.PIPE)
     for line in containers.stdout:
-      print(f"[MAIN] Found Docker container {line} related to {task_name}, removing..")
-      subprocess.run(f"/usr/bin/docker container stop {line}", shell=True)
-      subprocess.run(f"/usr/bin/docker container rm {line}", shell=True)
+      container_id = line.strip()
+      print(f"[MAIN] Found Docker container {container_id} related to {task_name}, removing..")
+      subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
+      subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
       subprocess.run("/usr/bin/docker image prune -f", shell=True)
       subprocess.run("/usr/bin/docker container prune -f", shell=True)
 
