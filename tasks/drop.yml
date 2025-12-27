@@ -1,31 +1,4 @@
 ---
-- name: Deploy Drop Database
-  include_role:
-    name: docker
-  vars:
-    name: drop_postgres
-    directories:
-      - "{{ data_dir }}/drop"
-      - "{{ data_dir }}/drop/db"
-    image:
-      name: postgres
-      tag: 14-alpine
-    network_name: drop
-    networks:
-      - name: drop
-    healthcheck:
-      test: pg_isready -d drop -U drop
-      retries: 5
-      start_period: 10s
-      interval: 30s
-      timeout: 60s
-    volumes:
-      - "{{ data_dir }}/drop/db:/var/lib/postgresql/data"
-    env:
-      POSTGRES_PASSWORD: "drop"
-      POSTGRES_USER: "drop"
-      POSTGRES_DB: "drop"
-
 - name: Deploy Drop
   include_role:
     name: docker
@@ -43,7 +16,7 @@
       - "{{ media_path }}/Games/Desktop:/library"
       - "{{ data_dir }}/drop/app:/data"
     env:
-      DATABASE_URL: "postgres://drop:drop@drop_postgres:5432/drop"
+      DATABASE_URL: "postgres://drop:drop@172.16.0.25:5432/drop"
       GIANT_BOMB_API_KEY: "{{ DROP_GIANT_BOMB_API_KEY }}"
       EXTERNAL_URL: "https://games.fntz.net"
     labels:
