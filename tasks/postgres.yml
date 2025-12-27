@@ -14,9 +14,8 @@
       - "{{ data_dir }}/postgres/data"
       - "{{ data_dir }}/postgres/import"
     volumes:
-      - "{{ data_dir }}/postgres/data:/var/lib/postgresql/data"
+      - "{{ data_dir }}/postgres/data:/var/lib/postgresql/18/docker"
       - "{{ data_dir }}/postgres/import:/mnt/import"
     env:
       POSTGRES_USER: "{{ POSTGRES_USER }}"
       POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"
-      PGDATA: "/var/lib/postgresql/data/pgdata"
