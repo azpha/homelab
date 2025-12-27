@@ -1,24 +1,4 @@
 ---
-- name: Deploy Booklore DB
-  include_role:
-    name: docker
-  vars:
-    name: booklore_db
-    network_name: booklore
-    networks:
-      - name: booklore
-    image:
-      name: lscr.io/linuxserver/mariadb
-      tag: "11.4.5"
-    env:
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
-      TZ: "{{ TZ }}"
-      MYSQL_ROOT_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
-      MYSQL_DATABASE: "booklore"
-      MYSQL_USER: "booklore"
-      MYSQL_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
-
 - name: Deploy Booklore
   include_role:
     name: docker
@@ -39,7 +19,7 @@
       APP_GROUP_ID: "{{ PGID }}"
       TZ: "{{ TZ }}"
       BOOKLORE_PORT: "6060"
-      DATABASE_URL: jdbc:mariadb://booklore_db:3306/booklore
+      DATABASE_URL: jdbc:mariadb://172.16.0.25:3306/booklore
       DATABASE_USERNAME: booklore
       DATABASE_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
     volumes:
