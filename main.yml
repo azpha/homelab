@@ -22,9 +22,6 @@
     - name: Deploy Homebridge
       import_tasks: tasks/homebridge.yml
       tags: homebridge_deploy
-    - name: Deploy PiHole
-      import_tasks: tasks/pihole.yml
-      tags: pihole_deploy
     - name: Deploy PocketID
       import_tasks: tasks/pocketid.yml
       tags: pocketid_deploy
@@ -79,6 +76,9 @@
     - name: Deploy Duplicati
       import_tasks: tasks/duplicati.yml
       tags: duplicati_deploy
+    - name: Deploy AdGuard Home
+      import_tasks: tasks/adguard.yml
+      tags: adguard_deploy
 
 - hosts: jackson
 

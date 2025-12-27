@@ -1,0 +1,27 @@
+---
+- name: Deploy AdGuard Home
+  include_role:
+    name: docker
+  vars:
+    name: adguard
+    directories:
+      - "{{ data_dir }}/adguard"
+      - "{{ data_dir }}/adguard/work"
+      - "{{ data_dir }}/adguard/conf"
+    image:
+      name: adguard/adguardhome
+      tag: latest
+    volumes:
+      - "{{ data_dir }}/adguard/work:/opt/adguardhome/work"
+      - "{{ data_dir }}/adguard/conf:/opt/adguardhome/conf"
+    published_ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    networks:
+      - name: "homelab"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.adguard.rule: Host(`ag.fntz.net`)
+      traefik.http.routers.adguard.entrypoints: webSecure
+      traefik.http.routers.adguard.tls.certresolver: letsencrypt
+      traefik.http.services.adguard.loadbalancer.server.port: "80"
