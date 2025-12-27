@@ -6,6 +6,7 @@
     name: mariadb
     directories:
       - "{{ data_dir }}/db"
+      - "{{ data_dir }}/db/import"
     image:
       name: mariadb
       tag: latest
@@ -14,9 +15,10 @@
     volumes:
       - "{{ data_dir }}/db:/var/lib/mysql"
       - "{{ data_dir }}/db/etc:/etc/mysql"
+      - "{{ data_dir }}/db/import:/mnt/import"
     env:
-      MYSQL_USER: "root"
-      MYSQL_ROOT_PASSWORD: "{{ GLOBAL_POSTGRES_PASSWORD }}"
+      MYSQL_USER: "{{ MARIADB_DB_USER }}"
+      MYSQL_ROOT_PASSWORD: "{{ MARIADB_DB_PASSWORD }}"
 
 - name: Deploy PHPMyAdmin
   include_role:
@@ -29,11 +31,11 @@
     networks:
       - name: "{{ docker_network_name }}"
     env:
-      PMA_HOST: "{{ PMA_HOST }}"
-      PMA_PORT: "{{ PMA_PORT }}"
+      PMA_HOST: "{{ MARIADB_PMA_HOST }}"
+      PMA_PORT: "{{ MARIADB_PMA_PORT }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.pma.rule: Host(`pma.landite.games`)
+      traefik.http.routers.pma.rule: Host(`{{ MARIADB_PMA_URL }}`)
       traefik.http.routers.pma.entrypoints: webSecure
       traefik.http.routers.pma.tls.certresolver: letsencrypt
       traefik.http.services.pma.loadbalancer.server.port: "80"

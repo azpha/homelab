@@ -1,0 +1,22 @@
+---
+- name: Deploy Postgres
+  include_role:
+    name: docker
+  vars:
+    name: postgres
+    image:
+      name: postgres
+      tag: 18-alpine
+    published_ports:
+      - "5432:5432"
+    directories:
+      - "{{ data_dir }}/postgres"
+      - "{{ data_dir }}/postgres/data"
+      - "{{ data_dir }}/postgres/import"
+    volumes:
+      - "{{ data_dir }}/postgres/data:/var/lib/postgresql/data"
+      - "{{ data_dir }}/postgres/import:/mnt/import"
+    env:
+      POSTGRES_USER: "{{ POSTGRES_USER }}"
+      POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"
+      PGDATA: "/var/lib/postgresql/data"
