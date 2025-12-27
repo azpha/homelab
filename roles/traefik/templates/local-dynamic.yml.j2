@@ -26,24 +26,10 @@ http:
         - webSecure
       tls:
         certResolver: letsencrypt
-    nflproxy:
-      rule: "Host(`nfl.fntz.net`)"
-      service: nflproxy
-      entryPoints:
-        - webSecure
-      tls:
-        certResolver: letsencrypt
     nvr:
       rule: "Host(`nvr.fntz.net`)"
       service: nvr
       middlewares: tinyauth
-      entryPoints:
-        - webSecure
-      tls:
-        certResolver: letsencrypt
-    iptv:
-      rule: "Host(`iptv.fntz.net`)"
-      service: iptv
       entryPoints:
         - webSecure
       tls:
@@ -69,18 +55,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://jade:8080/"
-    nflproxy:
-      loadBalancer:
-        servers:
-          - url: "http://jade:5000/"
     nvr:
       loadBalancer:
         servers:
           - url: "http://172.16.0.29:5000/"
-    iptv:
-      loadBalancer:
-        servers:
-          - url: "http://nas:8409/"
     wings:
       loadBalancer:
         servers:
