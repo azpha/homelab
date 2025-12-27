@@ -17,8 +17,8 @@
       - "{{ data_dir }}/db/etc:/etc/mysql"
       - "{{ data_dir }}/db/import:/mnt/import"
     env:
-      MYSQL_USER: "{{ MARIADB_DB_USER }}"
-      MYSQL_ROOT_PASSWORD: "{{ MARIADB_DB_PASSWORD }}"
+      MARIADB_USER: "{{ MARIADB_DB_USER }}"
+      MARIADB_ROOT_PASSWORD: "{{ MARIADB_DB_PASSWORD }}"
 
 - name: Deploy PHPMyAdmin
   include_role:
