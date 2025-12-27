@@ -14,10 +14,9 @@
     networks:
       - name: homelab
     env:
-      PIHOLE_TOKEN: "{{ GLANCE_PIHOLE_TOKEN }}"
+      ADGUARD_USERNAME: "{{ GLANCE_ADGUARD_USERNAME }}"
+      ADGUARD_PASSWORD: "{{ GLANCE_ADGUARD_PASSWORD }}"
       VIDEO_MACHINE: "{{ GLANCE_VIDEO_MACHINE }}"
-      JELLYFIN_URL: "{{ GLANCE_JELLYFIN_URL }}"
-      JELLYFIN_TOKEN: "{{ GLANCE_JELLYFIN_TOKEN }}"
     volumes:
       - "{{ data_dir }}/glance/config:/app/config"
       - "{{ data_dir }}/glance/assets:/app/assets"
