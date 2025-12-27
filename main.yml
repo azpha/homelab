@@ -76,6 +76,12 @@
     - name: Deploy AdGuard Home
       import_tasks: tasks/adguard.yml
       tags: adguard_deploy
+    - name: Deploy Postgres
+      import_tasks: tasks/postgres.yml
+      tags: postgres_deploy
+    - name: Deploy MariaDB
+      import_tasks: tasks/mariadb.yml
+      tags: mariadb_deploy
 
 - hosts: jackson
 
