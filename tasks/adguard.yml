@@ -24,4 +24,4 @@
       traefik.http.routers.adguard.rule: Host(`ag.fntz.net`)
       traefik.http.routers.adguard.entrypoints: webSecure
       traefik.http.routers.adguard.tls.certresolver: letsencrypt
-      traefik.http.services.adguard.loadbalancer.server.port: "80"
+      traefik.http.services.adguard.loadbalancer.server.port: "3000"
