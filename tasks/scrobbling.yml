@@ -1,0 +1,48 @@
+---
+- name: Deploy Kotio
+  include_role:
+    name: docker
+  vars:
+    name: scrobbling_kotio
+    network_name: scrobbling
+    directories:
+      - "{{ data_dir }}/scrobbling"
+      - "{{ data_dir }}/scrobbling/koito"
+      - "{{ data_dir }}/scrobbling/multi-scrobbler"
+    networks:
+      - name: scrobbling
+      - name: homelab
+    image:
+      name: gabehf/koito
+      tag: latest
+    env:
+      KOITO_DATABASE_URL: "postgres://koito:{{ KOTIO_DB_PASS }}@172.16.0.25:5432/koito"
+      KOITO_ALLOWED_HOSTS: koito.fntz.net
+    volumes:
+      - "{{ data_dir }}/scrobbling/koito:/etc/koito"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.kotio.rule: Host(`koito.fntz.net`)
+      traefik.http.routers.kotio.entrypoints: webSecure
+      traefik.http.routers.kotio.tls.certresolver: letsencrypt
+      traefik.http.services.kotio.loadbalancer.server.port: "4110"
+
+- name: Deploy Multi-Scrobbler
+  include_role:
+    name: docker
+  vars:
+    name: scrobbling_multi-scrobbler
+    image:
+      name: ghcr.io/foxxmd/multi-scrobbler
+      tag: latest
+    networks:
+      - name: scrobbling
+      - name: homelab
+    volumes:
+      - "{{ data_dir }}/scrobbling/multi-scrobbler:/config"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.scrobbler.rule: Host(`scrobbler.fntz.net`)
+      traefik.http.routers.scrobbler.entrypoints: webSecure
+      traefik.http.routers.scrobbler.tls.certresolver: letsencrypt
+      traefik.http.services.scrobbler.loadbalancer.server.port: "9078"
