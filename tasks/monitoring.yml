@@ -3,7 +3,7 @@
   include_role:
     name: docker
   vars:
-    name: prometheus
+    name: monitoring_prometheus
     network_name: "monitoring"
     networks:
       - name: "monitoring"
@@ -11,6 +11,8 @@
     directories:
       - "{{ data_dir }}/monitoring"
       - "{{ data_dir }}/monitoring/grafana"
+      - "{{ data_dir }}/monitoring/loki"
+      - "{{ data_dir }}/monitoring/promtail"
       - "{{ data_dir }}/monitoring/prometheus"
     image:
       name: prom/prometheus
@@ -25,11 +27,21 @@
       traefik.http.routers.prom.tls.certresolver: letsencrypt
       traefik.http.services.prom.loadbalancer.server.port: "9090"
 
+# copy configs for loki + promtail
+- name: Create Loki Configuration
+  template:
+    src: templates/monitoring/loki.yaml.j2
+    dest: "{{ data_dir }}/monitoring/loki/loki-config.yaml"
+- name: Create Promtail Configuration
+  template:
+    src: templates/monitoring/promtail.yaml.j2
+    dest: "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
+
 - name: Deploy Node Exporter
   include_role:
     name: docker
   vars:
-    name: node-exporter
+    name: monitoring_node-exporter
     image:
       name: prom/node-exporter
       tag: latest
@@ -44,7 +56,7 @@
   include_role:
     name: docker
   vars:
-    name: cadvisor
+    name: monitoring_cadvisor
     image:
       name: ghcr.io/google/cadvisor
       tag: 0.55.1
@@ -60,11 +72,41 @@
     devices:
       - /dev/kmsg
 
+- name: Deploy Loki
+  include_role:
+    name: docker
+  vars:
+    name: monitoring_loki
+    volume_name: grafana-loki
+    image:
+      name: grafana/loki
+      tag: latest
+    volumes:
+      - "{{ data_dir }}/monitoring/loki/loki-config.yaml:/etc/loki/local-config.yaml"
+      - "grafana-loki:/loki"
+    networks:
+      - name: "monitoring"
+
+- name: Deploy Promtail
+  include_role:
+    name: docker
+  vars:
+    name: monitoring_promtail
+    image:
+      name: grafana/promtail
+      tag: latest
+    command: -config.file=/etc/promtail/config.yaml
+    networks:
+      - name: "monitoring"
+    volumes:
+      - "/var/log:/var/log:ro"
+      - "{{ data_dir }}/monitoring/promtail/promtail-config.yaml:/etc/promtail/config.yaml"
+
 - name: Deploy Grafana
   include_role:
     name: docker
   vars:
-    name: grafana
+    name: monitoring_grafana
     volume_name: "grafana-storage"
     networks:
       - name: "monitoring"
