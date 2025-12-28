@@ -1,19 +1,4 @@
 ---
-- name: Deploy Loki
-  include_role:
-    name: docker
-  vars:
-    name: monitoring_loki
-    volume_name: grafana-loki
-    image:
-      name: grafana/loki
-      tag: latest
-    volumes:
-      - "{{ data_dir }}/monitoring/loki/loki-config.yaml:/etc/loki/local-config.yaml"
-      - "grafana-loki:/loki"
-    networks:
-      - name: "monitoring"
-
 - name: Deploy Prometheus
   include_role:
     name: docker
@@ -47,6 +32,42 @@
   template:
     src: templates/monitoring/loki.yaml.j2
     dest: "{{ data_dir }}/monitoring/loki/loki-config.yaml"
+- name: Create Promtail Configuration
+  template:
+    src: templates/monitoring/promtail.yaml.j2
+    dest: "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
+
+- name: Deploy Promtail
+  include_role:
+    name: docker
+  vars:
+    name: monitoring_promtail
+    image:
+      name: grafana/promtail
+      tag: latest
+    networks:
+      - name: monitoring
+    command: -config.file=/etc/promtail/config.yaml
+    volumes:
+      - "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
+      - "/var/log:/var/log:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
+
+- name: Deploy Loki
+  include_role:
+    name: docker
+  vars:
+    name: monitoring_loki
+    volume_name: grafana-loki
+    image:
+      name: grafana/loki
+      tag: latest
+    volumes:
+      - "{{ data_dir }}/monitoring/loki/loki-config.yaml:/etc/loki/local-config.yaml"
+      - "grafana-loki:/loki"
+    networks:
+      - name: "monitoring"
 
 - name: Deploy Node Exporter
   include_role:

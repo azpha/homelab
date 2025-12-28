@@ -1,0 +1,63 @@
+server:
+  http_listen_port: 9080
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://monitoring_loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: docker
+    docker_sd_configs:
+      - host: unix:///var/run/docker.sock
+        refresh_interval: 5s
+    relabel_configs:
+      # Keep only running containers
+      - source_labels: ['__meta_docker_container_id']
+        target_label: container_id
+
+      # Container name (strips leading slash)
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/(.+)'
+        target_label: container_name
+
+      # Compose project name
+      - source_labels: ['__meta_docker_container_label_com_docker_compose_project']
+        target_label: compose_project
+
+      # Compose service name
+      - source_labels: ['__meta_docker_container_label_com_docker_compose_service']
+        target_label: compose_service
+
+      # Image name
+      - source_labels: ['__meta_docker_container_image']
+        target_label: image
+
+      # Custom labels - grab any label starting with "logging."
+      # e.g. logging.env=production becomes env=production
+      - regex: '__meta_docker_container_label_logging_(.+)'
+        action: labelmap
+        replacement: '$1'
+
+      # Drop containers with logging=disabled label
+      - source_labels: ['__meta_docker_container_label_logging']
+        regex: 'disabled'
+        action: drop
+
+    pipeline_stages:
+      # Docker JSON log format parsing
+      - json:
+          expressions:
+            output: log
+            stream: stream
+            timestamp: time
+
+      # Use Docker's timestamp
+      - timestamp:
+          source: timestamp
+          format: RFC3339Nano
+
+      # Output just the log line
+      - output:
+          source: output
