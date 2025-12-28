@@ -43,7 +43,7 @@
     log_driver: loki
     log_options:
       loki-url: "http://monitoring_loki:3100/loki/api/v1/push"
-      loki-batch-size: "400"
+      loki-batch-size: "200"
     pull: "{{ build is not defined }}"
     published_ports: "{{ published_ports | default(omit) }}"
     network_mode: "{{ network_mode | default(omit) }}"
