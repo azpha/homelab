@@ -40,9 +40,6 @@
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
-    - name: Deploy Owncloud
-      import_tasks: tasks/owncloud.yml
-      tags: owncloud_deploy
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
