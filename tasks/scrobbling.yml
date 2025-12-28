@@ -1,5 +1,14 @@
 ---
-- name: Create Loki Configuration
+- name: Create folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ data_dir }}/scrobbling"
+    - "{{ data_dir }}/scrobbling/koito"
+    - "{{ data_dir }}/scrobbling/multi-scrobbler"
+
+- name: Create Scrobbler Configuration
   template:
     src: templates/scrobbling.json.j2
     dest: "{{ data_dir }}/scrobbling/multi-scrobbler/config.json"
@@ -10,10 +19,6 @@
   vars:
     name: scrobbling_kotio
     network_name: scrobbling
-    directories:
-      - "{{ data_dir }}/scrobbling"
-      - "{{ data_dir }}/scrobbling/koito"
-      - "{{ data_dir }}/scrobbling/multi-scrobbler"
     networks:
       - name: scrobbling
       - name: homelab
