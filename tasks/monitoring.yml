@@ -1,4 +1,15 @@
 ---
+- name: Create folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ data_dir }}/monitoring"
+    - "{{ data_dir }}/monitoring/grafana"
+    - "{{ data_dir }}/monitoring/loki"
+    - "{{ data_dir }}/monitoring/promtail"
+    - "{{ data_dir }}/monitoring/prometheus"
+
 # copy configs for loki, promtail & prometheus
 - name: Create Loki Configuration
   template:
@@ -22,12 +33,6 @@
     networks:
       - name: "monitoring"
       - name: "homelab"
-    directories:
-      - "{{ data_dir }}/monitoring"
-      - "{{ data_dir }}/monitoring/grafana"
-      - "{{ data_dir }}/monitoring/loki"
-      - "{{ data_dir }}/monitoring/promtail"
-      - "{{ data_dir }}/monitoring/prometheus"
     image:
       name: prom/prometheus
       tag: latest
