@@ -1,4 +1,9 @@
 ---
+- name: Create Loki Configuration
+  template:
+    src: templates/scrobbling.json.j2
+    dest: "{{ data_dir }}/scrobbling/multi-scrobbler/config.json"
+
 - name: Deploy Kotio
   include_role:
     name: docker
@@ -44,8 +49,6 @@
       KOITO_TOKEN: "{{ SCROBBLER_KOITO_TOKEN }}"
       KOITO_USER: "{{ SCROBBLER_KOITO_USER }}"
       KOITO_URL: "{{ SCROBBLER_KOITO_URL }}"
-      LZ_TOKEN: "{{ SCROBBLER_LZ_TOKEN }}"
-      LZ_USER: "{{ SCROBBLER_LZ_USER }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.scrobbler.rule: Host(`scrobbler.fntz.net`)
