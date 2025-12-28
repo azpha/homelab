@@ -1,4 +1,18 @@
 ---
+# copy configs for loki, promtail & prometheus
+- name: Create Loki Configuration
+  template:
+    src: templates/monitoring/loki.yaml.j2
+    dest: "{{ data_dir }}/monitoring/loki/loki-config.yaml"
+- name: Create Promtail Configuration
+  template:
+    src: templates/monitoring/promtail.yaml.j2
+    dest: "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
+- name: Create Prometheus Configuration
+  template:
+    src: templates/monitoring/prometheus.yml.j2
+    dest: "{{ data_dir }}/monitoring/prometheus/prometheus.yml"
+
 - name: Deploy Prometheus
   include_role:
     name: docker
@@ -26,16 +40,6 @@
       traefik.http.routers.prom.entrypoints: webSecure
       traefik.http.routers.prom.tls.certresolver: letsencrypt
       traefik.http.services.prom.loadbalancer.server.port: "9090"
-
-# copy configs for loki
-- name: Create Loki Configuration
-  template:
-    src: templates/monitoring/loki.yaml.j2
-    dest: "{{ data_dir }}/monitoring/loki/loki-config.yaml"
-- name: Create Promtail Configuration
-  template:
-    src: templates/monitoring/promtail.yaml.j2
-    dest: "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
 
 - name: Deploy Promtail
   include_role:
