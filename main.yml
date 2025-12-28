@@ -52,9 +52,6 @@
     - name: Deploy Drop
       import_tasks: tasks/drop.yml
       tags: drop_deploy
-    - name: Deploy Jackett
-      import_tasks: tasks/jackett.yml
-      tags: jackett_deploy
     - name: Deploy Uptime Kuma
       import_tasks: tasks/uptime-kuma.yml
       tags: uptime-kuma_deploy
