@@ -64,8 +64,8 @@
     - name: Deploy Monitoring
       import_tasks: tasks/monitoring.yml
       tags: monitoring_deploy
-    - name: Deploy Kotio
-      import_tasks: tasks/kotio.yml
+    - name: Deploy Koito
+      import_tasks: tasks/koito.yml
       tags: kotio_deploy
     - name: Deploy Duplicati
       import_tasks: tasks/duplicati.yml
