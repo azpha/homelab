@@ -26,8 +26,9 @@ def main():
   with open("main.yml", 'r') as file:
     data = yaml.safe_load(file)
     for host in data:
-      for task in host['tasks']:
-        deployable_tags.append(task['tags'])
+      if "tasks" in host:
+        for task in host['tasks']:
+          deployable_tags.append(task['tags'])
 
   if len(update_list["images"]) > 0:
     already_deployed = []
