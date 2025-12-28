@@ -27,15 +27,11 @@
       traefik.http.routers.prom.tls.certresolver: letsencrypt
       traefik.http.services.prom.loadbalancer.server.port: "9090"
 
-# copy configs for loki + promtail
+# copy configs for loki
 - name: Create Loki Configuration
   template:
     src: templates/monitoring/loki.yaml.j2
     dest: "{{ data_dir }}/monitoring/loki/loki-config.yaml"
-- name: Create Promtail Configuration
-  template:
-    src: templates/monitoring/promtail.yaml.j2
-    dest: "{{ data_dir }}/monitoring/promtail/promtail-config.yaml"
 
 - name: Deploy Node Exporter
   include_role:
@@ -86,21 +82,6 @@
       - "grafana-loki:/loki"
     networks:
       - name: "monitoring"
-
-- name: Deploy Promtail
-  include_role:
-    name: docker
-  vars:
-    name: monitoring_promtail
-    image:
-      name: grafana/promtail
-      tag: latest
-    command: -config.file=/etc/promtail/config.yaml
-    networks:
-      - name: "monitoring"
-    volumes:
-      - "/var/log:/var/log:ro"
-      - "{{ data_dir }}/monitoring/promtail/promtail-config.yaml:/etc/promtail/config.yaml"
 
 - name: Deploy Grafana
   include_role:
