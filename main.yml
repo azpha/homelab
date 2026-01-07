@@ -91,6 +91,12 @@
     - name: Deploy Scrobbling Setup
       import_tasks: tasks/scrobbling.yml
       tags: scrobbling_deploy
+    - name: Deploy Monitoring
+      import_tasks: tasks/monitoring.yml
+      tags: monitoring_deploy
+    - name: Deploy Vaultwarden
+      import_tasks: tasks/vaultwarden.yml
+      tags: vaultwarden_deploy
 
 - hosts: jackson
 
