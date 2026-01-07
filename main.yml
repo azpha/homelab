@@ -91,6 +91,12 @@
     - name: Deploy PocketID
       import_tasks: tasks/pocketid.yml
       tags: pocketid_deploy
+    - name: Deploy Koito
+      import_tasks: tasks/koito.yml
+      tags: koito_deploy
+    - name: Deploy Multi-Scrobbler
+      import_tasks: tasks/multi-scrobbler.yml
+      tags: multi-scrobbler_deploy
 
 - hosts: jackson
 
