@@ -89,7 +89,7 @@
       import_tasks: tasks/pocketid.yml
       tags: pocketid_deploy
     - name: Deploy Scrobbling Setup
-      import_tasks: tasks/koito.yml
+      import_tasks: tasks/scrobbling.yml
       tags: scrobbling_deploy
 
 - hosts: jackson
