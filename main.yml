@@ -13,9 +13,6 @@
     - name: Deploy NZBGet
       import_tasks: tasks/nzbget.yml
       tags: nzbget_deploy
-    - name: Deploy Tautulli
-      import_tasks: tasks/tautulli.yml
-      tags: tautulli_deploy
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
@@ -97,6 +94,9 @@
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
+    - name: Deploy Tautulli
+      import_tasks: tasks/tautulli.yml
+      tags: tautulli_deploy
 
 - hosts: jackson
 
