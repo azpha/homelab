@@ -7,36 +7,15 @@
         server: "jade"
 
   tasks:
-    - name: Deploy Glance
-      import_tasks: tasks/glance.yml
-      tags: glance_deploy
     - name: Deploy Servarr
       import_tasks: tasks/servarr.yml
       tags: servarr_deploy
-    - name: Deploy Dozzle
-      import_tasks: tasks/dozzle.yml
-      tags: dozzle_deploy
-    - name: Deploy Cup
-      import_tasks: tasks/cup.yml
-      tags: cup_deploy
-    - name: Deploy Homebridge
-      import_tasks: tasks/homebridge.yml
-      tags: homebridge_deploy
-    - name: Deploy PocketID
-      import_tasks: tasks/pocketid.yml
-      tags: pocketid_deploy
     - name: Deploy NZBGet
       import_tasks: tasks/nzbget.yml
       tags: nzbget_deploy
     - name: Deploy Tautulli
       import_tasks: tasks/tautulli.yml
       tags: tautulli_deploy
-    - name: Deploy Tinyauth
-      import_tasks: tasks/tinyauth.yml
-      tags: tinyauth_deploy
-    - name: Deploy Code Server
-      import_tasks: tasks/codeserver.yml
-      tags: codeserver_deploy
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
@@ -67,15 +46,51 @@
     - name: Deploy Duplicati
       import_tasks: tasks/duplicati.yml
       tags: duplicati_deploy
-    - name: Deploy AdGuard Home
-      import_tasks: tasks/adguard.yml
-      tags: adguard_deploy
     - name: Deploy Postgres
       import_tasks: tasks/postgres.yml
       tags: postgres_deploy
     - name: Deploy MariaDB
       import_tasks: tasks/mariadb.yml
       tags: mariadb_deploy
+
+- hosts: bear
+  roles:
+    - role: traefik
+      tags: traefik_deploy
+      vars:
+        server: "bear"
+
+  tasks:
+    - name: Deploy Postgres
+      import_tasks: tasks/postgres.yml
+      tags: postgres_deploy
+    - name: Deploy MariaDB
+      import_tasks: tasks/mariadb.yml
+      tags: mariadb_deploy
+    - name: Deploy AdGuard Home
+      import_tasks: tasks/adguard.yml
+      tags: adguard_deploy
+    - name: Deploy Glance
+      import_tasks: tasks/glance.yml
+      tags: glance_deploy
+    - name: Deploy Dozzle
+      import_tasks: tasks/dozzle.yml
+      tags: dozzle_deploy
+    - name: Deploy Cup
+      import_tasks: tasks/cup.yml
+      tags: cup_deploy
+    - name: Deploy Homebridge
+      import_tasks: tasks/homebridge.yml
+      tags: homebridge_deploy
+    - name: Deploy Tinyauth
+      import_tasks: tasks/tinyauth.yml
+      tags: tinyauth_deploy
+    - name: Deploy Code Server
+      import_tasks: tasks/codeserver.yml
+      tags: codeserver_deploy
+    - name: Deploy PocketID
+      import_tasks: tasks/pocketid.yml
+      tags: pocketid_deploy
 
 - hosts: jackson
 

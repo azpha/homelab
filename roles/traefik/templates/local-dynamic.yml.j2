@@ -26,6 +26,13 @@ http:
         - webSecure
       tls:
         certResolver: letsencrypt
+    homebridge:
+      rule: "Host(`bridge.fntz.net`)"
+      service: homebridge
+      entryPoints:
+        - webSecure
+      tls:
+        certResolver: letsencrypt
     nvr:
       rule: "Host(`nvr.fntz.net`)"
       service: nvr
@@ -54,7 +61,11 @@ http:
     traefik:
       loadBalancer:
         servers:
-          - url: "http://jade:8080/"
+          - url: "http://172.16.0.44:8080/"
+    homebridge:
+      loadBalancer:
+        servers:
+          - url: "http://172.16.0.44:8581/"
     nvr:
       loadBalancer:
         servers:

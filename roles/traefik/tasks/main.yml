@@ -25,7 +25,7 @@
   template:
     src: local-dynamic.yml.j2
     dest: "{{ data_dir }}/traefik/dynamic.yml"
-  when: server == "jade" or server == "nas"
+  when: server == "jade" or server == "nas" or server == "bear"
 - name: Create Traefik Dynamic File (Remote)
   template:
     src: remote-dynamic.yml.j2
