@@ -10,19 +10,15 @@
       name: ghcr.io/blakeblackshear/frigate
       tag: stable
     privileged: true
-    published_ports:
-      - "5000:5000"
-      - "8555:8555/tcp"
-      - "8555:8555/udp"
-      - "8554:8554"
     devices:
-      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri
+      - /dev/kfd
     networks:
       - name: "{{ docker_network_name }}"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - "{{ data_dir }}/frigate:/config"
-      - "{{ FRIGATE_RECORDINGS_PATH }}:/media/frigate"
+      - "{{ media_path }}/Cameras:/media/frigate"
     labels:
       traefik.enable: "true"
       traefik.http.routers.frigate.rule: Host(`nvr.fntz.net`)

@@ -7,21 +7,12 @@
         server: "jade"
 
   tasks:
-    - name: Deploy Servarr
-      import_tasks: tasks/servarr.yml
-      tags: servarr_deploy
-    - name: Deploy NZBGet
-      import_tasks: tasks/nzbget.yml
-      tags: nzbget_deploy
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
-    - name: Deploy Immich
-      import_tasks: tasks/immich.yml
-      tags: immich_deploy
     - name: Deploy Drop
       import_tasks: tasks/drop.yml
       tags: drop_deploy
@@ -97,6 +88,21 @@
     - name: Deploy Tautulli
       import_tasks: tasks/tautulli.yml
       tags: tautulli_deploy
+    - name: Deploy Immich
+      import_tasks: tasks/immich.yml
+      tags: immich_deploy
+    - name: Deploy Plex
+      import_tasks: tasks/plex.yml
+      tags: plex_deploy
+    - name: Deploy Frigate
+      import_tasks: tasks/frigate.yml
+      tags: frigate_deploy
+    - name: Deploy Servarr
+      import_tasks: tasks/servarr.yml
+      tags: servarr_deploy
+    - name: Deploy NZBGet
+      import_tasks: tasks/nzbget.yml
+      tags: nzbget_deploy
 
 - hosts: jackson
 
@@ -137,12 +143,6 @@
         server: "nas"
 
   tasks:
-    - name: Deploy Plex
-      import_tasks: tasks/plex.yml
-      tags: plex_deploy
-    - name: Deploy Frigate
-      import_tasks: tasks/frigate.yml
-      tags: frigate_deploy
     - name: Deploy Wings
       import_tasks: tasks/wings.yml
       tags: wings_deploy
