@@ -1,0 +1,26 @@
+---
+- name: Create Gitea Runner Configuration
+  template:
+    src: templates/gitea-runner.yaml.j2
+    dest: "{{ data_dir }}/gitea/config.yaml"
+
+- name: Deploy Gitea Runner
+  include_role:
+    name: docker
+  vars:
+    name: gitea-runner
+    directories:
+      - "{{ data_dir }}/gitea"
+    image:
+      name: docker.io/gitea/act_runner
+      tag: nightly
+    network_mode: host
+    volumes:
+      - "{{ data_dir }}/gitea/config.yaml:/config.yaml"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      CONFIG_FILE: "/config.yaml"
+      GITEA_INSTANCE_URL: "{{ GITEA_INSTANCE_URL }}"
+      GITEA_RUNNER_REGISTRATION_TOKEN: "{{ GITEA_RUNNER_REGISTRATION_TOKEN }}"
+      GITEA_RUNNER_NAME: "runner"
+      GITEA_RUNNER_LABELS: "runner"

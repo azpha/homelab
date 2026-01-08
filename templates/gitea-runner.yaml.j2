@@ -1,0 +1,21 @@
+log:
+  level: info
+
+runner:
+  file: .runner
+  capacity: 1
+  timeout: 3h
+  shutdown_timeout: 0s
+  insecure: false
+  fetch_timeout: 5s
+  fetch_interval: 2s
+  labels:
+    - "runner:host"
+
+container:
+  network: "host"
+  privileged: true
+  force_pull: true
+  force_rebuild: false
+  require_docker: false
+  docker_timeout: 0s

@@ -103,6 +103,9 @@
     - name: Deploy NZBGet
       import_tasks: tasks/nzbget.yml
       tags: nzbget_deploy
+    - name: Deploy Gitea Runner
+      import_tasks: tasks/runner.yml
+      tags: runner_deploy
 
 - hosts: jackson
 
