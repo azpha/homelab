@@ -13,7 +13,7 @@
       - name: homelab
     volumes:
       - "{{ data_dir }}/nzbget:/config"
-      - "{{ media_path }}/Downloads:/downloads"
+      - "{{ NZBGET_DOWNLOADS_PATH }}:/downloads"
     env:
       NZBGET_USER: "{{ NZBGET_USER }}"
       NZBGET_PASS: "{{ NZBGET_PASS }}"
