@@ -26,7 +26,7 @@
       name: gabehf/koito
       tag: latest
     env:
-      KOITO_DATABASE_URL: "postgres://koito:{{ KOTIO_DB_PASS }}@172.16.0.25:5432/koito"
+      KOITO_DATABASE_URL: "postgres://koito:{{ KOTIO_DB_PASS }}@172.16.0.44:5432/koito"
       KOITO_ALLOWED_HOSTS: koito.fntz.net
     volumes:
       - "{{ data_dir }}/scrobbling/koito:/etc/koito"
