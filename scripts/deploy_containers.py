@@ -103,14 +103,14 @@ def main():
   if len(failed) <= 0 and len(deployed) > 0:
     print("\n---------------------")
     print(" Deployment succeeded!")
-    print(f" All tasks: {", ".join(deployed)}")
+    print(f" All tasks: {', '.join(deployed)}")
     print("---------------------\n")
     sys.exit(0)
   elif len(failed) > 0:
     print("\n---------------------")
     print(" Deployment failed!")
-    print(f" Failed tasks: {", ".join(failed)}")
-    print(f" All tasks: {", ".join(deployed)}")
+    print(f' Failed tasks: {', '.join(failed)}')
+    print(f' All tasks: {', '.join(deployed)}')
     print("---------------------\n")
     sys.exit(1)
   elif len(deployed) <= 0:
