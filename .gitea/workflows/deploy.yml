@@ -9,11 +9,8 @@ jobs:
   deploy:
     name: Prepare
     runs-on: runner
+    container: node:18
     steps:
-      - name: Setup NodeJS
-        uses: actions/setup-node@v6
-        with:
-          node-version: "25.2.1"
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
