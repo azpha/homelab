@@ -10,6 +10,8 @@ runner:
   fetch_timeout: 5s
   fetch_interval: 2s
   labels:
+    - "ubuntu-latest:docker://catthehacker/ubuntu:act-latest"
+    - "ubuntu-22.04:docker://catthehacker/ubuntu:act-22.04"
     - "ubuntu-latest:docker://node:18-bullseye"
     - "ubuntu-22.04:docker://node:18-bullseye"
 
