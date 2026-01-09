@@ -54,7 +54,7 @@ def main():
   # clean up the diff
   new_diff = []
   for file in diff:
-    task_name = f"{file.split("/")[0]}/{file.split("/")[1]}"
+    task_name = f"{file.split('/')[0]}/{file.split('/')[1]}"
 
     # i'm not proud of this either
     if not os.path.exists(os.path.join(dir_path, file)):
