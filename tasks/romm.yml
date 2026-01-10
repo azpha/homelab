@@ -1,52 +1,16 @@
 ---
-- name: Create folder structure
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ data_dir }}/romm"
-    - "{{ data_dir }}/romm/igdb"
-    - "{{ data_dir }}/romm/assets"
-    - "{{ data_dir }}/romm/config"
-    - "{{ data_dir }}/romm/db"
-
-- name: Pull latest Romm Docker Image
-  docker_image:
-    name: rommapp/romm
-    tag: latest
-    source: pull
-
-- name: Create Romm DB Docker Container
-  docker_container:
-    name: romm-db
-    image: mariadb:latest
-    restart_policy: unless-stopped
-    recreate: true
-    networks:
-      - name: romm
-    volumes:
-      - "{{ data_dir }}/romm/db:/var/lib/mysql"
-    env:
-      MARIADB_ROOT_PASSWORD: romm
-      MARIADB_DATABASE: romm
-      MARIADB_USER: romm-user
-      MARIADB_PASSWORD: romm
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      start_period: 30s
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-- name: Create Romm Docker Container
-  docker_container:
+- name: Deploy Romm
+  include_role:
+    name: docker
+  vars:
     name: romm
-    image: rommapp/romm:latest
-    restart_policy: unless-stopped
-    recreate: true
+    directories:
+      - "{{ data_dir }}/romm"
+      - "{{ data_dir }}/romm/igdb"
+      - "{{ data_dir }}/romm/assets"
+      - "{{ data_dir }}/romm/config"
     networks:
       - name: homelab
-      - name: romm
     volumes:
       - "{{ data_dir }}/romm/igdb:/romm/resources"
       - "{{ data_dir }}/romm/redis:/redis-data"
