@@ -54,9 +54,9 @@
       - "{{ data_dir }}/romm/config:/romm/config"
       - "{{ ROMM_LIBRARY_PATH }}:/romm/library"
     env:
-      DB_HOST: romm-db
+      DB_HOST: 172.16.0.44
       DB_NAME: romm
-      DB_USER: romm-user
+      DB_USER: romm
       DB_PASSWD: romm
       ROMM_AUTH_SECRET_KEY: "{{ ROMM_AUTH_SECRET_KEY }}"
       IGDB_CLIENT_ID: "{{ ROMM_IGDB_CLIENT_ID }}"
