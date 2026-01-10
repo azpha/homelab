@@ -6,7 +6,6 @@
     name: booklore
     networks:
       - name: homelab
-      - name: booklore
     directories:
       - "{{ data_dir }}/booklore"
       - "{{ data_dir }}/booklore/data"
