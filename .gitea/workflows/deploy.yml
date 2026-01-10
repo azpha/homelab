@@ -16,6 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Deploy
+        shell: sh
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
