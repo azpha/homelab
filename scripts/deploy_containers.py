@@ -60,7 +60,8 @@ def main():
       if service_name not in ignore_deploys_for and service_name not in new_diff:
         new_diff.append(service_name)
 
-  deployed = deploy(",".join(new_diff))
+  if len(new_diff) > 0:
+    deployed = deploy(",".join(new_diff))
 
   for task in removed_containers:
     print(f"[MAIN] Attempting to remove containers related to '{task}'...")
