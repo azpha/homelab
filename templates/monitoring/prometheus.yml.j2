@@ -8,7 +8,7 @@ scrape_configs:
       - targets: ["monitoring_prometheus:9090"]
   - job_name: "node-exporter"
     static_configs:
-      - targets: ["172.16.0.25:9100"]
+      - targets: ["172.16.0.44:9100"]
   - job_name: "cadvisor"
     static_configs:
       - targets: ["monitoring_cadvisor:8080"]
