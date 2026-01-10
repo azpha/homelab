@@ -33,14 +33,6 @@ http:
         - webSecure
       tls:
         certResolver: letsencrypt
-    nvr:
-      rule: "Host(`nvr.fntz.net`)"
-      service: nvr
-      middlewares: tinyauth
-      entryPoints:
-        - webSecure
-      tls:
-        certResolver: letsencrypt
     wings:
       rule: "Host(`wings.fntz.net`)"
       service: wings
@@ -66,10 +58,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://172.16.0.44:8581/"
-    nvr:
-      loadBalancer:
-        servers:
-          - url: "http://172.16.0.29:5000/"
     wings:
       loadBalancer:
         servers:
