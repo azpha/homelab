@@ -18,7 +18,10 @@ jobs:
       - name: Install Ansible
         shell: bash
         run: |
-          pip3 install ansible
+          apt update
+          apt install software-properties-common
+          add-apt-repository --yes --update ppa:ansible/ansible
+          apt install ansible
 
       - name: Deploy
         shell: bash
