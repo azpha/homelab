@@ -11,6 +11,9 @@
       - "{{ data_dir }}/romm/config"
     networks:
       - name: homelab
+    image:
+      name: rommapp/romm
+      tag: latest
     volumes:
       - "{{ data_dir }}/romm/igdb:/romm/resources"
       - "{{ data_dir }}/romm/redis:/redis-data"
