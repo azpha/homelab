@@ -8,9 +8,7 @@ def git_diff():
   return [x for x in res.stdout.strip().split("\n") if "tasks/" in x or "roles/" in x]
 
 def construct_command(tags):
-  command = f"ANSIBLE_CONFIG=ansible.cfg /usr/bin/ansible-playbook main.yml --vault-password-file ~/.vault_pass.txt"
-  command += f" --tags {",".join(tags)}"
-
+  command = f"ANSIBLE_CONFIG=ansible.cfg /usr/bin/ansible-playbook main.yml --tags={",".join(tags)} --vault-password-file ~/.vault_pass.txt"
   print(command)
   return command
 
@@ -62,8 +60,7 @@ def main():
         new_diff.append(service_name)
 
   if len(new_diff) > 0:
-    print(new_diff, ",".join(new_diff))
-    deployed = deploy(",".join(new_diff))
+    deployed = deploy(new_diff)
   else:
     # success, nothing deployed
     deployed = True
