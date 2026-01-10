@@ -24,4 +24,4 @@ jobs:
           echo "HOST *" > ~/.ssh/config
           echo "${{ secrets.VAULT_PASS }}" > ~/.vault_pass.txt
           chmod 600 ansible.cfg 
-          /usr/bin/ansible-playbook main.yml --vault-password-file ~/.vault_pass.txt
+          /usr/bin/ansible-playbook main.yml -l jackson --vault-password-file ~/.vault_pass.txt

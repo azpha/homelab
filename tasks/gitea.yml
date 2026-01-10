@@ -13,7 +13,7 @@
       - name: "{{ docker_network_name }}"
     volumes:
       - "{{ data_dir }}/gitea:/data"
-      - "/home/iac/.ssh:/data/git/.ssh"
+      - "/home/git/.ssh:/data/git/.ssh"
     published_ports:
       - "2222:22"
     env:

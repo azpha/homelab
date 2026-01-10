@@ -86,8 +86,6 @@
       tags: traefik_deploy
       vars:
         server: "jackson"
-    - role: fivem
-      tags: fivem_deploy
 
   tasks:
     - name: Deploy Gitea
