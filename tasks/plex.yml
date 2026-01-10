@@ -22,8 +22,8 @@
     devices:
       - /dev/dri:/dev/dri
     env:
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      PUID: "1000"
+      PGID: "1000"
       TZ: "{{ TZ }}"
       VERSION: "docker"
       PLEX_CLAIM: "{{ PLEX_CLAIM_TOKEN }}"
