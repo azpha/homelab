@@ -17,6 +17,8 @@
       - "{{ DUPLICATI_SSH_KEY_PATH }}:/app/ssh/id_ed25519:ro"
       - "{{ DUPLICATI_SSH_PUB_KEY_PATH }}:/app/ssh/id_ed25519.pub:ro"
     env:
+      PUID: "1000"
+      PGID: "1000"
       SETTINGS_ENCRYPTION_KEY: "{{ DUPLICATI_ENCRYPTION_KEY }}"
     networks:
       - name: "homelab"
