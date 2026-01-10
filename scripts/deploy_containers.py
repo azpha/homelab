@@ -88,7 +88,7 @@ def main():
     print(f" All tasks: {', '.join(new_diff)}")
     print("---------------------\n")
     sys.exit(0)
-  elif not deployed and len(new_diff) >:
+  elif not deployed and len(new_diff) > 0:
     print("\n---------------------")
     print(" Deployment failed!")
     print(f" All tasks: {', '.join(new_diff)}")
