@@ -8,9 +8,7 @@ on:
 jobs:
   deploy:
     name: Prepare
-    runs-on: ubuntu-latest
-    container:
-      image: cytopia/ansible:latest
+    runs-on: ansible
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
