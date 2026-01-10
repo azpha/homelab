@@ -8,12 +8,13 @@
       - "{{ data_dir }}/pocketid"
     image:
       name: ghcr.io/pocket-id/pocket-id
-      tag: v1
+      tag: v2
     networks:
       - name: homelab
     volumes:
       - "{{ data_dir }}/pocketid:/app/data"
     env:
+      ENCRYPTION_KEY: "{{ POCKETID_ENCRYPTION_KEY }}"
       APP_URL: "{{ POCKETID_APP_URL }}"
       TRUST_PROXY: "{{ POCKETID_TRUST_PROXY }}"
       PUID: "{{ PUID }}"
