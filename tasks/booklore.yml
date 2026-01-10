@@ -19,7 +19,7 @@
       APP_GROUP_ID: "{{ PGID }}"
       TZ: "{{ TZ }}"
       BOOKLORE_PORT: "6060"
-      DATABASE_URL: jdbc:mariadb://172.16.0.25:3306/booklore
+      DATABASE_URL: jdbc:mariadb://172.16.0.44:3306/booklore
       DATABASE_USERNAME: booklore
       DATABASE_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
     volumes:
