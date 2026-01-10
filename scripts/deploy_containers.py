@@ -61,6 +61,7 @@ def main():
         new_diff.append(service_name)
 
   if len(new_diff) > 0:
+    print(new_diff, ",".join(new_diff))
     deployed = deploy(",".join(new_diff))
   else:
     # success, nothing deployed
