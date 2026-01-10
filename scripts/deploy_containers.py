@@ -31,6 +31,7 @@ def deploy(tag = None, host = None):
 def main():
   dir_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
   diff = git_diff()
+  print(diff)
 
   # containers that need special treatment
   removed_containers = []
