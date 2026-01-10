@@ -40,12 +40,8 @@
     networks:
       - name: api
       - name: "{{ docker_network_name }}"
-    build:
-      git:
-        repo: git@git.alexav.gg:alex/api.git
-        dest: "{{ data_dir }}/api/app"
     image:
-      name: api
+      name: git.alexav.gg/alex/api
       tag: latest
     env:
       NODE_ENV: "production"
