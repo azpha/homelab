@@ -14,7 +14,7 @@
       tag: latest
     volumes:
       - "{{ data_dir }}/servarr/radarr_config:/config"
-      - "{{ SERVARR_MEDIA_PATH }}:/media"
+      - "{{ media_path }}:/media"
       - "{{ media_path }}/Downloads:/downloads"
     networks:
       - name: homelab
@@ -39,7 +39,7 @@
       tag: latest
     volumes:
       - "{{ data_dir }}/servarr/sonarr_config:/config"
-      - "{{ SERVARR_MEDIA_PATH }}:/data"
+      - "{{ media_path }}:/data"
       - "{{ media_path }}/Downloads:/downloads"
     env:
       PUID: "1000"
@@ -68,7 +68,7 @@
       TZ: "{{ TZ }}"
     volumes:
       - "{{ data_dir }}/servarr/lidarr_config:/config"
-      - "{{ SERVARR_MEDIA_PATH }}:/media"
+      - "{{ media_path }}:/media"
       - "{{ media_path }}/Downloads:/downloads"
     networks:
       - name: homelab

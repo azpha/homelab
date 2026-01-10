@@ -7,7 +7,7 @@ def git_diff():
   res = subprocess.run(f"git diff --name-only {args[1]} {args[2]}", capture_output=True, shell=True, text=True)
   return [x for x in res.stdout.strip().split("\n") if "tasks/" in x or "roles/" in x]
 
-def construct_command(tags = []):
+def construct_command(tags):
   command = f"ANSIBLE_CONFIG=ansible.cfg /usr/bin/ansible-playbook main.yml --vault-password-file ~/.vault_pass.txt"
   command += f" --tags {",".join(tags)}"
 
