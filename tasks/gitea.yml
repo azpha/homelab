@@ -17,8 +17,8 @@
     published_ports:
       - "2222:22"
     env:
-      USER_UID: "{{ PUID }}"
-      USER_GID: "{{ PGID }}"
+      USER_UID: "1000"
+      USER_GID: "1000"
     labels:
       traefik.enable: "true"
       traefik.http.routers.git.rule: Host(`git.alexav.gg`)

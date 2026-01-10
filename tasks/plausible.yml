@@ -3,7 +3,6 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: 999
   with_items:
     - "{{ data_dir }}/plausible"
     - "{{ data_dir }}/plausible/app"
