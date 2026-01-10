@@ -21,39 +21,41 @@
     networks:
       - name: immich
     network_name: immich
-# - name: Deploy Immich Redis
-#   include_role:
-#     name: docker
-#   vars:
-#     name: immich_redis
-#     image:
-#       name: docker.io/valkey/valkey
-#       tag: 8-bookworm
-#     networks:
-#       - name: immich
-# - name: Deploy Immich Server
-#   include_role:
-#     name: docker
-#   vars:
-#     name: immich
-#     image:
-#       name: ghcr.io/immich-app/immich-server
-#       tag: v2.1.0
-#     networks:
-#       - name: homelab
-#       - name: immich
-#     volumes:
-#       - "{{ IMMICH_UPLOAD_LOCATION }}:/usr/src/app/upload"
-#       - "/etc/localtime:/etc/localtime:ro"
-#     env:
-#       DB_HOSTNAME: "immich_postgres"
-#       REDIS_HOSTNAME: "immich_redis"
-#       DB_PASSWORD: "{{ IMMICH_DB_PASSWORD }}"
-#       DB_USERNAME: "{{ IMMICH_DB_USERNAME }}"
-#       DB_DATABASE_NAME: "{{ IMMICH_DB_DATABASE_NAME }}"
-#     labels:
-#       traefik.enable: "true"
-#       traefik.http.routers.img.rule: Host(`img.fntz.net`)
-#       traefik.http.routers.img.entrypoints: webSecure
-#       traefik.http.routers.img.tls.certresolver: letsencrypt
-#       traefik.http.services.img.loadbalancer.server.port: "2283"
+- name: Deploy Immich Redis
+  include_role:
+    name: docker
+  vars:
+    name: immich_redis
+    image:
+      name: docker.io/valkey/valkey
+      tag: 8-bookworm
+    networks:
+      - name: immich
+- name: Deploy Immich Server
+  include_role:
+    name: docker
+  vars:
+    name: immich
+    image:
+      name: ghcr.io/immich-app/immich-server
+      tag: v2.1.0
+    networks:
+      - name: homelab
+      - name: immich
+    volumes:
+      - "{{ IMMICH_UPLOAD_LOCATION }}:/usr/src/app/upload"
+      - "/etc/localtime:/etc/localtime:ro"
+    env:
+      PUID: "{{ PUID }}"
+      PGID: "{{ PGID }}"
+      DB_HOSTNAME: "immich_postgres"
+      REDIS_HOSTNAME: "immich_redis"
+      DB_PASSWORD: "{{ IMMICH_DB_PASSWORD }}"
+      DB_USERNAME: "{{ IMMICH_DB_USERNAME }}"
+      DB_DATABASE_NAME: "{{ IMMICH_DB_DATABASE_NAME }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.img.rule: Host(`img.fntz.net`)
+      traefik.http.routers.img.entrypoints: webSecure
+      traefik.http.routers.img.tls.certresolver: letsencrypt
+      traefik.http.services.img.loadbalancer.server.port: "2283"
