@@ -8,13 +8,17 @@ on:
 jobs:
   deploy:
     name: Prepare
-    runs-on: runner
-    container: node:18
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Install Ansible
+        shell: bash
+        run: |
+          pip3 install ansible
 
       - name: Deploy
         shell: bash
