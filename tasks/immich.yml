@@ -21,17 +21,16 @@
     networks:
       - name: immich
     network_name: immich
-
-- name: Deploy Immich Redis
-  include_role:
-    name: docker
-  vars:
-    name: immich_redis
-    image:
-      name: docker.io/valkey/valkey
-      tag: 8-bookworm
-    networks:
-      - name: immich
+# - name: Deploy Immich Redis
+#   include_role:
+#     name: docker
+#   vars:
+#     name: immich_redis
+#     image:
+#       name: docker.io/valkey/valkey
+#       tag: 8-bookworm
+#     networks:
+#       - name: immich
 # - name: Deploy Immich Server
 #   include_role:
 #     name: docker
