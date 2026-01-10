@@ -6,7 +6,7 @@ on:
 jobs:
   run-update:
     name: Run update script
-    runs-on: runner
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

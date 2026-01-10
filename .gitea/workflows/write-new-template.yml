@@ -6,7 +6,7 @@ on:
 jobs:
   create-pr:
     name: Extract updated template
-    runs-on: runner
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

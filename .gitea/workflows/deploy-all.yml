@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     name: Prepare
-    runs-on: runner
+    runs-on: ansible
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -14,6 +14,7 @@ jobs:
           fetch-depth: 0
 
       - name: Deploy
+        shell: sh
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
