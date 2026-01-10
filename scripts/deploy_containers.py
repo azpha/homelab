@@ -11,6 +11,7 @@ def construct_command(tags = []):
   command = f"ANSIBLE_CONFIG=ansible.cfg /usr/bin/ansible-playbook main.yml --vault-password-file ~/.vault_pass.txt"
   command += f" --tags {",".join(tags)}"
 
+  print(command)
   return command
 
 def deploy(tags):
