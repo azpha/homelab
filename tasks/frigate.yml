@@ -19,6 +19,8 @@
       - /etc/localtime:/etc/localtime:ro
       - "{{ data_dir }}/frigate:/config"
       - "{{ media_path }}/Cameras:/media/frigate"
+    env:
+      LIBVA_DRIVER_NAME: radeonsi
     labels:
       traefik.enable: "true"
       traefik.http.routers.frigate.rule: Host(`nvr.fntz.net`)
