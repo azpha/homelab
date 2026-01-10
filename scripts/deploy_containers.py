@@ -79,13 +79,13 @@ def main():
       subprocess.run("/usr/bin/docker image prune -f", shell=True)
       subprocess.run("/usr/bin/docker container prune -f", shell=True)
 
-  if deployed:
+  if deployed and len(new_diff) > 0: 
     print("\n---------------------")
     print(" Deployment succeeded!")
     print(f" All tasks: {', '.join(new_diff)}")
     print("---------------------\n")
     sys.exit(0)
-  elif not deployed:
+  elif not deployed and len(new_diff) > 0:
     print("\n---------------------")
     print(" Deployment failed!")
     print(f" All tasks: {', '.join(new_diff)}")
