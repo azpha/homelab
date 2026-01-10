@@ -1,43 +1,3 @@
-- hosts: jade
-
-  roles:
-    - role: traefik
-      tags: traefik_deploy
-      vars:
-        server: "jade"
-
-  tasks:
-    - name: Deploy Romm
-      import_tasks: tasks/romm.yml
-      tags: romm_deploy
-    - name: Deploy Vaultwarden
-      import_tasks: tasks/vaultwarden.yml
-      tags: vaultwarden_deploy
-    - name: Deploy Drop
-      import_tasks: tasks/drop.yml
-      tags: drop_deploy
-    - name: Deploy Uptime Kuma
-      import_tasks: tasks/uptime-kuma.yml
-      tags: uptime-kuma_deploy
-    - name: Deploy Pterodactyl
-      import_tasks: tasks/pterodactyl.yml
-      tags: pterodactyl_deploy
-    - name: Deploy Booklore
-      import_tasks: tasks/booklore.yml
-      tags: booklore_deploy
-    - name: Deploy Monitoring
-      import_tasks: tasks/monitoring.yml
-      tags: monitoring_deploy
-    - name: Deploy Duplicati
-      import_tasks: tasks/duplicati.yml
-      tags: duplicati_deploy
-    - name: Deploy Postgres
-      import_tasks: tasks/postgres.yml
-      tags: postgres_deploy
-    - name: Deploy MariaDB
-      import_tasks: tasks/mariadb.yml
-      tags: mariadb_deploy
-
 - hosts: bear
   roles:
     - role: traefik
@@ -106,6 +66,15 @@
     - name: Deploy Gitea Runner
       import_tasks: tasks/runner.yml
       tags: runner_deploy
+    - name: Deploy Uptime Kuma
+      import_tasks: tasks/uptime-kuma.yml
+      tags: uptime-kuma_deploy
+    - name: Deploy Duplicati
+      import_tasks: tasks/duplicati.yml
+      tags: duplicati_deploy
+    - name: Deploy Romm
+      import_tasks: tasks/romm.yml
+      tags: romm_deploy
 
 - hosts: jackson
 
