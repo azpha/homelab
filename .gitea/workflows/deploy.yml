@@ -9,19 +9,13 @@ jobs:
   deploy:
     name: Prepare
     runs-on: ubuntu-latest
+    container:
+      image: cytopia/ansible:latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Install Ansible
-        shell: bash
-        run: |
-          apt update -y
-          apt install software-properties-common -y
-          add-apt-repository --yes --update ppa:ansible/ansible
-          apt install ansible -y
 
       - name: Deploy
         shell: bash
