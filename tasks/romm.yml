@@ -23,7 +23,7 @@
     env:
       DB_HOST: 172.16.0.44
       DB_NAME: romm
-      DB_USER: romm
+      DB_USER: rommuser
       DB_PASSWD: romm
       ROMM_AUTH_SECRET_KEY: "{{ ROMM_AUTH_SECRET_KEY }}"
       IGDB_CLIENT_ID: "{{ ROMM_IGDB_CLIENT_ID }}"
