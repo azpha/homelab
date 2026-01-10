@@ -62,6 +62,9 @@ def main():
 
   if len(new_diff) > 0:
     deployed = deploy(",".join(new_diff))
+  else:
+    # success, nothing deployed
+    deployed = True
 
   for task in removed_containers:
     print(f"[MAIN] Attempting to remove containers related to '{task}'...")
@@ -85,7 +88,7 @@ def main():
     print(f" All tasks: {', '.join(new_diff)}")
     print("---------------------\n")
     sys.exit(0)
-  elif not deployed and len(new_diff) > 0:
+  elif not deployed and len(new_diff) >:
     print("\n---------------------")
     print(" Deployment failed!")
     print(f" All tasks: {', '.join(new_diff)}")
