@@ -19,8 +19,8 @@
     networks:
       - name: homelab
     env:
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      PUID: "1000"
+      PGID: "1000"
       TZ: "{{ TZ }}"
     labels:
       traefik.enable: "true"
@@ -42,8 +42,8 @@
       - "{{ SERVARR_MEDIA_PATH }}:/data"
       - "{{ media_path }}/Downloads:/downloads"
     env:
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      PUID: "1000"
+      PGID: "1000"
       TZ: "{{ TZ }}"
     networks:
       - name: homelab
@@ -63,8 +63,8 @@
       name: lscr.io/linuxserver/lidarr
       tag: latest
     env:
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      PUID: "1000"
+      PGID: "1000"
       TZ: "{{ TZ }}"
     volumes:
       - "{{ data_dir }}/servarr/lidarr_config:/config"
