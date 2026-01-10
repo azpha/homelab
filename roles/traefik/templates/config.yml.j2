@@ -12,6 +12,11 @@ entryPoints:
           scheme: https
   webSecure:
     address: ":443"
+    transport:
+      respondingTimeouts:
+        readTimeout: 600s
+        writeTimeout: 600s
+        idleTimeout: 180s
 serversTransport:
   insecureSkipVerify: true
 providers:
