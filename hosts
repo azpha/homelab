@@ -1,5 +1,5 @@
 [ungrouped]
-jackson ansible_host=direct.jackson.alexav.gg ansible_user=root
+jackson ansible_host=direct.jackson.alexav.gg ansible_user=iac
 ash-1 ansible_host=ash-1.landite.games ansible_user=root
 nas ansible_host=172.16.0.29 ansible_user=alex
 bear ansible_host=172.16.0.44 ansible_user=iac

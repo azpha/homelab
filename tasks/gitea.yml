@@ -13,12 +13,12 @@
       - name: "{{ docker_network_name }}"
     volumes:
       - "{{ data_dir }}/gitea:/data"
-      - "/home/git/.ssh:/data/git/.ssh"
+      - "/home/iac/.ssh:/data/git/.ssh"
     published_ports:
       - "2222:22"
     env:
-      USER_UID: "1000"
-      USER_GID: "1000"
+      USER_UID: "{{ PUID }}"
+      USER_GID: "{{ PGID }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.git.rule: Host(`git.alexav.gg`)
