@@ -7,7 +7,7 @@
     directories:
       - "{{ data_dir }}/floof"
     networks:
-      - name: homelab
+      - name: "{{ docker_network_name }}"
     build:
       git:
         repo: git@git.alexav.gg:alex/floofs-adventure.git
