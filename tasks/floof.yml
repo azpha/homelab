@@ -3,7 +3,7 @@
   include_role:
     name: docker
   vars:
-    name: floof_adventure
+    name: floofs_adventure
     directories:
       - "{{ data_dir }}/floof"
     networks:
