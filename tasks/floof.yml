@@ -8,9 +8,13 @@
       - "{{ data_dir }}/floof"
     networks:
       - name: homelab
-    git:
-      repo: git@git.alexav.gg/alex/floofs-adventure
-      dest: "{{ data_dir }}/floof"
+    build:
+      git:
+        repo: git@git.alexav.gg/alex/floofs-adventure
+        dest: "{{ data_dir }}/floof"
+    image:
+      name: floofs-adventure
+      tag: latest
     labels:
       traefik.enable: "true"
       traefik.http.routers.dz.rule: Host(`floof.alexav.gg`)
