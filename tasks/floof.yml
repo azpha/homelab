@@ -1,0 +1,19 @@
+---
+- name: Deploy Floof
+  include_role:
+    name: docker
+  vars:
+    name: floof_adventure
+    directories:
+      - "{{ data_dir }}/floof"
+    networks:
+      - name: homelab
+    git:
+      repo: git@git.alexav.gg/alex/floofs-adventure
+      dest: "{{ data_dir }}/floof"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.dz.rule: Host(`floof.alexav.gg`)
+      traefik.http.routers.dz.entrypoints: webSecure
+      traefik.http.routers.dz.tls.certresolver: letsencrypt
+      traefik.http.services.dz.loadbalancer.server.port: "3001"

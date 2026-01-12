@@ -106,6 +106,9 @@
     - name: Deploy Database
       import_tasks: tasks/mariadb.yml
       tags: mariadb_deploy
+    - name: Deploy Floof
+      import_tasks: tasks/floof.yml
+      tags: floof_deploy
 
 - hosts: nas
 
