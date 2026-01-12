@@ -10,7 +10,7 @@
       - name: homelab
     build:
       git:
-        repo: git@git.alexav.gg/alex/floofs-adventure.git
+        repo: git@git.alexav.gg:alex/floofs-adventure.git
         dest: "{{ data_dir }}/floof"
     image:
       name: floofs-adventure
