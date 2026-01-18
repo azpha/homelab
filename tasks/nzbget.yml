@@ -18,8 +18,8 @@
       NZBGET_USER: "{{ NZBGET_USER }}"
       NZBGET_PASS: "{{ NZBGET_PASS }}"
       TZ: "{{ TZ }}"
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      PUID: "1000"
+      PGID: "1000"
     labels:
       traefik.enable: "true"
       traefik.http.routers.nzb.rule: Host(`nzb.fntz.net`)
