@@ -40,6 +40,8 @@
     name: "{{ name }}"
     recreate: true
     restart_policy: always
+    entrypoint: "{{ entrypoint | default(omit) }}"
+    shm_size: "{{ shmSize | default(omit) }}"
     pull: "{{ build is not defined }}"
     published_ports: "{{ published_ports | default(omit) }}"
     network_mode: "{{ network_mode | default(omit) }}"

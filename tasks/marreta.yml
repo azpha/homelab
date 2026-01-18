@@ -1,0 +1,65 @@
+---
+- name: Deploy Marreta
+  include_role:
+    name: docker
+  vars:
+    name: marreta
+    network_name: marreta
+    networks:
+      - name: homelab
+      - name: marreta
+    image:
+      name: ghcr.io/manualdousuario/marreta
+      tag: latest
+    env:
+      SITE_NAME: "Marreta"
+      SITE_DESCRIPTION: "Jackson Marreta Instance"
+      SITE_URL: "{{ MARRETA_APP_URL }}"
+      DNS_SERVERS: "1.1.1.1,8.8.8.8"
+      LANGUANGE: "en-us"
+      LOG_LEVEL: "info"
+      SELENIUM_HOST: "marreta_selenium-hub:4444"
+      CLEANUP_DATS: "7"
+      PROXY_LIST: "url"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.marreta.rule: Host(`ladder.fntz.net`)
+      traefik.http.routers.marreta.entrypoints: webSecure
+      traefik.http.routers.marreta.tls.certresolver: letsencrypt
+      traefik.http.services.marreta.loadbalancer.server.port: "80"
+
+- name: Deploy Selenium Hub
+  include_role:
+    name: docker
+  vars:
+    name: marreta_selenium-hub
+    networks:
+      - name: marreta
+    image:
+      name: selenium/hub
+      tag: 4.27.0-20241204
+    env:
+      SE_ENABLE_TRACING: "false"
+      GRID_MAX_SESSION: "10"
+      GRID_BROWSER_TIMEOUT: "10"
+      GRID_TIMEOUT: "10"
+
+- name: Deploy Selenium Chromium
+  include_role:
+    name: docker
+  vars:
+    name: marreta_selenium-chromium
+    shm_size: 2gb
+    networks:
+      - name: marreta
+    image:
+      name: selenium/node-chromium
+      tag: 4.27.0-20241204
+    env:
+      SE_EVENT_BUS_HOST: "marreta_selenium-hub"
+      SE_EVENT_BUS_PUBLISH_PORT: "4442"
+      SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
+      SE_ENABLE_TRACING: "false"
+      SE_NODE_MAX_SESSIONS: "10"
+      SE_NODE_OVERRIDE_MAX_SESSIONS: "true"
+    entrypoint: bash -c 'SE_OPTS="--host $$HOSTNAME" /opt/bin/entry_point.sh'

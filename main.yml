@@ -78,6 +78,9 @@
     - name: Deploy Booklore
       import_tasks: tasks/booklore.yml
       tags: booklore_deploy
+    - name: Deploy Marreta
+      import_tasks: tasks/marreta.yml
+      tags: marreta_deploy
 
 - hosts: jackson
 
