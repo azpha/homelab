@@ -115,6 +115,9 @@
     - name: Deploy Tinyauth
       import_tasks: tasks/tinyauth.yml
       tags: tinyauth_deploy
+    - name: Deploy Cobalt
+      import_tasks: tasks/cobalt.yml
+      tags: cobalt_deploy
 
 - hosts: nas
 

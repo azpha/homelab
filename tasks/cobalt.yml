@@ -1,0 +1,20 @@
+---
+- name: Deploy Cobalt
+  include_role:
+    name: docker
+  vars:
+    name: cobalt
+    image:
+      name: ghcr.io/imputnet/cobalt
+      tag: 11
+    env:
+      API_URL: "https://dl.alexav.gg"
+      TURNSTILE_SITEKEY: "{{ COBALT_TURNSTILE_SITEKEY }}"
+      TURNSTILE_SECRET: "{{ COBALT_TURNSTILE_SECRET }}"
+      JWT_SECRET: "{{ COBALT_JWT_SECRET }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.cobalt.rule: Host(`dl.alexav.gg`)
+      traefik.http.routers.cobalt.entrypoints: webSecure
+      traefik.http.routers.cobalt.tls.certresolver: letsencrypt
+      traefik.http.services.cobalt.loadbalancer.server.port: "9000"
