@@ -3,7 +3,7 @@
   include_role:
     name: docker
   vars:
-    name: radarr
+    name: servarr_radarr
     directories:
       - "{{ data_dir }}/servarr"
       - "{{ data_dir }}/servarr/sonarr_config"
@@ -33,7 +33,7 @@
   include_role:
     name: docker
   vars:
-    name: sonarr
+    name: servarr_sonarr
     image:
       name: lscr.io/linuxserver/sonarr
       tag: latest
@@ -58,7 +58,7 @@
   include_role:
     name: docker
   vars:
-    name: lidarr
+    name: servarr_lidarr
     image:
       name: lscr.io/linuxserver/lidarr
       tag: latest
