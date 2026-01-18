@@ -16,7 +16,7 @@
       SITE_DESCRIPTION: "Jackson Marreta Instance"
       SITE_URL: "{{ MARRETA_APP_URL }}"
       DNS_SERVERS: "1.1.1.1,8.8.8.8"
-      LANGUANGE: "en-us"
+      LANGUANGE: "en"
       LOG_LEVEL: "info"
       SELENIUM_HOST: "marreta_selenium-hub:4444"
       CLEANUP_DATS: "7"
@@ -62,4 +62,3 @@
       SE_ENABLE_TRACING: "false"
       SE_NODE_MAX_SESSIONS: "10"
       SE_NODE_OVERRIDE_MAX_SESSIONS: "true"
-    entrypoint: bash -c 'SE_OPTS="--host $$HOSTNAME" /opt/bin/entry_point.sh'
