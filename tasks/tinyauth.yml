@@ -8,7 +8,7 @@
       name: ghcr.io/steveiliop56/tinyauth
       tag: v4
     networks:
-      - name: homelab
+      - name: "{{ docker_network_name }}"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     env:
@@ -28,7 +28,7 @@
       BACKGROUND_IMAGE: "{{ TINYAUTH_BACKGROUND_IMAGE }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.tinyauth.rule: Host(`auth.fntz.net`)
+      traefik.http.routers.tinyauth.rule: Host(`{{ TINYAUTH_HOSTNAME }}`)
       traefik.http.routers.tinyauth.entrypoints: webSecure
       traefik.http.routers.tinyauth.tls.certresolver: letsencrypt
       traefik.http.middlewares.tinyauth.forwardauth.address: http://tinyauth:3000/api/auth/traefik

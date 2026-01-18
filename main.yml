@@ -109,6 +109,9 @@
     - name: Deploy Floof
       import_tasks: tasks/floof.yml
       tags: floof_deploy
+    - name: Deploy Tinyauth
+      import_tasks: tasks/tinyauth.yml
+      tags: tinyauth_deploy
 
 - hosts: nas
 
