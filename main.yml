@@ -122,11 +122,3 @@
     - name: Deploy Wings
       import_tasks: tasks/wings.yml
       tags: wings_deploy
-
-- hosts: ash-1
-
-  roles:
-    - role: traefik
-      tags: traefik_deploy
-      vars:
-        server: "ash-1"
