@@ -53,28 +53,3 @@
       traefik.http.routers.sonarr.entrypoints: webSecure
       traefik.http.routers.sonarr.tls.certresolver: letsencrypt
       traefik.http.services.sonarr.loadbalancer.server.port: "8989"
-
-- name: Deploy Lidarr
-  include_role:
-    name: docker
-  vars:
-    name: servarr_lidarr
-    image:
-      name: lscr.io/linuxserver/lidarr
-      tag: latest
-    env:
-      PUID: "1000"
-      PGID: "1000"
-      TZ: "{{ TZ }}"
-    volumes:
-      - "{{ data_dir }}/servarr/lidarr_config:/config"
-      - "{{ media_path }}:/media"
-      - "{{ media_path }}/Downloads:/downloads"
-    networks:
-      - name: homelab
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.lidarr.rule: Host(`lidarr.fntz.net`)
-      traefik.http.routers.lidarr.entrypoints: webSecure
-      traefik.http.routers.lidarr.tls.certresolver: letsencrypt
-      traefik.http.services.lidarr.loadbalancer.server.port: "8686"
