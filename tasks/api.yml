@@ -61,6 +61,7 @@
       MINECRAFT_USER: "{{ API_MINECRAFT_USER }}"
       MINECRAFT_PASSWORD: "{{ API_MINECRAFT_PASSWORD }}"
       MINECRAFT_DATABASE: "{{ API_MINECRAFT_DATABASE }}"
+      TMDB_API_KEY: "{{ API_TMDB_TOKEN }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.aapi.rule: Host(`api.alexav.gg`)
