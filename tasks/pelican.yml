@@ -1,4 +1,11 @@
 ---
+- name: Create folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ data_dir }}/pelican"
+
 - name: Create Pelican Caddyfile
   template:
     src: templates/pelican/Caddyfile
@@ -9,8 +16,6 @@
     name: docker
   vars:
     name: Pelican
-    directories:
-      - "{{ data_dir }}/pelican"
     image:
       name: ghcr.io/pelican-dev/panel
       tag: latest
