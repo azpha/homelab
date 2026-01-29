@@ -81,9 +81,9 @@
     - name: Deploy Marreta
       import_tasks: tasks/marreta.yml
       tags: marreta_deploy
-    - name: Deploy Pterodactyl
-      import_tasks: tasks/pterodactyl.yml
-      tags: pterodactyl_deploy
+    - name: Deploy Pelican
+      import_tasks: tasks/Pelican.yml
+      tags: pelican_deploy
 
 - hosts: jackson
 
