@@ -26,7 +26,7 @@
       PGID: "{{ PGID }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.pelican.rule: Host(`panel.landite.games`)
+      traefik.http.routers.pelican.rule: Host(`{{ PELICAN_APP_URL }}`)
       traefik.http.routers.pelican.entrypoints: webSecure
       traefik.http.routers.pelican.tls.certresolver: letsencrypt
       traefik.http.services.pelican.loadbalancer.server.port: "80"
