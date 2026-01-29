@@ -82,7 +82,7 @@
       import_tasks: tasks/marreta.yml
       tags: marreta_deploy
     - name: Deploy Pelican
-      import_tasks: tasks/Pelican.yml
+      import_tasks: tasks/pelican.yml
       tags: pelican_deploy
 
 - hosts: jackson
