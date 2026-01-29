@@ -1,4 +1,9 @@
 ---
+- name: Create Pelican Caddyfile
+  template:
+    src: templates/pelican/Caddyfile
+    dest: "{{ data_dir }}/pelican/Caddyfile"
+
 - name: Deploy Pelican Panel
   include_role:
     name: docker
