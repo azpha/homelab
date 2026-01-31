@@ -84,6 +84,9 @@
     - name: Deploy Pelican
       import_tasks: tasks/pelican.yml
       tags: pelican_deploy
+    - name: Deploy Docs
+      import_tasks: tasks/docs.yml
+      tags: docs_deploy
 
 - hosts: jackson
 

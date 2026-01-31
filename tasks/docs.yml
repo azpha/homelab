@@ -1,0 +1,23 @@
+---
+- name: Deploy Wiki.js
+  include_role:
+    name: docker
+  vars:
+    name: docs
+    image:
+      name: ghcr.io/requarks/wiki
+      tag: 2
+    env:
+      DB_TYPE: "postgres"
+      DB_HOST: "{{ DOCS_DB_HOST }}"
+      DB_PORT: "5432"
+      DB_USER: "wikijs"
+      DB_PASS: "wikijs"
+      DB_NAME: "wikijs"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.docs.rule: Host(`docs.fntz.net`)
+      traefik.http.routers.docs.entrypoints: webSecure
+      traefik.http.routers.docs.tls.certresolver: letsencrypt
+      traefik.http.services.docs.loadbalancer.server.port: "3000"
+      traefik.http.routers.docs.middlewares: tinyauth
