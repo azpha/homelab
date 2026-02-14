@@ -1,7 +1,7 @@
 ---
 - name: Create Gitea Runner Configuration
   template:
-    src: templates/gitea-runner.yaml.j2
+    src: templates/runner/gitea-runner.yaml.j2
     dest: "{{ data_dir }}/gitea/config.yaml"
 
 - name: Deploy Gitea Runner
