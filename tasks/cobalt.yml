@@ -4,6 +4,8 @@
     name: docker
   vars:
     name: cobalt
+    directories:
+      - "{{ data_dir }}/cobalt"
     image:
       name: ghcr.io/imputnet/cobalt
       tag: 11
@@ -12,8 +14,12 @@
       TURNSTILE_SITEKEY: "{{ COBALT_TURNSTILE_SITEKEY }}"
       TURNSTILE_SECRET: "{{ COBALT_TURNSTILE_SECRET }}"
       JWT_SECRET: "{{ COBALT_JWT_SECRET }}"
+      API_AUTH_REQUIRED: 1
+      API_KEY_URL: "file:///keys.json"
     networks:
       - name: "{{ docker_network_name }}"
+    volumes:
+      - "{{ data_dir }}/cobalt/keys.json:/keys.json:ro"
     labels:
       traefik.enable: "true"
       traefik.http.routers.cobalt.rule: Host(`dl.alexav.gg`)
