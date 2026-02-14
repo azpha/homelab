@@ -6,6 +6,9 @@
         server: "bear"
 
   tasks:
+    - name: Deploy Tinyauth
+      import_tasks: tasks/tinyauth.yml
+      tags: tinyauth_deploy
     - name: Deploy Postgres
       import_tasks: tasks/postgres.yml
       tags: postgres_deploy
@@ -27,9 +30,6 @@
     - name: Deploy Homebridge
       import_tasks: tasks/homebridge.yml
       tags: homebridge_deploy
-    - name: Deploy Tinyauth
-      import_tasks: tasks/tinyauth.yml
-      tags: tinyauth_deploy
     - name: Deploy Code Server
       import_tasks: tasks/codeserver.yml
       tags: codeserver_deploy
@@ -60,9 +60,6 @@
     - name: Deploy NZBGet
       import_tasks: tasks/nzbget.yml
       tags: nzbget_deploy
-    - name: Deploy Gitea Runner
-      import_tasks: tasks/runner.yml
-      tags: runner_deploy
     - name: Deploy Uptime Kuma
       import_tasks: tasks/uptime-kuma.yml
       tags: uptime-kuma_deploy
