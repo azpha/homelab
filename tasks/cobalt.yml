@@ -12,6 +12,8 @@
       TURNSTILE_SITEKEY: "{{ COBALT_TURNSTILE_SITEKEY }}"
       TURNSTILE_SECRET: "{{ COBALT_TURNSTILE_SECRET }}"
       JWT_SECRET: "{{ COBALT_JWT_SECRET }}"
+    networks:
+      - name: "{{ docker_network_name }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.cobalt.rule: Host(`dl.alexav.gg`)

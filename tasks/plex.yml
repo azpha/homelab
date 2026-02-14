@@ -1,24 +1,14 @@
 ---
-- name: Create folder structure
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ data_dir }}/plex"
-
-- name: Pull latest Plex Docker Image
-  docker_image:
-    name: lscr.io/linuxserver/plex
-    tag: latest
-    source: pull
-
-- name: Deploy Plex Docker Container
-  docker_container:
+- name: Deploy Plex
+  include_role:
+    name: docker
+  vars:
     name: plex
-    image: lscr.io/linuxserver/plex
-    network_mode: host
-    restart_policy: unless-stopped
-    recreate: true
+    image:
+      name: lscr.io/linuxserver/plex
+      tag: latest
+    networks:
+      - name: homelab
     devices:
       - /dev/dri:/dev/dri
     env:

@@ -14,6 +14,8 @@
       DB_USER: "wikijs"
       DB_PASS: "wikijs"
       DB_NAME: "wikijs"
+    networks:
+      - name: homelab
     labels:
       traefik.enable: "true"
       traefik.http.routers.docs.rule: Host(`docs.fntz.net`)

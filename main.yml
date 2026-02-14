@@ -39,9 +39,6 @@
     - name: Deploy Scrobbling Setup
       import_tasks: tasks/scrobbling.yml
       tags: scrobbling_deploy
-    - name: Deploy Monitoring
-      import_tasks: tasks/monitoring.yml
-      tags: monitoring_deploy
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
@@ -69,18 +66,12 @@
     - name: Deploy Uptime Kuma
       import_tasks: tasks/uptime-kuma.yml
       tags: uptime-kuma_deploy
-    - name: Deploy Duplicati
-      import_tasks: tasks/duplicati.yml
-      tags: duplicati_deploy
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
     - name: Deploy Booklore
       import_tasks: tasks/booklore.yml
       tags: booklore_deploy
-    - name: Deploy Marreta
-      import_tasks: tasks/marreta.yml
-      tags: marreta_deploy
     - name: Deploy Pelican
       import_tasks: tasks/pelican.yml
       tags: pelican_deploy
