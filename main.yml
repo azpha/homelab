@@ -51,6 +51,9 @@
     - name: Deploy Plex
       import_tasks: tasks/plex.yml
       tags: plex_deploy
+    - name: Deploy ErsatzTV
+      import_tasks: tasks/ersatztv.yml
+      tags: ersatztv_deploy
     - name: Deploy Frigate
       import_tasks: tasks/frigate.yml
       tags: frigate_deploy

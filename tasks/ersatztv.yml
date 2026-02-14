@@ -1,0 +1,24 @@
+---
+- name: Deploy Ersatz
+  include_role:
+    - name: docker
+  vars:
+    name: ersatztv
+    directories:
+      - "{{ data_dir }}/ersatz"
+    image:
+      name: ghcr.io/ersatztv/ersatztv
+      tag: latest
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ data_dir }}/ersatz:/config"
+      - "{{ media_path }}:/media"
+    devices:
+      - /dev/dri:/dev/dri
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.iptv.rule: Host(`iptv.fntz.net`)
+      traefik.http.routers.iptv.entrypoints: webSecure
+      traefik.http.routers.iptv.tls.certresolver: letsencrypt
+      traefik.http.services.iptv.loadbalancer.server.port: "8409"
