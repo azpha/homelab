@@ -11,8 +11,6 @@
       tag: 11
     env:
       API_URL: "https://dl.alexav.gg"
-      TURNSTILE_SITEKEY: "{{ COBALT_TURNSTILE_SITEKEY }}"
-      TURNSTILE_SECRET: "{{ COBALT_TURNSTILE_SECRET }}"
       JWT_SECRET: "{{ COBALT_JWT_SECRET }}"
       API_AUTH_REQUIRED: "1"
       API_KEY_URL: "file:///keys.json"
