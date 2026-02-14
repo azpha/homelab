@@ -5,6 +5,13 @@ http:
         address: http://tinyauth:3000/api/auth/traefik
 
   routers:
+    plex:
+      rule: "Host(`tv.fntz.net`)"
+      service: plex
+      entryPoints:  
+        - webSecure
+      tls:
+        certResolver: letsencrypt
     jtraefik:
       rule: "Host(`traefik-jackson.fntz.net`)"
       service: jtraefik
@@ -35,6 +42,10 @@ http:
         certResolver: letsencrypt
     
   services:
+    plex:
+      loadBalancer:
+        servers:
+          - url: "http://172.16.0.44:32400"
     jtraefik:
       loadBalancer:
         servers:

@@ -75,6 +75,9 @@
     - name: Deploy Docs
       import_tasks: tasks/docs.yml
       tags: docs_deploy
+    - name: Deploy Gitea Runner
+      import_tasks: tasks/runner.yml
+      tags: runner_deploy
 
 - hosts: jackson
 
