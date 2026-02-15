@@ -11,6 +11,8 @@
       tag: latest
     networks:
       - name: homelab
+    published_ports:
+      - "8409:8409"
     volumes:
       - "{{ data_dir }}/ersatz:/config"
       - "{{ media_path }}:/media"
