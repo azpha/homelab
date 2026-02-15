@@ -1,7 +1,7 @@
 ---
 - name: Deploy Ersatz
   include_role:
-    - name: docker
+    name: docker
   vars:
     name: ersatztv
     directories:
