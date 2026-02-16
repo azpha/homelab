@@ -1,0 +1,27 @@
+---
+- name: Deploy AudioBookshelf
+  include_role:
+    name: docker
+  vars:
+    name: audiobookshelf
+    directories:
+      - "{{ data_dir }}/audiobookshelf"
+      - "{{ data_dir }}/audiobookshelf/config"
+      - "{{ data_dir }}/audiobookshelf/metadata"
+    image:
+      name: ghcr.io/advplyr/audiobookshelf
+      tag: latest
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ media_path }}/Books/Audiobooks:/audiobooks"
+      - "{{ data_dir }}/audiobookshelf/config:/config"
+      - "{{ data_dir }}/audiobookshelf/metadata:/metadata"
+    env:
+      TZ: "{{ TZ }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.audiobookshelf.rule: Host(`abooks.fntz.net`)
+      traefik.http.routers.audiobookshelf.entrypoints: webSecure
+      traefik.http.routers.audiobookshelf.tls.certresolver: letsencrypt
+      traefik.http.services.audiobookshelf.loadbalancer.server.port: "80"
