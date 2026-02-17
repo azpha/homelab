@@ -4,6 +4,7 @@
       tags: traefik_deploy
       vars:
         server: "bear"
+        use_cloudflared: true
 
   tasks:
     - name: Deploy Tinyauth

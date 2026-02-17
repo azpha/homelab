@@ -1,0 +1,13 @@
+---
+- name: Deploy Cloudflared
+  include_role:
+    name: cloudflared
+    image:
+      name: cloudflare/cloudflared
+      tag: latest
+    env:
+      TUNNEL_TOKEN: "{{ CLOUDFLARED_TUNNEL_TOKEN }}"
+    command: tunnel run
+    network_name: "tunnel"
+    networks:
+      - name: "tunnel"
