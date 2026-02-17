@@ -1,6 +1,8 @@
 ---
 - name: Deploy Cloudflared
   include_role:
+    name: docker
+  vars:
     name: cloudflared
     image:
       name: cloudflare/cloudflared
