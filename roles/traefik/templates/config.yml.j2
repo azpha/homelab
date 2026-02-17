@@ -35,3 +35,10 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: 10
+accessLog:
+  enabled: true
+  filters:
+    statusCodes:
+      - "200"
+      - "400-404"
+      - "500-503"
