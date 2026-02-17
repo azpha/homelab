@@ -17,7 +17,7 @@
   include_role:
     name: docker
   vars:
-    name: scrobbling_kotio
+    name: scrobbling_koito
     network_name: scrobbling
     networks:
       - name: scrobbling
