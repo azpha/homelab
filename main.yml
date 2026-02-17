@@ -82,6 +82,9 @@
     - name: Deploy Audiobookshelf
       import_tasks: tasks/audiobookshelf.yml
       tags: audiobookshelf_deploy
+    - name: Deploy Cloudflared
+      import_tasks: tasks/cloudflared.yml
+      tags: cloudflared_deploy
     - name: Deploy Gitea Runner
       import_tasks: tasks/runner.yml
       tags: runner_deploy
