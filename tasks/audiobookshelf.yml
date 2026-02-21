@@ -3,7 +3,8 @@
   include_role:
     name: docker
   vars:
-    name: audiobookshelf
+    name: audiobookshelf_abs
+    network_name: "abs"
     directories:
       - "{{ data_dir }}/audiobookshelf"
       - "{{ data_dir }}/audiobookshelf/config"
@@ -13,6 +14,7 @@
       tag: latest
     networks:
       - name: homelab
+      - name: abs
     volumes:
       - "{{ media_path }}/Books/Audiobooks:/audiobooks"
       - "{{ data_dir }}/audiobookshelf/config:/config"
@@ -25,3 +27,14 @@
       traefik.http.routers.audiobookshelf.entrypoints: webSecure
       traefik.http.routers.audiobookshelf.tls.certresolver: letsencrypt
       traefik.http.services.audiobookshelf.loadbalancer.server.port: "80"
+
+- name: Deploy abs-tract
+  include_role:
+    name: docker
+  vars:
+    name: audiobookshelf_abs-tract
+    image:
+      name: arranhs/abs-tract
+      tag: latest
+    networks:
+      - name: "abs"
