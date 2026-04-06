@@ -23,12 +23,12 @@ def main():
   diff = git_diff()
 
   # containers that need special treatment
-  removed_containers = []
-  vpn_containers = [
+  removed_containers = [] # containers queued for removal
+  vpn_containers = [ # containers that need to be recreated re: vpn
     "tasks/qbittorrent.yml",
     "tasks/jackett.yml"
   ]
-  ignore_deploys_for = [
+  ignore_deploys_for = [ # don't auto-deploy these
     "tasks/runner",
     "templates/runner",
     "roles/docker"
@@ -67,8 +67,8 @@ def main():
 
   for task in removed_containers:
     print(f"[MAIN] Attempting to remove containers related to '{task}'...")
-    if len(task.split("/")) > 1:
-      task_name = task.split("/")[1].split(".")[0]
+    if "_deploy" in task:
+      task_name = task.split("_")[0]
     else:
       task_name = task
  
