@@ -73,15 +73,21 @@ def main():
       task_name = task
  
     print(f"[MAIN] Removal task name: {task_name}")
-    containers = subprocess.run(f'docker ps --filter "name={task_name}" -q', shell=True, stdout=subprocess.PIPE)
-    print(containers.stdout)
-    for line in containers.stdout:
-      container_id = line.strip().decode("utf8")
-      print(f"[MAIN] Found Docker container {container_id} related to {task_name}, removing..")
-      subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
-      subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
-      subprocess.run("/usr/bin/docker image prune -f", shell=True)
-      subprocess.run("/usr/bin/docker container prune -f", shell=True)
+    result = subprocess.run(
+        f'docker ps --filter "name={task_name}" -q',
+        shell=True,
+        capture_output=True
+    )
+
+    for line in result.stdout.splitlines():
+        container_id = line.strip().decode("utf8")
+        if not container_id:
+            continue
+        print(f"[MAIN] Found Docker container {container_id} related to {task_name}, removing..")
+        subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
+        subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
+        subprocess.run("/usr/bin/docker image prune -f", shell=True)
+        subprocess.run("/usr/bin/docker container prune -f", shell=True)
 
   if deployed and len(new_diff) > 0: 
     print("\n---------------------")
