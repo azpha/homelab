@@ -36,8 +36,8 @@
     networks:
       - name: homelab
     env:
-      WS4KP_HOST: "weatherstar.fntz.net"
-      WS4KP_PORT: "443"
+      WS4KP_HOST: "weatherstar"
+      WS4KP_PORT: "8080"
       ZIP_CODE: "14020"
     published_ports:
       - "9798:9798"
