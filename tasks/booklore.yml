@@ -1,0 +1,33 @@
+---
+- name: Deploy Booklore
+  include_role:
+    name: docker
+  vars:
+    name: booklore
+    networks:
+      - name: homelab
+    directories:
+      - "{{ data_dir }}/booklore"
+      - "{{ data_dir }}/booklore/data"
+      - "{{ data_dir }}/booklore/books"
+    image:
+      name: booklore/booklore
+      tag: latest
+    env:
+      APP_USER_ID: "{{ PUID }}"
+      APP_GROUP_ID: "{{ PGID }}"
+      TZ: "{{ TZ }}"
+      BOOKLORE_PORT: "6060"
+      DATABASE_URL: jdbc:mariadb://172.16.0.44:3306/booklore
+      DATABASE_USERNAME: booklore
+      DATABASE_PASSWORD: "{{ BOOKLORE_DB_PASS }}"
+    volumes:
+      - "{{ data_dir }}/booklore/data:/app/data"
+      - "{{ data_dir }}/booklore/books:/books"
+      - "{{ media_path }}/Books/Bookdrop:/bookdrop"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.booklore.rule: Host(`books.fntz.net`)
+      traefik.http.routers.booklore.entrypoints: webSecure
+      traefik.http.routers.booklore.tls.certresolver: letsencrypt
+      traefik.http.services.booklore.loadbalancer.server.port: "6060"
