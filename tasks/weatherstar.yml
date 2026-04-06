@@ -16,6 +16,7 @@
       WSQS_current_weather_checkbox: "true"
       WSQS_settings_mediaVolume_select: "0.75"
       WSQS_settings_scanLineMode_select: "thin"
+      WSQS_settings_kiosk_checkbox: "true"
     labels:
       traefik.enable: "true"
       traefik.http.routers.weatherstar.rule: Host(`weatherstar.fntz.net`)
