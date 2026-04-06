@@ -43,9 +43,6 @@
     - name: Deploy Vaultwarden
       import_tasks: tasks/vaultwarden.yml
       tags: vaultwarden_deploy
-    - name: Deploy Tautulli
-      import_tasks: tasks/tautulli.yml
-      tags: tautulli_deploy
     - name: Deploy Immich
       import_tasks: tasks/immich.yml
       tags: immich_deploy
