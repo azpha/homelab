@@ -74,7 +74,7 @@ def main():
  
     print(f"[MAIN] Removal task name: {task_name}")
     result = subprocess.run(
-        f'docker ps --filter "name={task_name}" -q',
+        f'/usr/bin/docker ps --filter "name={task_name}" -q',
         shell=True,
         capture_output=True
     )
