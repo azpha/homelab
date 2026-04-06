@@ -24,3 +24,20 @@
       traefik.http.routers.weatherstar.entrypoints: webSecure
       traefik.http.routers.weatherstar.tls.certresolver: letsencrypt
       traefik.http.services.weatherstar.loadbalancer.server.port: "8080"
+
+- name: Deploy WS4Channels
+  include_role:
+    name: docker
+  vars:
+    name: weatherstar_ws4channels
+    image:
+      name: ghcr.io/rice9797/ws4channels
+      tag: latest
+    networks:
+      - name: homelab
+    env:
+      WS4KP_HOST: "https://weatherstar.fntz.net"
+      WS4KP_PORT: "443"
+      ZIP_CODE: "14020"
+    published_ports:
+      - "9798:9798"
