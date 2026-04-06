@@ -88,6 +88,9 @@
     - name: Deploy Gitea Runner
       import_tasks: tasks/runner.yml
       tags: runner_deploy
+    - name: Deploy Weatherstar
+      import_tasks: tasks/weatherstar.yml
+      tags: weatherstar_deploy
 
 - hosts: jackson
 

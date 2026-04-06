@@ -1,0 +1,22 @@
+---
+- name: Deploy Weatherstar
+  include_role:
+    name: docker
+  vars:
+    name: weatherstar
+    image:
+      name: ghcr.io/netbymatt/ws4kp
+      tag: latest
+    networks:
+      - name: homelab
+    env:
+      TZ: "{{ TZ }}"
+      WSQS_latLonQuery: "Batavia, New York, USA"
+      WSQS_hazards_checkbox: "true"
+      WSQS_current_weather_checkbox: "true"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.weatherstar.rule: Host(`weatherstar.fntz.net`)
+      traefik.http.routers.weatherstar.entrypoints: webSecure
+      traefik.http.routers.weatherstar.tls.certresolver: letsencrypt
+      traefik.http.services.weatherstar.loadbalancer.server.port: "8080"
