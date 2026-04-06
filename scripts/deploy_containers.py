@@ -50,10 +50,10 @@ def main():
     # i'm not proud of this either
     if not os.path.exists(os.path.join(dir_path, file)):
       if "roles" in file and not os.path.exists(os.path.join(dir_path, service_name)):
-        print(f"[MAIN] '{task_name}' role removed, marking for cleanup..")
+        print(f"[MAIN] '{service_name}' role removed, marking for cleanup..")
         removed_containers.append(service_name)
-      elif "tasks" in task_name:
-        print(f"[MAIN] '{task_name}' non-existent, marking for cleanup..")
+      elif "tasks" in file:
+        print(f"[MAIN] '{service_name}' non-existent, marking for cleanup..")
         removed_containers.append(service_name) 
     else:
       if service_name not in ignore_deploys_for and service_name not in new_diff:
