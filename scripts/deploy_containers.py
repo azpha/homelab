@@ -72,16 +72,11 @@ def main():
     else:
       task_name = task
  
-    print(f"[MAIN] Removal task name: {task_name}")
     result = subprocess.run(
         f'/usr/bin/docker ps --filter "name={task_name}" -q',
         shell=True,
         capture_output=True
     )
-    print(f"[MAIN] stdout: {result.stdout}")
-    print(f"[MAIN] stderr: {result.stderr}")
-    print(f"[MAIN] returncode: {result.returncode}")
-
     for line in result.stdout.splitlines():
         container_id = line.strip().decode("utf8")
         if not container_id:
