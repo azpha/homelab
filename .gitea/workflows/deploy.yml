@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "tasks/**"
+      - "roles/**"
+      - "templates/**"
 
 jobs:
   deploy:
