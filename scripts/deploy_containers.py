@@ -78,6 +78,9 @@ def main():
         shell=True,
         capture_output=True
     )
+    print(f"[MAIN] stdout: {result.stdout}")
+    print(f"[MAIN] stderr: {result.stderr}")
+    print(f"[MAIN] returncode: {result.returncode}")
 
     for line in result.stdout.splitlines():
         container_id = line.strip().decode("utf8")
