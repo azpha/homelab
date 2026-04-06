@@ -70,9 +70,6 @@
     - name: Deploy Romm
       import_tasks: tasks/romm.yml
       tags: romm_deploy
-    - name: Deploy Booklore
-      import_tasks: tasks/booklore.yml
-      tags: booklore_deploy
     - name: Deploy Pelican
       import_tasks: tasks/pelican.yml
       tags: pelican_deploy
