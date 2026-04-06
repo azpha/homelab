@@ -73,7 +73,7 @@ def main():
       task_name = task
  
     print(f"[MAIN] Removal task name: {task_name}")
-    containers = subprocess.Popen(f'docker ps --filter "name={task_name}" -q', shell=True, stdout=subprocess.PIPE)
+    containers = subprocess.run(f'docker ps --filter "name={task_name}" -q', shell=True, stdout=subprocess.PIPE)
     print(containers.stdout)
     for line in containers.stdout:
       container_id = line.strip().decode("utf8")
