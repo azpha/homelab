@@ -1,0 +1,15 @@
+- name: Deploy Plex Webhook
+  include_role:
+    name: docker
+  vars:
+    name: plex-webhook
+    image:
+      name: git.alexav.gg/alex/plex-webhook
+      tag: latest
+    networks:
+      - name: homelab
+    env:
+      DISCORD_WEBHOOK: "{{ PLEX_WEBHOOK_DISCORD_WEBHOOK }}"
+      APPLICATION_TOKEN: "{{ PLEX_WEBHOOK_APPLICATION_TOKEN }}"
+      PLEX_TOKEN: "{{ PLEX_WEBHOOK_PLEX_TOKEN }}"
+      STORAGE_TOKEN: "{{ PLEX_WEBHOOK_STORAGE_TOKEN }}"

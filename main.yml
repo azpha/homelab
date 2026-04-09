@@ -85,6 +85,9 @@
     - name: Deploy Weatherstar
       import_tasks: tasks/weatherstar.yml
       tags: weatherstar_deploy
+    - name: Deploy Plex Webhook
+      import_tasks: tasks/plexwebhook.yml
+      tags: plexwebhook_deploy
 
 - hosts: jackson
 
