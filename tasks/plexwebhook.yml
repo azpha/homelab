@@ -13,3 +13,9 @@
       APPLICATION_TOKEN: "{{ PLEX_WEBHOOK_APPLICATION_TOKEN }}"
       PLEX_TOKEN: "{{ PLEX_WEBHOOK_PLEX_TOKEN }}"
       STORAGE_TOKEN: "{{ PLEX_WEBHOOK_STORAGE_TOKEN }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.plexwebhook.rule: Host(`plex-webhook.fntz.net`)
+      traefik.http.routers.plexwebhook.entrypoints: webSecure
+      traefik.http.routers.plexwebhook.tls.certresolver: letsencrypt
+      traefik.http.services.plexwebhook.loadbalancer.server.port: "3000"
