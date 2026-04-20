@@ -10,8 +10,8 @@
     image:
       name: mariadb
       tag: latest
-    published_ports:
-      - "3306:3306"
+    networks:
+      - name: "{{ docker_network_name }}"
     volumes:
       - "{{ data_dir }}/db:/var/lib/mysql"
       - "{{ data_dir }}/db/etc:/etc/mysql"
