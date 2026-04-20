@@ -21,7 +21,7 @@
       - "{{ data_dir }}/romm/config:/romm/config"
       - "{{ ROMM_LIBRARY_PATH }}:/romm/library"
     env:
-      DB_HOST: 172.16.0.44
+      DB_HOST: postgres
       DB_NAME: romm
       DB_USER: rommuser
       DB_PASSWD: romm
