@@ -7,8 +7,8 @@
     image:
       name: postgres
       tag: 18-alpine
-    published_ports:
-      - "5432:5432"
+    networks:
+      - name: homelab
     directories:
       - "{{ data_dir }}/postgres"
       - "{{ data_dir }}/postgres/data"
