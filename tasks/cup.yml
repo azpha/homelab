@@ -1,4 +1,16 @@
 ---
+- name: Create folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ data_dir }}/cup"
+
+- name: Create Cup Config
+  template:
+    src: templates/cup/cup.json.j2
+    dest: "{{ data_dir }}/cup/cup.json"
+
 - name: Deploy Cup
   include_role:
     name: docker
@@ -9,6 +21,7 @@
       - name: homelab
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "{{ data_dir }}/cup/cup.json:/config/cup.json"
     labels:
       traefik.enable: "true"
       traefik.http.routers.cup.rule: Host(`cup.fntz.net`)
