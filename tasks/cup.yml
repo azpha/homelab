@@ -16,7 +16,7 @@
     name: docker
   vars:
     name: cup
-    command: serve
+    command: -c /config/cup.json serve
     networks:
       - name: homelab
     volumes:
