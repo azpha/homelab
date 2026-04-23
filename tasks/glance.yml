@@ -17,6 +17,7 @@
       ADGUARD_USERNAME: "{{ GLANCE_ADGUARD_USERNAME }}"
       ADGUARD_PASSWORD: "{{ GLANCE_ADGUARD_PASSWORD }}"
       VIDEO_MACHINE: "{{ GLANCE_VIDEO_MACHINE }}"
+      STEAM_API_KEY: "{{ GLANCE_STEAM_API_KEY }}"
     volumes:
       - "{{ data_dir }}/glance/config:/app/config"
       - "{{ data_dir }}/glance/assets:/app/assets"
