@@ -19,6 +19,7 @@
       VIDEO_MACHINE: "{{ GLANCE_VIDEO_MACHINE }}"
       STEAM_API_KEY: "{{ GLANCE_STEAM_API_KEY }}"
       NOW_PLAYING_VAL: "{{ GLANCE_NOW_PLAYING_VAL }}"
+      IMMICH_KEY: "{{ GLANCE_IMMICH_API_KEY }}"
     volumes:
       - "{{ data_dir }}/glance/config:/app/config"
       - "{{ data_dir }}/glance/assets:/app/assets"
