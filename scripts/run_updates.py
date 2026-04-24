@@ -3,6 +3,8 @@ import subprocess
 import os
 import yaml
 
+DISCORD_WEBHOOK_URL = os.environ.get("UPDATES_DISCORD_WEBHOOK")
+
 def search_for_image(image_name):
   tasks_folder = os.path.realpath(os.path.join('./', 'tasks'))
   if "library/" in image_name:
@@ -33,7 +35,9 @@ def main():
       continue
     if ":latest" not in reference:
       continue
-
+    if image["result"] and not image["result"]["has_update"]:
+      continue
+    
     refs.append(reference)
 
   print("attempting to match images to references: " + ", ".join(refs))
@@ -56,6 +60,22 @@ def main():
     subprocess.run(f"docker image prune -a -f", shell=True)
   else:
     print("All up to date! :)")
+
+  if DISCORD_WEBHOOK_URL:
+    print("sending discord notification..")
+    body = {
+      "username": "Homelab Updates",
+      "embeds": [
+        {
+          "title": "Updated containers automatically!",
+          "description": f"Automatically redeployed containers recognized to need updates via Cup\n```{", ".join(deployable_tags)}```"
+        }
+      ]
+    }
+    headers = {
+      "content-type": "application/json"
+    }
+    requests.post(DISCORD_WEBHOOK_URL, json=body, headers=headers)
 
 if __name__ == "__main__":
   main()
