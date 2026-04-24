@@ -59,21 +59,21 @@ def main():
     print("Redeployed all images, refreshing Cup")
     requests.get("https://cup.fntz.net/api/v3/refresh")
 
-  if DISCORD_WEBHOOK_URL:
-    print("sending discord notification..")
-    body = {
-      "username": "Homelab Updates",
-      "embeds": [
-        {
-          "title": "Updated containers automatically!",
-          "description": f"Automatically redeployed containers recognized to need updates via Cup\n```{", ".join(deployable_tags)}```"
-        }
-      ]
-    }
-    headers = {
-      "content-type": "application/json"
-    }
-    requests.post(DISCORD_WEBHOOK_URL, json=body, headers=headers)
+    if DISCORD_WEBHOOK_URL:
+      print("sending discord notification..")
+      body = {
+        "username": "Homelab Updates",
+        "embeds": [
+          {
+            "title": "Updated containers automatically!",
+            "description": f"Automatically redeployed containers recognized to need updates via Cup\n```{", ".join(deployable_tags)}```"
+          }
+        ]
+      }
+      headers = {
+        "content-type": "application/json"
+      }
+      requests.post(DISCORD_WEBHOOK_URL, json=body, headers=headers)
   else:
     print("All up to date! :)")
 
