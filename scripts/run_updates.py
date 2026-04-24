@@ -53,11 +53,11 @@ def main():
     for ansible_tag in deployable_tags:
       subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {ansible_tag} -l bear --vault-password-file=~/.vault_pass.txt', shell=True)
 
-    print("Redeployed all images, refreshing Cup")
-    requests.get("https://cup.fntz.net/api/v3/refresh")
-
     print("Attempting to clean up dangling/unassumed images")
     subprocess.run(f"docker image prune -a -f", shell=True)
+
+    print("Redeployed all images, refreshing Cup")
+    requests.get("https://cup.fntz.net/api/v3/refresh")
 
   if DISCORD_WEBHOOK_URL:
     print("sending discord notification..")
