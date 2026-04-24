@@ -37,7 +37,7 @@ def main():
       continue
     if image["result"] and not image["result"]["has_update"]:
       continue
-    
+
     refs.append(reference)
 
   print("attempting to match images to references: " + ", ".join(refs))
@@ -58,8 +58,6 @@ def main():
 
     print("Attempting to clean up dangling/unassumed images")
     subprocess.run(f"docker image prune -a -f", shell=True)
-  else:
-    print("All up to date! :)")
 
   if DISCORD_WEBHOOK_URL:
     print("sending discord notification..")
@@ -76,6 +74,8 @@ def main():
       "content-type": "application/json"
     }
     requests.post(DISCORD_WEBHOOK_URL, json=body, headers=headers)
+  else:
+    print("All up to date! :)")
 
 if __name__ == "__main__":
   main()
