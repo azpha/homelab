@@ -6,7 +6,7 @@
     name: tinyauth
     image:
       name: ghcr.io/steveiliop56/tinyauth
-      tag: v4
+      tag: v5
     networks:
       - name: "{{ docker_network_name }}"
     volumes:
