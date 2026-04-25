@@ -17,6 +17,7 @@
     published_ports:
       - "2222:22"
     env:
+      TZ: "{{ TZ }}"
       USER_UID: "1000"
       USER_GID: "1000"
     labels:
