@@ -88,6 +88,9 @@
     - name: Deploy Plex Webhook
       import_tasks: tasks/plexwebhook.yml
       tags: plexwebhook_deploy
+    - name: Deploy Nextcloud
+      import_tasks: tasks/nextcloud.yml
+      tags: nextcloud_deploy
 
 - hosts: jackson
 
@@ -125,6 +128,9 @@
     - name: Deploy Cobalt
       import_tasks: tasks/cobalt.yml
       tags: cobalt_deploy
+    - name: Deploy Nextcloud
+      import_tasks: tasks/nextcloud.yml
+      tags: nextcloud_deploy
 
 - hosts: nas
 
