@@ -8,7 +8,7 @@
       name: postgres
       tag: 18-alpine
     networks:
-      - name: homelab
+      - name: "{{ docker_network_name }}"
     directories:
       - "{{ data_dir }}/postgres"
       - "{{ data_dir }}/postgres/data"
