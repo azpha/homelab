@@ -131,6 +131,9 @@
     - name: Deploy Nextcloud
       import_tasks: tasks/nextcloud.yml
       tags: nextcloud_deploy
+    - name: Deploy Postgres
+      import_tasks: tasks/postgres.yml
+      tags: postgres_deploy
 
 - hosts: nas
 
