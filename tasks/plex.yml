@@ -7,7 +7,8 @@
     image:
       name: lscr.io/linuxserver/plex
       tag: latest
-    network_mode: host
+    networks:
+      - name: homelab
     devices:
       - /dev/dri:/dev/dri
     env:
