@@ -50,8 +50,8 @@ def main():
   
   if len(deployable_tags) > 0:
     print(f"Found {len(deployable_tags)}, deploying..")
-    for ansible_tag in deployable_tags:
-      subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {ansible_tag} -l bear --vault-password-file=~/.vault_pass.txt', shell=True)
+    tag_string = ",".join(deployable_tags)
+    subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {tag_string} -l bear --vault-password-file=~/.vault_pass.txt', shell=True)
 
     print("Attempting to clean up dangling/unassumed images")
     subprocess.run(f"docker image prune -a -f", shell=True)
