@@ -25,17 +25,7 @@
   template:
     src: local-dynamic.yml.j2
     dest: "{{ data_dir }}/traefik/dynamic.yml"
-  when: server == "jade" or server == "nas" or server == "bear"
-- name: Create Traefik Dynamic File (Remote)
-  template:
-    src: remote-dynamic.yml.j2
-    dest: "{{ data_dir }}/traefik/dynamic.yml"
-  when: server == "jackson"
-- name: Create Traefik Dynamic File (Remote 2)
-  template:
-    src: remote-ash-1.yml.j2
-    dest: "{{ data_dir }}/traefik/dynamic.yml"
-  when: server == "ash-1"
+  when: server == "bear"
 
 - name: Deploy Traefik Docker Container
   docker_container:
@@ -63,3 +53,9 @@
         [{'name': docker_network_name}] +
         ([{'name': 'tunnel'}] if use_cloudflared | default(false) else [])
       }}
+    labels:
+      traefik.http.routers.wildcard.rule: "HostRegexp(`{subdomain:.+}.fntz.net`)"
+      traefik.http.routers.wildcard.tls: "true"
+      traefik.http.routers.wildcard.tls.certresolver: letsencrypt
+      traefik.http.routers.wildcard.tls.domains[0].main: fntz.net
+      traefik.http.routers.wildcard.tls.domains[0].sans: "*.fntz.net,*.citadel.fntz.net"

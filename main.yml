@@ -97,8 +97,6 @@
   roles:
     - role: traefik
       tags: traefik_deploy
-      vars:
-        server: "jackson"
 
   tasks:
     - name: Deploy Gitea
