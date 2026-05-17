@@ -15,6 +15,11 @@ jobs:
 
       - name: Run update script
         run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          eval $(ssh-agent -s)
+          ssh-add <(echo "${{ secrets.SSH_KEY }}")
           echo "${{ secrets.VAULT_PASS }}" > ~/.vault_pass.txt
           python3 -m pip install requests pyyaml ansible-core --break-system-packages
           ansible-galaxy collection install community.docker
