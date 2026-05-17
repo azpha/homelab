@@ -16,7 +16,8 @@ jobs:
       - name: Run update script
         run: |
           echo "${{ secrets.VAULT_PASS }}" > ~/.vault_pass.txt
-          python3 -m pip install requests pyyaml --break-system-packages
+          python3 -m pip install requests pyyaml ansible-core --break-system-packages
+          ansible-galaxy collection install community.docker
           python3 scripts/run_updates.py
         env:
           UPDATES_DISCORD_WEBHOOK: ${{vars.UPDATES_DISCORD_WEBHOOK}}
