@@ -56,6 +56,7 @@
       DISCORD_APP_ID: "{{ API_DISCORD_APP_ID }}"
       DISCORD_BOT_TOKEN: "{{ API_DISCORD_BOT_TOKEN }}"
       TMDB_API_KEY: "{{ API_TMDB_TOKEN }}"
+      STORAGE_KEY: "{{ API_STORAGE_KEY }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.aapi.rule: Host(`api.alexav.gg`)
