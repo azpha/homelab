@@ -17,7 +17,7 @@
       tag: latest
     labels:
       traefik.enable: "true"
-      traefik.http.routers.dz.rule: Host(`floof.alexav.gg`)
-      traefik.http.routers.dz.entrypoints: webSecure
-      traefik.http.routers.dz.tls.certresolver: letsencrypt
-      traefik.http.services.dz.loadbalancer.server.port: "3001"
+      traefik.http.routers.floof.rule: Host(`floof.alexav.gg`)
+      traefik.http.routers.floof.entrypoints: webSecure
+      traefik.http.routers.floof.tls.certresolver: letsencrypt
+      traefik.http.services.floof.loadbalancer.server.port: "3001"
