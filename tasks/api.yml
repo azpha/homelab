@@ -45,6 +45,7 @@
       tag: latest
     env:
       NODE_ENV: "production"
+      TEST: "fuck"
       VERSION: "v4"
       REDIS_URL: "redis://api_redis:6379"
       ADMIN_KEY: "{{ API_ADMIN_KEY }}"
