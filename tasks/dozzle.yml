@@ -5,7 +5,7 @@
   vars:
     name: dozzle
     networks:
-      - name: homelab
+      - name: "{{ docker_network_name }}"
     image:
       name: amir20/dozzle
       tag: latest
