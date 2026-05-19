@@ -19,18 +19,6 @@
       POSTGRES_PASSWORD: "{{ API_POSTGRES_PASSWORD }}"
       PGDATA: "/var/lib/postgresql/data/pgdata"
 
-- name: Deploy API Redis
-  include_role:
-    name: docker
-  vars:
-    name: api_redis
-    network_name: api
-    image:
-      name: redis
-      tag: latest
-    networks:
-      - name: api
-
 - name: Deploy API
   include_role:
     name: docker
@@ -46,7 +34,7 @@
     env:
       NODE_ENV: "production"
       VERSION: "v4"
-      REDIS_URL: "redis://api_redis:6379"
+      REDIS_URL: "redis://redis:6379"
       ADMIN_KEY: "{{ API_ADMIN_KEY }}"
       DATABASE_URL: "{{ API_DATABASE_URL }}"
       LASTFM_API_KEY: "{{ API_LASTFM_API_KEY }}"

@@ -135,16 +135,6 @@
     - name: Deploy Dozzle
       import_tasks: tasks/dozzle.yml
       tags: dozzle_deploy
-
-- hosts: nas
-
-  roles:
-    - role: traefik
-      tags: traefik_deploy
-      vars:
-        server: "nas"
-
-  tasks:
-    - name: Deploy Wings
-      import_tasks: tasks/wings.yml
-      tags: wings_deploy
+    - name: Deploy Redis
+      import_tasks: tasks/redis.yml
+      tags: redis_deploy

@@ -1,0 +1,11 @@
+---
+- name: Deploy Redis
+  include_role:
+    name: docker
+  vars:
+    name: redis
+    networks:
+      - name: "{{ docker_network_name }}"
+    image:
+      name: redis
+      tag: latest
