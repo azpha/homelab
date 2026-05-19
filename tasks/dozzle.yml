@@ -16,7 +16,7 @@
       DOZZLE_ENABLE_SHELL: "{{ DOZZLE_SHELL }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.dz.rule: Host(`logs.fntz.net`)
+      traefik.http.routers.dz.rule: Host(`{{ DOZZLE_URL }}`)
       traefik.http.routers.dz.entrypoints: webSecure
       traefik.http.routers.dz.tls.certresolver: letsencrypt
       traefik.http.services.dz.loadbalancer.server.port: "8080"

@@ -132,6 +132,9 @@
     - name: Deploy Postgres
       import_tasks: tasks/postgres.yml
       tags: postgres_deploy
+    - name: Deploy Dozzle
+      import_tasks: tasks/dozzle.yml
+      tags: dozzle_deploy
 
 - hosts: nas
 
