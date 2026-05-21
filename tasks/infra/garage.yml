@@ -27,7 +27,6 @@
       - "{{ data_dir }}/garage/garage.toml:/etc/garage.toml"
       - "{{ data_dir }}/garage/meta:/var/lib/garage/meta"
       - "{{ data_dir }}/garage/data:/var/lib/garage/data"
-    command: server --single-node --default-bucket
     env:
       GARAGE_DEFAULT_ACCESS_KEY: "{{ GARAGE_DEFAULT_ACCESS_KEY }}"
       GARAGE_DEFAULT_SECRET_KEY: "{{ GARAGE_DEFAULT_SECRET_KEY }}"
