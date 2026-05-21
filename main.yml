@@ -11,7 +11,7 @@
       import_tasks: tasks/auth/tinyauth.yml
       tags: tinyauth_deploy
     - name: Deploy Postgres
-      import_tasks: tasks/postgres.yml
+      import_tasks: tasks/utility/postgres.yml
       tags: postgres_deploy
     - name: Deploy MariaDB
       import_tasks: tasks/mariadb.yml
