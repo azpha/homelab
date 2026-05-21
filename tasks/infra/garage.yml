@@ -11,7 +11,7 @@
 - name: Create Garage Configuration
   template:
     src: templates/garage/garage.toml
-    dest: "{{ data_dir }}/garage/garage.toml"
+    dest: "{{ data_dir }}/garage/garage.toml.j2"
 
 - name: Deploy Garage S3
   include_role:
