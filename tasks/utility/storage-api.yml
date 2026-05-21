@@ -21,7 +21,9 @@
       - "{{ data_dir }}/storage-api/files:/app/files"
     env:
       TZ: "{{ TZ }}"
-      TOKEN: "{{ API_ADMIN_KEY }}"
+      SECRET: "{{ API_ADMIN_KEY }}"
+      S3_KEY: "{{ API_S3_KEY }}"
+      S3_KEY_ID: "{{ API_S3_KEY_ID }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.storage.rule: Host(`storage.alexav.gg`)
