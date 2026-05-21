@@ -14,7 +14,7 @@
       import_tasks: tasks/infra/postgres.yml
       tags: postgres_deploy
     - name: Deploy MariaDB
-      import_tasks: tasks/mariadb.yml
+      import_tasks: tasks/infra/mariadb.yml
       tags: mariadb_deploy
     - name: Deploy AdGuard Home
       import_tasks: tasks/utility/adguard.yml
