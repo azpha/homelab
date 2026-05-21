@@ -32,8 +32,10 @@
       traefik.http.routers.s3.rule: Host(`s3.citadel.fntz.net`)
       traefik.http.routers.s3.entrypoints: webSecure
       traefik.http.routers.s3.tls.certresolver: letsencrypt
+      traefik.http.routers.s3.service: s3
       traefik.http.services.s3.loadbalancer.server.port: "3900"
       traefik.http.routers.s3-web.rule: Host(`s3-web.citadel.fntz.net`)
       traefik.http.routers.s3-web.entrypoints: webSecure
       traefik.http.routers.s3-web.tls.certresolver: letsencrypt
+      traefik.http.routers.s3-web.service: s3-web
       traefik.http.services.s3-web.loadbalancer.server.port: "3902"
