@@ -8,7 +8,7 @@
 
   tasks:
     - name: Deploy Tinyauth
-      import_tasks: tasks/tinyauth.yml
+      import_tasks: tasks/auth/tinyauth.yml
       tags: tinyauth_deploy
     - name: Deploy Postgres
       import_tasks: tasks/postgres.yml
@@ -17,77 +17,74 @@
       import_tasks: tasks/mariadb.yml
       tags: mariadb_deploy
     - name: Deploy AdGuard Home
-      import_tasks: tasks/adguard.yml
+      import_tasks: tasks/utility/adguard.yml
       tags: adguard_deploy
     - name: Deploy Glance
       import_tasks: tasks/glance.yml
       tags: glance_deploy
     - name: Deploy Dozzle
-      import_tasks: tasks/dozzle.yml
+      import_tasks: tasks/utility/dozzle.yml
       tags: dozzle_deploy
     - name: Deploy Cup
-      import_tasks: tasks/cup.yml
+      import_tasks: tasks/utility/cup.yml
       tags: cup_deploy
     - name: Deploy Homebridge
-      import_tasks: tasks/homebridge.yml
+      import_tasks: tasks/utility/homebridge.yml
       tags: homebridge_deploy
     - name: Deploy Code Server
-      import_tasks: tasks/codeserver.yml
+      import_tasks: tasks/utility/codeserver.yml
       tags: codeserver_deploy
     - name: Deploy PocketID
-      import_tasks: tasks/pocketid.yml
+      import_tasks: tasks/auth/pocketid.yml
       tags: pocketid_deploy
     - name: Deploy Scrobbling Setup
-      import_tasks: tasks/scrobbling.yml
+      import_tasks: tasks/media/scrobbling.yml
       tags: scrobbling_deploy
     - name: Deploy Vaultwarden
-      import_tasks: tasks/vaultwarden.yml
+      import_tasks: tasks/utility/vaultwarden.yml
       tags: vaultwarden_deploy
     - name: Deploy Immich
-      import_tasks: tasks/immich.yml
+      import_tasks: tasks/media/immich.yml
       tags: immich_deploy
     - name: Deploy Plex
-      import_tasks: tasks/plex.yml
+      import_tasks: tasks/media/plex.yml
       tags: plex_deploy
     - name: Deploy ErsatzTV
-      import_tasks: tasks/ersatztv.yml
+      import_tasks: tasks/media/ersatztv.yml
       tags: ersatztv_deploy
     - name: Deploy Frigate
-      import_tasks: tasks/frigate.yml
+      import_tasks: tasks/media/frigate.yml
       tags: frigate_deploy
     - name: Deploy Servarr
-      import_tasks: tasks/servarr.yml
+      import_tasks: tasks/media/servarr.yml
       tags: servarr_deploy
     - name: Deploy NZBGet
-      import_tasks: tasks/nzbget.yml
+      import_tasks: tasks/media/nzbget.yml
       tags: nzbget_deploy
     - name: Deploy Uptime Kuma
-      import_tasks: tasks/uptime-kuma.yml
+      import_tasks: tasks/utility/uptime-kuma.yml
       tags: uptime-kuma_deploy
     - name: Deploy Romm
-      import_tasks: tasks/romm.yml
+      import_tasks: tasks/gaming/romm.yml
       tags: romm_deploy
     - name: Deploy Pelican
-      import_tasks: tasks/pelican.yml
+      import_tasks: tasks/gaming/pelican.yml
       tags: pelican_deploy
     - name: Deploy Docs
-      import_tasks: tasks/docs.yml
+      import_tasks: tasks/utility/docs.yml
       tags: docs_deploy
     - name: Deploy Audiobookshelf
-      import_tasks: tasks/audiobookshelf.yml
+      import_tasks: tasks/media/audiobookshelf.yml
       tags: audiobookshelf_deploy
     - name: Deploy Cloudflared
-      import_tasks: tasks/cloudflared.yml
+      import_tasks: tasks/utility/cloudflared.yml
       tags: cloudflared_deploy
     - name: Deploy Gitea Runner
-      import_tasks: tasks/runner.yml
+      import_tasks: tasks/infra/runner.yml
       tags: runner_deploy
     - name: Deploy Weatherstar
-      import_tasks: tasks/weatherstar.yml
+      import_tasks: tasks/media/weatherstar.yml
       tags: weatherstar_deploy
-    - name: Deploy Plex Webhook
-      import_tasks: tasks/plexwebhook.yml
-      tags: plexwebhook_deploy
     - name: Deploy Nextcloud
       import_tasks: tasks/nextcloud.yml
       tags: nextcloud_deploy
@@ -103,25 +100,22 @@
       import_tasks: tasks/gitea.yml
       tags: gitea_deploy
     - name: Deploy API
-      import_tasks: tasks/api.yml
+      import_tasks: tasks/utility/api.yml
       tags: api_deploy
     - name: Deploy Storage API
-      import_tasks: tasks/storage-api.yml
+      import_tasks: tasks/utility/storage-api.yml
       tags: storage-api_deploy
     - name: Deploy Plausible
-      import_tasks: tasks/plausible.yml
+      import_tasks: tasks/utility/plausible.yml
       tags: plausible_deploy
-    - name: Deploy Pelican
-      import_tasks: tasks/pelican.yml
-      tags: pelican_deploy
     - name: Deploy Database
-      import_tasks: tasks/mariadb.yml
+      import_tasks: tasks/infra/mariadb.yml
       tags: mariadb_deploy
     - name: Deploy Floof
-      import_tasks: tasks/floof.yml
+      import_tasks: tasks/gaming/floof.yml
       tags: floof_deploy
     - name: Deploy Tinyauth
-      import_tasks: tasks/tinyauth.yml
+      import_tasks: tasks/auth/tinyauth.yml
       tags: tinyauth_deploy
     - name: Deploy Cobalt
       import_tasks: tasks/cobalt.yml
@@ -130,11 +124,11 @@
       import_tasks: tasks/nextcloud.yml
       tags: nextcloud_deploy
     - name: Deploy Postgres
-      import_tasks: tasks/postgres.yml
+      import_tasks: tasks/infra/postgres.yml
       tags: postgres_deploy
     - name: Deploy Dozzle
-      import_tasks: tasks/dozzle.yml
+      import_tasks: tasks/utility/dozzle.yml
       tags: dozzle_deploy
     - name: Deploy Redis
-      import_tasks: tasks/redis.yml
+      import_tasks: tasks/infra/redis.yml
       tags: redis_deploy
