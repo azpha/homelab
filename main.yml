@@ -126,3 +126,6 @@
     - name: Deploy Redis
       import_tasks: tasks/infra/redis.yml
       tags: redis_deploy
+    - name: Deploy Garage
+      import_tasks: tasks/infra/garage.yml
+      tags: garage_deploy

@@ -1,0 +1,39 @@
+---
+- name: Create folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ data_dir }}/garage"
+    - "{{ data_dir }}/garage/meta"
+    - "{{ data_dir }}/garage/data"
+
+- name: Create Garage Configuration
+  template:
+    src: templates/garage/garage.toml
+    dest: "{{ data_dir }}/garage/garage.toml"
+
+- name: Deploy Garage S3
+  include_role:
+    name: docker
+  vars:
+    name: garage
+    image:
+      name: dxflrs/garage
+      tag: v2.3.0
+    networks:
+      name: "{{ docker_network_name }}"
+    volumes:
+      - "{{ data_dir }}/garage/garage.toml:/etc/garage.toml"
+      - "{{ data_dir }}/garage/meta:/var/lib/garage/meta"
+      - "{{ data_dir }}/garage/data:/var/lib/garage/data"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.s3.rule: Host(`s3.citadel.fntz.net`)
+      traefik.http.routers.s3.entrypoints: webSecure
+      traefik.http.routers.s3.tls.certresolver: letsencrypt
+      traefik.http.services.s3.loadbalancer.server.port: "3900"
+      traefik.http.routers.s3-web.rule: Host(`s3-web.citadel.fntz.net`)
+      traefik.http.routers.s3-web.entrypoints: webSecure
+      traefik.http.routers.s3-web.tls.certresolver: letsencrypt
+      traefik.http.services.s3-web.loadbalancer.server.port: "3902"
