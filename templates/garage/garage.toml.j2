@@ -17,3 +17,7 @@ root_domain = ".s3.garage"
 bind_addr = "[::]:3902"
 root_domain = ".web.garage"
 index = "index.html"
+
+[admin]
+api_bind_addr = "[::]:3903"
+admin_token = "{{ GARAGE_ADMIN_SECRET }}"

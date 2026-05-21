@@ -27,6 +27,11 @@
       - "{{ data_dir }}/garage/garage.toml:/etc/garage.toml"
       - "{{ data_dir }}/garage/meta:/var/lib/garage/meta"
       - "{{ data_dir }}/garage/data:/var/lib/garage/data"
+    command: server --single-node --default-bucket
+    env:
+      GARAGE_DEFAULT_ACCESS_KEY: "{{ GARAGE_DEFAULT_ACCESS_KEY }}"
+      GARAGE_DEFAULT_SECRET_KEY: "{{ GARAGE_DEFAULT_SECRET_KEY }}"
+      GARAGE_DEFAULT_BUCKET: "{{ GARAGE_DEFAULT_BUCKET }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.s3.rule: Host(`s3.citadel.fntz.net`)
@@ -34,8 +39,15 @@
       traefik.http.routers.s3.tls.certresolver: letsencrypt
       traefik.http.routers.s3.service: s3
       traefik.http.services.s3.loadbalancer.server.port: "3900"
+
       traefik.http.routers.s3-web.rule: Host(`s3-web.citadel.fntz.net`)
       traefik.http.routers.s3-web.entrypoints: webSecure
       traefik.http.routers.s3-web.tls.certresolver: letsencrypt
       traefik.http.routers.s3-web.service: s3-web
       traefik.http.services.s3-web.loadbalancer.server.port: "3902"
+
+      traefik.http.routers.s3-admin.rule: Host(`s3-admin.citadel.fntz.net`)
+      traefik.http.routers.s3-admin.entrypoints: webSecure
+      traefik.http.routers.s3-admin.tls.certresolver: letsencrypt
+      traefik.http.routers.s3-admin.service: s3-admin
+      traefik.http.services.s3-admin.loadbalancer.server.port: "3903"
