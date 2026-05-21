@@ -85,9 +85,6 @@
     - name: Deploy Weatherstar
       import_tasks: tasks/media/weatherstar.yml
       tags: weatherstar_deploy
-    - name: Deploy Nextcloud
-      import_tasks: tasks/utility/nextcloud.yml
-      tags: nextcloud_deploy
 
 - hosts: jackson
 
@@ -120,9 +117,6 @@
     - name: Deploy Cobalt
       import_tasks: tasks/cobalt.yml
       tags: cobalt_deploy
-    - name: Deploy Nextcloud
-      import_tasks: tasks/utility/nextcloud.yml
-      tags: nextcloud_deploy
     - name: Deploy Postgres
       import_tasks: tasks/infra/postgres.yml
       tags: postgres_deploy
