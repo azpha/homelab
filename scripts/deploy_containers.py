@@ -83,7 +83,7 @@ def main():
         subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
         subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
         subprocess.run("/usr/bin/docker image prune -af", shell=True)
-        subprocess.run("/usr/bin/docker container prune -af", shell=True)
+        subprocess.run("/usr/bin/docker container prune -f", shell=True)
       
 if __name__ == "__main__":
   main()

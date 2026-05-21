@@ -1,0 +1,28 @@
+---
+- name: Deploy Duplicati
+  include_roles:
+    name: docker
+  vars:
+    name: duplicati
+    networks:
+      - name: homelab
+    directories:
+      - "{{ data_dir }}/duplicati"
+      - "{{ data_dir }}/duplicati/app"
+      - "{{ data_dir }}/duplicati/backups"
+    image:
+      name: lscr.io/linuxserver/duplicati
+      tag: latest
+    volumes:
+      - "{{ data_dir }}/duplicati/app:/config"
+      - "{{ data_dir }}/duplicati/backups:/backups"
+      - "/storage-pool/Share:/source"
+    env:
+      TZ: "{{ TZ }}"
+      SETTINGS_ENCRYPTION_KEY: "{{ DUPLICATI_SETTINGS_ENCRYPTION_KEY }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.duplicati.rule: Host(`backups.fntz.net`)
+      traefik.http.routers.duplicati.entrypoints: webSecure
+      traefik.http.routers.duplicati.tls.certresolver: letsencrypt
+      traefik.http.services.duplicati.loadbalancer.server.port: "8200"

@@ -85,6 +85,9 @@
     - name: Deploy Weatherstar
       import_tasks: tasks/media/weatherstar.yml
       tags: weatherstar_deploy
+    - name: Deploy Duplicati
+      import_tasks: tasks/utility/duplicati.yml
+      tags: duplicati_deploy
 
 - hosts: jackson
 
@@ -114,9 +117,6 @@
     - name: Deploy Tinyauth
       import_tasks: tasks/auth/tinyauth.yml
       tags: tinyauth_deploy
-    - name: Deploy Cobalt
-      import_tasks: tasks/cobalt.yml
-      tags: cobalt_deploy
     - name: Deploy Postgres
       import_tasks: tasks/infra/postgres.yml
       tags: postgres_deploy
