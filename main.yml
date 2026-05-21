@@ -88,6 +88,9 @@
     - name: Deploy Duplicati
       import_tasks: tasks/utility/duplicati.yml
       tags: duplicati_deploy
+    - name: Deploy CAdvisor
+      import_tasks: tasks/utility/cadvisor.yml
+      tags: deploy_cadvisor
 
 - hosts: jackson
 

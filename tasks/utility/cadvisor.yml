@@ -1,0 +1,27 @@
+---
+- name: Deploy CAdvisor
+  include_role:
+    name: docker
+  vars:
+    name: cadvisor
+    image:
+      name: ghcr.io/google/cadvisor
+      tag: latest
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk:/dev/disk:ro"
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    privileged: true
+    networks:
+      - name: homelab
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.cadvisor.rule: Host(`cad.fntz.net`)
+      traefik.http.routers.cadvisor.entrypoints: webSecure
+      traefik.http.routers.cadvisor.tls.certresolver: letsencrypt
+      traefik.http.services.cadvisor.loadbalancer.server.port: "8080"
+      traefik.http.routers.cadvisor.middlewares: tinyauth
