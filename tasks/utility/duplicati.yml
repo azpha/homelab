@@ -19,7 +19,7 @@
       - "/storage-pool/Share:/source"
     env:
       TZ: "{{ TZ }}"
-      SETTINGS_ENCRYPTION_KEY: "{{ DUPLICATI_SETTINGS_ENCRYPTION_KEY }}"
+      SETTINGS_ENCRYPTION_KEY: "{{ DUPLICATI_ENCRYPTION_KEY }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.duplicati.rule: Host(`backups.fntz.net`)
