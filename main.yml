@@ -20,7 +20,7 @@
       import_tasks: tasks/utility/adguard.yml
       tags: adguard_deploy
     - name: Deploy Glance
-      import_tasks: tasks/glance.yml
+      import_tasks: tasks/utility/glance.yml
       tags: glance_deploy
     - name: Deploy Dozzle
       import_tasks: tasks/utility/dozzle.yml
@@ -86,7 +86,7 @@
       import_tasks: tasks/media/weatherstar.yml
       tags: weatherstar_deploy
     - name: Deploy Nextcloud
-      import_tasks: tasks/nextcloud.yml
+      import_tasks: tasks/utility/nextcloud.yml
       tags: nextcloud_deploy
 
 - hosts: jackson
@@ -121,7 +121,7 @@
       import_tasks: tasks/cobalt.yml
       tags: cobalt_deploy
     - name: Deploy Nextcloud
-      import_tasks: tasks/nextcloud.yml
+      import_tasks: tasks/utility/nextcloud.yml
       tags: nextcloud_deploy
     - name: Deploy Postgres
       import_tasks: tasks/infra/postgres.yml

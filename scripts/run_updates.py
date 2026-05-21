@@ -11,14 +11,16 @@ def search_for_image(image_name):
     image_name = image_name.replace("library/", "")
   image_name = image_name.split(":")[0]
 
-  for task in os.listdir(tasks_folder):
-    with open(os.path.join(tasks_folder, task), 'r') as file:
-      data = yaml.safe_load(file)
+  for category in os.listdir(tasks_folder):
+    tasks = os.listdir(os.path.join(tasks_folder, category))
+    for task in tasks:
+      with open(os.path.join(tasks_folder, category, task), 'r') as file:
+        data = yaml.safe_load(file)
 
-      for key in data:
-        if "vars" in key:
-          if image_name in key["vars"]["image"]["name"] or image_name == key["vars"]["image"]["name"]:
-            return f"{task.split(".")[0]}_deploy"
+        for key in data:
+          if "vars" in key:
+            if image_name in key["vars"]["image"]["name"] or image_name == key["vars"]["image"]["name"]:
+              return f"{task.split(".")[0]}_deploy"
 
 def main():
   update_list = requests.get("https://cup.fntz.net/api/v3/json")
@@ -54,7 +56,7 @@ def main():
     subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {tag_string} -l bear --vault-password-file=~/.vault_pass.txt', shell=True)
 
     print("Attempting to clean up dangling/unassumed images")
-    subprocess.run(f"docker image prune -a -f", shell=True)
+    subprocess.run(f"docker image prune -af", shell=True)
 
     print("Redeployed all images, refreshing Cup")
     requests.get("https://cup.fntz.net/api/v3/refresh")

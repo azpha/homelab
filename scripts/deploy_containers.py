@@ -2,10 +2,9 @@ import sys
 import os
 import subprocess
 
-vpn_containers = [ # containers that need to be recreated re: vpn
-  "tasks/qbittorrent.yml",
-  "tasks/jackett.yml"
-]
+# c08dc6b088e90512fb8a2dafe9f1ae5de3f486d1
+# 894be8a440ba41aa228e53d7d523bcb1ae34da41
+
 ignore_deploys_for = [ # don't auto-deploy these
   "tasks/runner",
   "templates/runner",
@@ -19,7 +18,6 @@ def git_diff():
 
 def construct_command(tags):
   command = f"ANSIBLE_CONFIG=ansible.cfg /usr/bin/ansible-playbook main.yml --tags={",".join(tags)} --vault-password-file ~/.vault_pass.txt"
-  print(command)
   return command
 
 def deploy(tags):
@@ -30,7 +28,11 @@ def deploy(tags):
 
 def get_normalized_task_name(container):
   if "tasks/" in container:
-    task_name = container.split("/")[1].split(".")[0]
+    split_path = container.split("/")
+    if len(split_path) > 2:
+      task_name = split_path[2].split(".")[0]
+    else:
+      task_name = split_path[1].split(".")[0]
   elif "roles/" or "templates/" in container:
     task_name = container.split("/")[1]
   else:
@@ -51,8 +53,8 @@ def main():
     else:
       removable_containers.append(file)
 
-  print(f"[MAIN] Deployable: {deployable_containers}")
-  print(f"[MAIN] Removable: {removable_containers}")
+  print(f"[MAIN] Deployable: {len(deployable_containers)}")
+  print(f"[MAIN] Removable: {len(removable_containers)}")
 
   if len(deployable_containers) > 0:
     to_deploy = []
@@ -72,6 +74,7 @@ def main():
         shell=True,
         capture_output=True
       )
+      result.check_returncode() # fail the action if this doesn't succeed
       for line in result.stdout.splitlines():
         container_id = line.strip().decode("utf8")
         if not container_id:
@@ -79,8 +82,8 @@ def main():
         print(f"[MAIN] Found Docker container {container_id} related to {task_name}, removing..")
         subprocess.run(f"/usr/bin/docker container stop {container_id}", shell=True)
         subprocess.run(f"/usr/bin/docker container rm {container_id}", shell=True)
-        subprocess.run("/usr/bin/docker image prune -f", shell=True)
-        subprocess.run("/usr/bin/docker container prune -f", shell=True)
-
+        subprocess.run("/usr/bin/docker image prune -af", shell=True)
+        subprocess.run("/usr/bin/docker container prune -af", shell=True)
+      
 if __name__ == "__main__":
   main()
