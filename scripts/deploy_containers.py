@@ -6,7 +6,7 @@ import subprocess
 # 894be8a440ba41aa228e53d7d523bcb1ae34da41
 
 ignore_deploys_for = [ # don't auto-deploy these
-  "tasks/runner",
+  "tasks/infra/runner",
   "templates/runner",
   "roles/docker"
 ]

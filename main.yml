@@ -97,7 +97,7 @@
 
   tasks:
     - name: Deploy Gitea
-      import_tasks: tasks/gitea.yml
+      import_tasks: tasks/infra/gitea.yml
       tags: gitea_deploy
     - name: Deploy API
       import_tasks: tasks/utility/api.yml
