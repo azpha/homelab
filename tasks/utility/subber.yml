@@ -17,7 +17,7 @@
       - "{{ data_dir }}/subber:/files"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.subber.rule: Host(`storage.alexav.gg`)
+      traefik.http.routers.subber.rule: Host(`subs.fntz.net`)
       traefik.http.routers.subber.entrypoints: webSecure
       traefik.http.routers.subber.tls.certresolver: letsencrypt
       traefik.http.services.subber.loadbalancer.server.port: "3000"
