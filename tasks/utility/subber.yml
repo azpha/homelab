@@ -1,0 +1,23 @@
+---
+- name: Deploy Subber
+  include_role:
+    name: docker
+  vars:
+    name: subber
+    directories:
+      - "{{ data_dir }}/subber"
+    image:
+      name: ghcr.io/azpha/subscription-tracker
+      tag: latest
+    networks:
+      - name: homelab
+    env:
+      BASE_URL: "https://subs.fntz.net"
+    volumes:
+      - "{{ data_dir }}/subber:/files"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.subber.rule: Host(`storage.alexav.gg`)
+      traefik.http.routers.subber.entrypoints: webSecure
+      traefik.http.routers.subber.tls.certresolver: letsencrypt
+      traefik.http.services.subber.loadbalancer.server.port: "3000"

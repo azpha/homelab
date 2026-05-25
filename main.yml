@@ -91,6 +91,9 @@
     - name: Deploy CAdvisor
       import_tasks: tasks/utility/cadvisor.yml
       tags: cadvisor_deploy
+    - name: Deploy Subber
+      import_tasks: tasks/utility/subber.yml
+      tags: subber_deploy
 
 - hosts: jackson
 
