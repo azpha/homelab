@@ -7,7 +7,7 @@
     directories:
       - "{{ data_dir }}/subber"
     image:
-      name: ghcr.io/azpha/subscription-tracker
+      name: ghcr.io/azpha/subber
       tag: latest
     networks:
       - name: homelab
