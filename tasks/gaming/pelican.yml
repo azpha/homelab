@@ -29,11 +29,10 @@
       - name: "{{ docker_network_name }}"
     env:
       XDG_DATA_HOME: /pelican-data
-      TRUSTED_PROXIES: "172.21.0.0/16"
+      TRUSTED_PROXIES: "172.18.0.0/16"
       APP_URL: "https://{{ PELICAN_APP_URL }}"
       ADMIN_EMAIL: "{{ PELICAN_EMAIL }}"
-      PUID: "{{ PUID }}"
-      PGID: "{{ PGID }}"
+      BEHIND_PROXY: "true"
     labels:
       traefik.enable: "true"
       traefik.http.routers.pelican.rule: Host(`{{ PELICAN_APP_URL }}`)
