@@ -5,8 +5,6 @@
     state: directory
   with_items:
     - "{{ data_dir }}/pelican"
-    - "{{ data_dir }}/pelican/data"
-    - "{{ data_dir }}/pelican/logs"
 
 - name: Create Pelican Caddyfile
   template:
@@ -22,8 +20,8 @@
       name: ghcr.io/pelican-dev/panel
       tag: latest
     volumes:
-      - "{{ data_dir }}/pelican/data:/pelican-data"
-      - "{{ data_dir }}/pelican/logs:/var/www/html/storage/logs"
+      - "pelican-data:/pelican-data"
+      - "pelican-logs:/var/www/html/storage/logs"
       - "{{ data_dir }}/pelican/Caddyfile:/etc/caddy/Caddyfile"
     etc_hosts:
       - "host.docker.internal:host-gateway"
