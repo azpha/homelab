@@ -135,3 +135,6 @@
     - name: Deploy Garage
       import_tasks: tasks/infra/garage.yml
       tags: garage_deploy
+    - name: Deploy Pelican
+      import_tasks: tasks/gaming/pelican.yml
+      tags: pelican_deploy
