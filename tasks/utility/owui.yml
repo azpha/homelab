@@ -1,0 +1,21 @@
+---
+- name: Deploy Open-WebUI
+  include_role:
+    name: docker
+  vars:
+    name: owui
+    directories:
+      - "{{ data_dir }}/owui"
+    image:
+      name: ghcr.io/open-webui/open-webui
+      tag: main
+    networks:
+      - name: homelab
+    volumes:
+      - "{{ data_dir }}/owui:/app/backend/data"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.owui.rule: Host(`owui.fntz.net`)
+      traefik.http.routers.owui.entrypoints: webSecure
+      traefik.http.routers.owui.tls.certresolver: letsencrypt
+      traefik.http.services.owui.loadbalancer.server.port: "8080"

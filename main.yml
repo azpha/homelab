@@ -94,6 +94,9 @@
     - name: Deploy Subber
       import_tasks: tasks/utility/subber.yml
       tags: subber_deploy
+    - name: Deploy OWUI
+      import_tasks: tasks/utility/owui.yml
+      tags: owui_deploy
 
 - hosts: jackson
 
