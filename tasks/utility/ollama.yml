@@ -1,0 +1,22 @@
+---
+- name: Deploy Ollama
+  include_role:
+    name: docker
+  vars:
+    name: ollama
+    directories:
+      - "{{ data_dir }}/ollama"
+    image:
+      name: ollama/ollama
+      tag: latest
+    volumes:
+      - "{{ data_dir }}/ollama:/root/.ollama"
+    devices:
+      - "/dev/kfd"
+      - "/dev/dri"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.ollama.rule: Host(`ollama.fntz.net`)
+      traefik.http.routers.ollama.entrypoints: webSecure
+      traefik.http.routers.ollama.tls.certresolver: letsencrypt
+      traefik.http.services.ollama.loadbalancer.server.port: "11434"

@@ -97,6 +97,9 @@
     - name: Deploy OWUI
       import_tasks: tasks/utility/owui.yml
       tags: owui_deploy
+    - name: Deploy Ollama
+      import_tasks: tasks/utility/ollama.yml
+      tags: ollama_deploy
 
 - hosts: jackson
 
