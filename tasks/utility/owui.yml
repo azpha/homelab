@@ -13,6 +13,9 @@
       - name: homelab
     volumes:
       - "{{ data_dir }}/owui:/app/backend/data"
+    devices:
+      - "/dev/kfd"
+      - "/dev/dri"
     labels:
       traefik.enable: "true"
       traefik.http.routers.owui.rule: Host(`owui.fntz.net`)
