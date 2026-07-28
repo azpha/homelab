@@ -148,5 +148,5 @@
       import_tasks: tasks/utility/tools.yml
       tags: tools_deploy
     - name: Deploy Website
-      import_tasks: tasks/utilitiy/website.yml
+      import_tasks: tasks/utility/website.yml
       tags: website_deploy
