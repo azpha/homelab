@@ -16,4 +16,4 @@
       traefik.http.routers.website.rule: Host(`alexav.gg`)
       traefik.http.routers.website.entrypoints: webSecure
       traefik.http.routers.website.tls.certresolver: letsencrypt
-      traefik.http.services.website.loadbalancer.server.port: "80"
+      traefik.http.services.website.loadbalancer.server.port: "5173"
