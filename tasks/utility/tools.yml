@@ -7,6 +7,7 @@
     image:
       name: git.alexav.gg/alex/tools
       tag: latest
+    network_name: "{{ docker_network_name }}"
     env:
       NODE_ENV: production
     labels:
