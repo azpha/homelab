@@ -1,0 +1,19 @@
+---
+- name: Deploy Website
+  include_role:
+    name: docker
+  vars:
+    name: tools
+    image:
+      name: ghcr.io/azpha/website
+      tag: latest
+    networks:
+      - name: "{{ docker_network_name }}"
+    env:
+      NODE_ENV: production
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.website.rule: Host(`alexav.gg`)
+      traefik.http.routers.website.entrypoints: webSecure
+      traefik.http.routers.website.tls.certresolver: letsencrypt
+      traefik.http.services.website.loadbalancer.server.port: "80"
