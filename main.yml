@@ -144,3 +144,6 @@
     - name: Deploy Pelican
       import_tasks: tasks/gaming/pelican.yml
       tags: pelican_deploy
+    - name: Deploy Tools
+      import_tasks: tasks/utility/tools.yml
+      tags: tools_deploy

@@ -1,0 +1,17 @@
+---
+- name: Deploy Tools Frontend
+  include_role:
+    name: docker
+  vars:
+    name: tools
+    image:
+      name: git.alexav.gg/alex/tools
+      tag: latest
+    env:
+      NODE_ENV: production
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.tools.rule: Host(`tools.alexav.gg`)
+      traefik.http.routers.tools.entrypoints: webSecure
+      traefik.http.routers.tools.tls.certresolver: letsencrypt
+      traefik.http.services.tools.loadbalancer.server.port: 80
