@@ -12,6 +12,13 @@ http:
         - webSecure
       tls:
         certResolver: letsencrypt
+    coolify:
+      rule: "Host(`coolify.citadel.fntz.net`)"
+      service: coolify
+      entryPoints:
+        - webSecure
+      tls:
+        certResolver: letsencrypt
     traefik:
       rule: "Host(`traefik.fntz.net`)"
       service: traefik
@@ -39,6 +46,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://100.105.157.6:8080/"
+    coolify:
+      loadBalancer:
+        servers:
+          - url: "http://100.105.157.6:8000/"
     traefik:
       loadBalancer:
         servers:
