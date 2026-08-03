@@ -1,0 +1,20 @@
+http:
+  middlewares:
+    tinyauth:
+      forwardauth:
+        address: http://tinyauth:3000/api/auth/traefik
+
+  routers:
+    coolify:
+      rule: "Host(`coolify.citadel.fntz.net`)"
+      service: coolify
+      entryPoints:
+        - webSecure
+      tls:
+        certResolver: letsencrypt
+    
+  services:
+    coolify:
+      loadBalancer:
+        servers:
+          - url: "http://100.105.157.6:8000/"

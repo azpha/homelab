@@ -26,6 +26,11 @@
     src: local-dynamic.yml.j2
     dest: "{{ data_dir }}/traefik/dynamic.yml"
   when: server == "bear"
+- name: Create Traefik Dynamic File (Citadel)
+  template:
+    src: remote-dynamic.yml.j2
+    dest: "{{ data_dir }}/traefik/dynamic.yml"
+  when: server == "citadel"
 
 - name: Deploy Traefik Docker Container
   docker_container:
