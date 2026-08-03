@@ -106,6 +106,8 @@
   roles:
     - role: traefik
       tags: traefik_deploy
+      vars:
+        server: "citadel"
 
   tasks:
     - name: Deploy Gitea
