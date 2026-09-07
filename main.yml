@@ -152,3 +152,6 @@
     - name: Deploy Website
       import_tasks: tasks/utility/website.yml
       tags: website_deploy
+    - name: Deploy Blog
+      import_tasks: tasks/utility/blog.yml
+      tags: blog_deploy

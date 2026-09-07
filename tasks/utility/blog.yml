@@ -1,0 +1,27 @@
+---
+- name: Deploy Blog
+  include_role:
+    name: docker
+  vars:
+    name: blog
+    image:
+      name: git.alexav.gg/alex/blog
+      tag: latest
+    directories:
+      - "{{ data_dir }}/blog"
+    networks:
+      - name: "{{ docker_network_name }}"
+    env:
+      NODE_ENV: production
+      SESSION_SECRET: "{{ BLOG_SESSION_SECRET }}"
+      DATABASE_URL: file:/data/blog.db
+      REDIS_URL: redis://redis:6379
+      BACKEND_ORIGIN: http://backend:3000
+    volumes:
+      - "{{ data_dir }}/blog:/data"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.blog.rule: Host(`blog.alexav.gg`)
+      traefik.http.routers.blog.entrypoints: webSecure
+      traefik.http.routers.blog.tls.certresolver: letsencrypt
+      traefik.http.services.blog.loadbalancer.server.port: "5173"

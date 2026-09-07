@@ -3,7 +3,7 @@
   include_role:
     name: docker
   vars:
-    name: tools
+    name: website
     image:
       name: ghcr.io/azpha/website
       tag: latest
