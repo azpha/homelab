@@ -5,7 +5,7 @@
   vars:
     name: website
     image:
-      name: ghcr.io/azpha/website
+      name: git.alexav.gg/alex/website
       tag: latest
     networks:
       - name: "{{ docker_network_name }}"
