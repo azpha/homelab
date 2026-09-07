@@ -12,7 +12,7 @@
     name: docker
   vars:
     name: blog-backend
-    network-name: blog
+    network_name: blog
     image:
       name: git.alexav.gg/alex/blog
       tag: backend-latest
