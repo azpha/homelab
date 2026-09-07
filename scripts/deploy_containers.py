@@ -46,30 +46,32 @@ def main():
   print("Task environment variable: " + os.environ.get("TASK"))
   if os.environ.get("TASK"):
     diff = [os.environ.get("TASK")]
+    deployable_containers = [os.environ.get("TASK")]
   else:
     diff = git_diff()
+    deployable_containers = []
 
-  deployable_containers = []
   removable_containers = []
 
-  for file in diff:
-    if os.path.exists(os.path.join(dir_path, file)):
-      deployable_containers.append(file)
-    else:
-      removable_containers.append(file)
+  if not os.environ.get("TASK"):
+    for file in diff:
+      if os.path.exists(os.path.join(dir_path, file)):
+        deployable_containers.append(file)
+      else:
+        removable_containers.append(file)
 
   print(f"[MAIN] Deployable: {len(deployable_containers)}")
   print(f"[MAIN] Removable: {len(removable_containers)}")
 
   if len(deployable_containers) > 0:
     to_deploy = []
-    for container in deployable_containers:
-      if "_deploy" not in container:
+    if not os.environ.get("TASK"):
+      for container in deployable_containers:
         task_name = get_normalized_task_name(container)
         if task_name:
           to_deploy.append(task_name + "_deploy")
-        else:
-          to_deploy.append(task_name)
+    else:
+      to_deploy.append(os.environ.get("TASK"))
       
     if len(to_deploy) > 0:
       result = deploy(to_deploy)
