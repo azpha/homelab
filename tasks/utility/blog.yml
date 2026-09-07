@@ -1,24 +1,46 @@
----
-- name: Deploy Blog
+- name: Create Blog data directory
+  file:
+    path: "{{ data_dir }}/blog"
+    state: directory
+    owner: "1000"
+    group: "1000"
+    mode: "0755"
+  become: true
+
+- name: Deploy Blog Backend
+  include_role:
+    name: docker
+  vars:
+    name: blog-backend
+    network-name: blog
+    image:
+      name: git.alexav.gg/alex/blog
+      tag: backend-latest
+    networks:
+      - name: blog
+    env:
+      NODE_ENV: production
+      SESSION_SECRET: "{{ BLOG_SESSION_SECRET }}"
+      DATABASE_URL: file:/data/blog.db
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - "{{ data_dir }}/blog:/data"
+
+- name: Deploy Blog Frontend
   include_role:
     name: docker
   vars:
     name: blog
     image:
       name: git.alexav.gg/alex/blog
-      tag: latest
-    directories:
-      - "{{ data_dir }}/blog"
+      tag: frontend-latest
     networks:
       - name: "{{ docker_network_name }}"
+      - name: blog
     env:
       NODE_ENV: production
-      SESSION_SECRET: "{{ BLOG_SESSION_SECRET }}"
-      DATABASE_URL: file:/data/blog.db
-      REDIS_URL: redis://redis:6379
-      BACKEND_ORIGIN: http://backend:3000
-    volumes:
-      - "{{ data_dir }}/blog:/data"
+      PORT: "5173"
+      BACKEND_ORIGIN: http://blog-backend:3000
     labels:
       traefik.enable: "true"
       traefik.http.routers.blog.rule: Host(`blog.alexav.gg`)
