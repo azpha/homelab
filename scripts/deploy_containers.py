@@ -40,10 +40,15 @@ def get_normalized_task_name(container):
 
   return task_name
 
-
 def main():
   dir_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
-  diff = git_diff()
+
+  print("Task environment variable: " + os.environ.get("TASK"))
+  if os.environ.get("TASK"):
+    diff = [os.environ.get("TASK")]
+  else:
+    diff = git_diff()
+
   deployable_containers = []
   removable_containers = []
 

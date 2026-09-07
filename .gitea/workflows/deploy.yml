@@ -9,6 +9,11 @@ on:
       - "roles/**"
       - "templates/**"
   workflow_dispatch:
+    inputs:
+      task:
+        description: Task to deploy
+        required: false
+        type: string
 
 jobs:
   deploy:
@@ -21,6 +26,8 @@ jobs:
           fetch-depth: 0
 
       - name: Deploy
+        env:
+          TASK: ${{ inputs.task }}
         shell: sh
         run: |
           mkdir -p ~/.ssh
