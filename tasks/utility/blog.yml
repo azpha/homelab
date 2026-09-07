@@ -1,17 +1,10 @@
-- name: Create Blog data directory
-  file:
-    path: "{{ data_dir }}/blog"
-    state: directory
-    owner: "1000"
-    group: "1000"
-    mode: "0755"
-  become: true
-
 - name: Deploy Blog Backend
   include_role:
     name: docker
   vars:
     name: blog-backend
+    directories:
+      - "{{ data_dir }}/blog"
     network_name: blog
     image:
       name: git.alexav.gg/alex/blog
