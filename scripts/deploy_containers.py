@@ -64,9 +64,12 @@ def main():
   if len(deployable_containers) > 0:
     to_deploy = []
     for container in deployable_containers:
-      task_name = get_normalized_task_name(container)
-      if task_name:
-        to_deploy.append(task_name + "_deploy")
+      if "_deploy" not in container:
+        task_name = get_normalized_task_name(container)
+        if task_name:
+          to_deploy.append(task_name + "_deploy")
+        else:
+          to_deploy.append(task_name)
       
     if len(to_deploy) > 0:
       result = deploy(to_deploy)
