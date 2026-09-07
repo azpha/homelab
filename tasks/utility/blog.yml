@@ -3,12 +3,10 @@
     name: docker
   vars:
     name: blog-backend
-    network_name: blog
     image:
       name: git.alexav.gg/alex/blog
       tag: backend-latest
     networks:
-      - name: blog
       - name: "{{ docker_network_name }}"
     env:
       NODE_ENV: production
@@ -28,7 +26,6 @@
       tag: frontend-latest
     networks:
       - name: "{{ docker_network_name }}"
-      - name: blog
     env:
       NODE_ENV: production
       PORT: "5174"
