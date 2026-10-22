@@ -19,6 +19,31 @@
       POSTGRES_PASSWORD: "{{ API_POSTGRES_PASSWORD }}"
       PGDATA: "/var/lib/postgresql/data/pgdata"
 
+- name: Deploy API Redis
+  include_role:
+    name: docker
+  vars:
+    name: api_redis
+    networks:
+      - name: api
+    image:
+      name: redis
+      tag: latest
+
+- name: Deploy Cloudflared
+  include_role:
+    name: docker
+  vars:
+    name: api_cloudflared
+    command: "tunnel run"
+    image:
+      name: cloudflare/cloudflared
+      tag: latest
+    networks:
+      - name: api
+    env:
+      TUNNEL_TOKEN: "{{ API_CLOUDFLARED_TOKEN }}"
+
 - name: Deploy API
   include_role:
     name: docker
@@ -27,14 +52,13 @@
     network_name: api
     networks:
       - name: api
-      - name: "{{ docker_network_name }}"
     image:
       name: git.alexav.gg/alex/api
       tag: latest
     env:
       NODE_ENV: "production"
       VERSION: "v4"
-      REDIS_URL: "redis://redis:6379"
+      REDIS_URL: "redis://api_redis:6379"
       ADMIN_KEY: "{{ API_ADMIN_KEY }}"
       DATABASE_URL: "{{ API_DATABASE_URL }}"
       LASTFM_API_KEY: "{{ API_LASTFM_API_KEY }}"
@@ -45,9 +69,3 @@
       DISCORD_BOT_TOKEN: "{{ API_DISCORD_BOT_TOKEN }}"
       TMDB_API_KEY: "{{ API_TMDB_TOKEN }}"
       STORAGE_KEY: "{{ API_STORAGE_KEY }}"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.aapi.rule: Host(`api.alexav.gg`)
-      traefik.http.routers.aapi.entrypoints: webSecure
-      traefik.http.routers.aapi.tls.certresolver: letsencrypt
-      traefik.http.services.aapi.loadbalancer.server.url: http://api:3000
