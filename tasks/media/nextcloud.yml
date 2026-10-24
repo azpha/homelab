@@ -21,6 +21,7 @@
       - "{{ data_dir }}/nextcloud/db/import:/mnt/import"
     env:
       MARIADB_USER: "nextcloud"
+      MARIADB_DATABASE: "nextcloud"
       MARIADB_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
       MARIADB_ROOT_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
 
