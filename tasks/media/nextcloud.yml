@@ -1,0 +1,51 @@
+---
+- name: Deploy NC MariaDB
+  include_role:
+    name: docker
+  vars:
+    name: nextcloud_mariadb
+    network_name: nextcloud
+    directories:
+      - "{{ data_dir }}/nextcloud"
+      - "{{ data_dir }}/nextcloud/data"
+      - "{{ data_dir }}/nextcloud/db"
+      - "{{ data_dir }}/nextcloud/db/import"
+    image:
+      name: mariadb
+      tag: latest
+    networks:
+      - name: "nextcloud"
+    volumes:
+      - "{{ data_dir }}/nextcloud/db:/var/lib/mysql"
+      - "{{ data_dir }}/nextcloud/db/etc:/etc/mysql"
+      - "{{ data_dir }}/nextcloud/db/import:/mnt/import"
+    env:
+      MARIADB_USER: "nextcloud"
+      MARIADB_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
+      MARIADB_ROOT_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
+
+- name: Deploy Nextcloud
+  include_role:
+    name: docker
+  vars:
+    name: "nextcloud"
+    image:
+      name: nextcloud
+      tag: latest
+    networks:
+      - name: "{{ docker_network_name }}"
+      - name: nextcloud
+    volumes:
+      - "{{ data_dir }}/nextcloud/data:/var/www/html"
+    env:
+      TZ: "{{ TZ }}"
+      MYSQL_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
+      MYSQL_DATABASE: "nextcloud"
+      MYSQL_USER: "nextcloud"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.nc.rule: Host(`{{ NEXTCLOUD_APP_URL }}`)
+      traefik.http.routers.nc.entrypoints: webSecure
+      traefik.http.routers.nc.tls.certresolver: letsencrypt
+      traefik.http.services.nc.loadbalancer.server.port: "8443"
+      traefik.http.routers.nc.middlewares: tinyauth

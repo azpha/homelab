@@ -99,6 +99,9 @@
     - name: Deploy Ollama
       import_tasks: tasks/utility/ollama.yml
       tags: ollama_deploy
+    - name: Deploy Nextcloud
+      import_tasks: tasks/media/nextcloud.yml
+      tags: nextcloud_deploy
 
 - hosts: jackson
 
