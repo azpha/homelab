@@ -13,7 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure credentials
+      - name: Install required dependencies
+        run: |
+          python3 -m pip install requests pyyaml ansible-core --break-system-packages
+          ansible-galaxy collection install community.docker
+
+      # ssh-agent only lives for the shell it was started in, so credentials
+      # must be set up in the same step that runs ansible
+      - name: Run update script
+        env:
+          UPDATES_DISCORD_WEBHOOK: ${{vars.UPDATES_DISCORD_WEBHOOK}}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
@@ -21,13 +30,4 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add <(echo "${{ secrets.SSH_KEY }}")
           echo "${{ secrets.VAULT_PASS }}" > ~/.vault_pass.txt
-
-      - name: Install required dependencies
-        run: |
-          python3 -m pip install requests pyyaml ansible-core --break-system-packages
-          ansible-galaxy collection install community.docker
-
-      - name: Run update script
-        run: python3 scripts/run_updates.py
-        env:
-          UPDATES_DISCORD_WEBHOOK: ${{vars.UPDATES_DISCORD_WEBHOOK}}
+          python3 scripts/run_updates.py

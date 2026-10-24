@@ -5,22 +5,36 @@ import yaml
 
 DISCORD_WEBHOOK_URL = os.environ.get("UPDATES_DISCORD_WEBHOOK")
 
-def search_for_image(image_name):
-  tasks_folder = os.path.realpath(os.path.join('./', 'tasks'))
-  if "library/" in image_name:
-    image_name = image_name.replace("library/", "")
-  image_name = image_name.split(":")[0]
+def normalize_image_name(image_name):
+  # strip the tag (but not a registry port) and docker hub prefixes
+  name, _, tag = image_name.rpartition(":")
+  if name and "/" not in tag:
+    image_name = name
+  for prefix in ("docker.io/", "library/"):
+    if image_name.startswith(prefix):
+      image_name = image_name[len(prefix):]
+  return image_name
 
-  for category in os.listdir(tasks_folder):
-    tasks = os.listdir(os.path.join(tasks_folder, category))
+def search_for_images(image_name):
+  tasks_folder = os.path.realpath(os.path.join('./', 'tasks'))
+  image_name = normalize_image_name(image_name)
+  matches = []
+
+  for category in sorted(os.listdir(tasks_folder)):
+    tasks = sorted(os.listdir(os.path.join(tasks_folder, category)))
     for task in tasks:
       with open(os.path.join(tasks_folder, category, task), 'r') as file:
-        data = yaml.safe_load(file)
+        data = yaml.safe_load(file) or []
 
         for key in data:
-          if "vars" in key:
-            if image_name in key["vars"]["image"]["name"] or image_name == key["vars"]["image"]["name"]:
-              return f"{task.split(".")[0]}_deploy"
+          image = key.get("vars", {}).get("image")
+          if not image:
+            continue
+          if normalize_image_name(image["name"]) == image_name:
+            matches.append(f"{task.split(".")[0]}_deploy")
+            break
+
+  return matches
 
 def main():
   update_list = requests.get("https://cup.fntz.net/api/v3/json")
@@ -31,32 +45,35 @@ def main():
 
   for image in update_list["images"]:
     reference = image["reference"]
+    result = image["result"]
 
     # don't attempt to update if unable
     if not image["in_use"]:
       continue
-    if ":latest" not in reference:
+    if not result or not result["has_update"]:
       continue
-    if image["result"] and not image["result"]["has_update"]:
+    # version updates need a tag bump in the repo, redeploying won't pick them up
+    if (result.get("info") or {}).get("type") != "digest":
       continue
 
     refs.append(reference)
 
   print("attempting to match images to references: " + ", ".join(refs))
   for reference in refs:
-    tag = search_for_image(reference)
-    if tag:
-      deployable_tags.append(tag)
-    else:
+    tags = search_for_images(reference)
+    for tag in tags:
+      if tag not in deployable_tags:
+        deployable_tags.append(tag)
+    if not tags:
       print("Could not find suitable container for " + reference)
   
   if len(deployable_tags) > 0:
     print(f"Found {len(deployable_tags)}, deploying..")
     tag_string = ",".join(deployable_tags)
-    subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {tag_string} -l bear --vault-password-file=~/.vault_pass.txt', shell=True)
+    subprocess.run(f'ANSIBLE_CONFIG=ansible.cfg ansible-playbook main.yml --tags {tag_string} -l bear --vault-password-file=~/.vault_pass.txt', shell=True, check=True)
 
     print("Attempting to clean up dangling/unassumed images")
-    subprocess.run(f"docker image prune -af", shell=True)
+    subprocess.run('ANSIBLE_CONFIG=ansible.cfg ansible bear -m command -a "docker image prune -af"', shell=True)
 
     print("Redeployed all images, refreshing Cup")
     requests.get("https://cup.fntz.net/api/v3/refresh")
