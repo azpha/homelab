@@ -53,11 +53,9 @@
       - "{{ data_dir }}/traefik/data:/data"
       - "{{ data_dir }}/traefik/traefik.yml:/traefik.yml"
       - "{{ data_dir }}/traefik/dynamic.yml:/dynamic.yml"
-    networks: >-
-      {{
-        [{'name': docker_network_name}] +
-        ([{'name': 'tunnel'}] if use_cloudflared | default(false) else [])
-      }}
+    networks:
+      - name: "{{ docker_network_name }}"
+      - name: tunnel
     labels:
       traefik.http.routers.wildcard.rule: "HostRegexp(`{subdomain:.+}.fntz.net`)"
       traefik.http.routers.wildcard.tls: "true"

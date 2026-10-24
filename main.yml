@@ -4,7 +4,6 @@
       tags: traefik_deploy
       vars:
         server: "bear"
-        use_cloudflared: true
 
   tasks:
     - name: Deploy Tinyauth
@@ -113,6 +112,9 @@
     - name: Deploy Gitea
       import_tasks: tasks/infra/gitea.yml
       tags: gitea_deploy
+    - name: Deploy Cloudflared
+      import_tasks: tasks/utility/cloudflared.yml
+      tags: cloudflared_deploy
     - name: Deploy API
       import_tasks: tasks/utility/api.yml
       tags: api_deploy
