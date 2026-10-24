@@ -49,4 +49,3 @@
       traefik.http.routers.nc.entrypoints: webSecure
       traefik.http.routers.nc.tls.certresolver: letsencrypt
       traefik.http.services.nc.loadbalancer.server.port: "80"
-      traefik.http.routers.nc.middlewares: tinyauth
