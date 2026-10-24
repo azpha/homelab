@@ -38,7 +38,7 @@
     name: immich
     image:
       name: ghcr.io/immich-app/immich-server
-      tag: v2.7.5
+      tag: v3.3.5
     networks:
       - name: homelab
       - name: immich
