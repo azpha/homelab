@@ -8,12 +8,6 @@
       name: git.alexav.gg/alex/website
       tag: latest
     networks:
-      - name: "{{ docker_network_name }}"
+      - name: tunnel
     env:
       NODE_ENV: production
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.website.rule: Host(`alexav.gg`)
-      traefik.http.routers.website.entrypoints: webSecure
-      traefik.http.routers.website.tls.certresolver: letsencrypt
-      traefik.http.services.website.loadbalancer.server.port: "5173"
