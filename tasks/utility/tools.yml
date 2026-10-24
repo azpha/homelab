@@ -8,7 +8,7 @@
       name: git.alexav.gg/alex/tools
       tag: latest
     networks:
-      - name: "{{ docker_network_name }}"
+      - name: tunnel
     env:
       NODE_ENV: production
     labels:
