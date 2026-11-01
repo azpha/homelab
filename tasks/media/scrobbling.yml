@@ -13,6 +13,11 @@
     src: templates/scrobbling/lastfm.json.j2
     dest: "{{ data_dir }}/scrobbling/multi-scrobbler/lastfm.json"
 
+- name: Create Scrobbler Client Configuration
+  template:
+    src: templates/scrobbling/koito.json.j2
+    dest: "{{ data_dir }}/scrobbling/multi-scrobbler/koito.json"
+
 - name: Deploy Kotio
   include_role:
     name: docker
