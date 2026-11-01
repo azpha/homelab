@@ -17,7 +17,7 @@
   vars:
     name: Pelican
     image:
-      name: ghcr.io/pelican-dev/panel
+      name: ghcr.io/pelican/panel
       tag: latest
     volumes:
       - "pelican-data:/pelican-data"
