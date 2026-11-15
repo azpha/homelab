@@ -44,6 +44,20 @@
       MYSQL_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
       MYSQL_DATABASE: "nextcloud"
       MYSQL_USER: "nextcloud"
+      MYSQL_HOST: "nextcloud_mariadb"
+
+      OVERWRITEPROTOCOL: "https"
+      NEXTCLOUD_TRUSTED_DOMAINS: "{{ NEXTCLOUD_APP_URL }}"
+
+      OBJECTSTORE_S3_BUCKET: "{{ NEXTCLOUD_S3_BUCKET }}"
+      OBJECTSTORE_S3_REGION: "{{ NEXTCLOUD_S3_REGION }}"
+      OBJECTSTORE_S3_KEY: "{{ NEXTCLOUD_S3_KEY_ID }}"
+      OBJECTSTORE_S3_SECRET: "{{ NEXTCLOUD_S3_KEY }}"
+      OBJECTSTORE_S3_HOST: "{{ NEXTCLOUD_S3_HOST }}"
+      OBJECTSTORE_S3_PORT: "443"
+      OBJECTSTORE_S3_SSL: "true"
+      OBJECTSTORE_S3_USEPATH_STYLE: "false"
+      OBJECTSTORE_S3_AUTOCREATE: "false"
     labels:
       traefik.enable: "true"
       traefik.http.routers.nc.rule: Host(`{{ NEXTCLOUD_APP_URL }}`)
