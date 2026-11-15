@@ -37,7 +37,9 @@ jobs:
           tags: tag:action
 
       - name: Install Ansible
-        run: pipx install --include-deps ansible
+        run: |
+          pipx install ansible-core
+          ansible-galaxy collection install community.docker community.general
 
       - name: Deploy
         env:
