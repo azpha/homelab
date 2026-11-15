@@ -21,10 +21,10 @@ def construct_command(tags):
   return command
 
 def deploy(tags):
-  print(f"[MAIN] Deploying...")
+  print("[MAIN] Deploying...", flush=True)
   command = construct_command(tags)
-  res = subprocess.run(command, shell=True, capture_output=True, text=True)
-  return (res.returncode == 0, res.stderr)
+  res = subprocess.run(command, shell=True)
+  return res.returncode == 0
 
 def get_normalized_task_name(container):
   if "tasks/" in container:
@@ -67,10 +67,10 @@ def main():
       to_deploy.append(os.environ.get("TASK"))
       
     if len(to_deploy) > 0:
-      (status, error) = deploy(to_deploy)
+      result = deploy(to_deploy)
 
-    if not status:
-      print("failed to deploy: ", error)
+    if not result:
+      print("failed to deploy: ")
       raise Exception("Failed to deploy!")
       
 if __name__ == "__main__":
