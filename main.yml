@@ -97,63 +97,9 @@
       import_tasks: tasks/media/nextcloud.yml
       tags: nextcloud_deploy
 
-- hosts: jackson
-
+- hosts: digital
   roles:
     - role: traefik
       tags: traefik_deploy
       vars:
-        server: "citadel"
-
-  tasks:
-    - name: Deploy Gitea
-      import_tasks: tasks/infra/gitea.yml
-      tags: gitea_deploy
-    - name: Deploy Cloudflared
-      import_tasks: tasks/utility/cloudflared.yml
-      tags: cloudflared_deploy
-    - name: Deploy API
-      import_tasks: tasks/utility/api.yml
-      tags: api_deploy
-    - name: Deploy Storage API
-      import_tasks: tasks/utility/storage-api.yml
-      tags: storage-api_deploy
-    - name: Deploy Plausible
-      import_tasks: tasks/utility/plausible.yml
-      tags: plausible_deploy
-    - name: Deploy Database
-      import_tasks: tasks/infra/mariadb.yml
-      tags: mariadb_deploy
-    - name: Deploy Floof
-      import_tasks: tasks/gaming/floof.yml
-      tags: floof_deploy
-    - name: Deploy Tinyauth
-      import_tasks: tasks/auth/tinyauth.yml
-      tags: tinyauth_deploy
-    - name: Deploy Postgres
-      import_tasks: tasks/infra/postgres.yml
-      tags: postgres_deploy
-    - name: Deploy Dozzle
-      import_tasks: tasks/utility/dozzle.yml
-      tags: dozzle_deploy
-    - name: Deploy Redis
-      import_tasks: tasks/infra/redis.yml
-      tags: redis_deploy
-    - name: Deploy Garage
-      import_tasks: tasks/infra/garage.yml
-      tags: garage_deploy
-    - name: Deploy Pelican
-      import_tasks: tasks/gaming/pelican.yml
-      tags: pelican_deploy
-    - name: Deploy Tools
-      import_tasks: tasks/utility/tools.yml
-      tags: tools_deploy
-    - name: Deploy Website
-      import_tasks: tasks/utility/website.yml
-      tags: website_deploy
-    - name: Deploy Blog
-      import_tasks: tasks/utility/blog.yml
-      tags: blog_deploy
-    - name: Deploy Nextcloud
-      import_tasks: tasks/media/nextcloud.yml
-      tags: nextcloud_deploy
+        server: "bear"
