@@ -1,3 +1,2 @@
 [ungrouped]
 digital ansible_host=droplet.fntz.net ansible_user=iac
-bear ansible_host=fntz.net ansible_user=iac
