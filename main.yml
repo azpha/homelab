@@ -103,3 +103,8 @@
       tags: traefik_deploy
       vars:
         server: "bear"
+
+  tasks:
+    - name: Deploy Nextcloud
+      tags: nextcloud_deploy
+      import_tasks: tasks/media/nextcloud.yml
