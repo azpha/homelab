@@ -39,13 +39,18 @@ jobs:
       - name: Deploy
         env:
           TASK: ${{ inputs.task }}
-        shell: sh
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          VAULT_PASS: ${{ secrets.VAULT_PASS }}
+          BEFORE_SHA: ${{ github.event.before }}
+        shell: bash
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          printf '%s\n' "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-          eval $(ssh-agent -s)
-          ssh-add <(echo "${{ secrets.SSH_KEY }}")
-          echo "HOST *" > ~/.ssh/config
-          echo "${{ secrets.VAULT_PASS }}" > ~/.vault_pass.txt
-          python3 ./scripts/deploy_containers.py "${{ github.event.before }}" "${{ github.sha }}"
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "$SSH_KEY"
+          echo "Host *" > ~/.ssh/config
+          printf '%s' "$VAULT_PASS" > ~/.vault_pass.txt
+          chmod 600 ~/.vault_pass.txt
+          python3 ./scripts/deploy_containers.py "$BEFORE_SHA" "$GITHUB_SHA"
