@@ -6,24 +6,25 @@
     name: nextcloud_mariadb
     network_name: nextcloud
     directories:
-      - "{{ data_dir }}/nextcloud"
       - "{{ data_dir }}/nextcloud/data"
-      - "{{ data_dir }}/nextcloud/db"
-      - "{{ data_dir }}/nextcloud/db/import"
+      - "{{ data_dir }}/nextcloud/mariadb/data"
+      - "{{ data_dir }}/nextcloud/mariadb/conf.d"
+      - "{{ data_dir }}/nextcloud/mariadb/import"
     image:
       name: mariadb
-      tag: latest
+      tag: "11.4"
+    command: "--transaction-isolation=READ-COMMITTED --binlog-format=ROW"
     networks:
       - name: "nextcloud"
     volumes:
-      - "{{ data_dir }}/nextcloud/db:/var/lib/mysql"
-      - "{{ data_dir }}/nextcloud/db/etc:/etc/mysql"
-      - "{{ data_dir }}/nextcloud/db/import:/mnt/import"
+      - "{{ data_dir }}/nextcloud/mariadb/data:/var/lib/mysql"
+      - "{{ data_dir }}/nextcloud/mariadb/conf.d:/etc/mysql/conf.d"
+      - "{{ data_dir }}/nextcloud/mariadb/import:/mnt/import"
     env:
       MARIADB_USER: "nextcloud"
       MARIADB_DATABASE: "nextcloud"
       MARIADB_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
-      MARIADB_ROOT_PASSWORD: "{{ NEXTCLOUD_MYSQL_PASSWORD }}"
+      MARIADB_ROOT_PASSWORD: "{{ NEXTCLOUD_MYSQL_ROOT_PASSWORD }}"
 
 - name: Deploy Nextcloud
   include_role:
