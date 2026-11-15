@@ -36,6 +36,9 @@ jobs:
           audience: ${{ secrets.TS_AUDIENCE }}
           tags: tag:action
 
+      - name: Install Ansible
+        run: pipx install --include-deps ansible
+
       - name: Deploy
         env:
           TASK: ${{ inputs.task }}
